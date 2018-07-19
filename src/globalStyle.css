@@ -1,0 +1,7 @@
+:root{
+  --main-bg-color: #2b2b2b;
+  --main-txt-color: blue;
+  --main-padding: 15px;
+  --main-view-height : 100vh;
+  --sidebar-width : 300px;
+}

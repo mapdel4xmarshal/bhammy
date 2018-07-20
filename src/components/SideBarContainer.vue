@@ -1,6 +1,7 @@
 <template>
    <div id="sidebar">
-     <nav-button v-for="section in sections" :key="section"></nav-button>
+     <div>Main Menu</div>
+     <nav-button v-for="(section, index) in sections" :key="section" :btnName="section" :className="classes[index]"></nav-button>
    </div>
 </template>
 
@@ -10,7 +11,8 @@ export default {
   name: 'SideBarContainer',
   data () {
     return {
-      sections: ['Dashboard', 'Add', 'Remove']
+      sections: ['Dashboard', 'Flock management', 'Sales/Income', 'Expenditure', 'Vaccination', 'Settings'],
+      classes: ['fa fa-home', 'fa fa-users', 'fa fa-university', 'fa fa-address-card', 'fa fa-medkit', 'fa fa-cog']
     }
   },
   components: {

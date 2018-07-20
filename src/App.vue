@@ -40,7 +40,11 @@ export default {
     --main-view-height : 100vh;
     --sidebar-width : 300px;
   }
-  body { margin: 0; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
   .main-content{
     --sidebar-width : 300px;
     display: inline-flex;

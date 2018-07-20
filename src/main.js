@@ -8,6 +8,13 @@ Vue.component('message', HelloWorld) */
 
 Vue.config.productionTip = false
 
+// Share data between components
+export const sharedParams = new Vue({
+  data: {
+    selectedPageIndex: 0
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

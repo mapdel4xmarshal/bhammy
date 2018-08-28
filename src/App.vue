@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="container">
      <sidebar-container></sidebar-container>
      <div class="main-content">
-       <header-bar></header-bar>
+       <appHeaderBar></appHeaderBar>
        <section id="main">
-         <h1>Vue Sample - {{ value }}</h1>
-         <message v-for="msg in 30" :key="msg"></message>
+         <h1>{{currentPage}}</h1>
+         <component :is="sharedProp.currentPage"></component>
        </section>
      </div>
   </div>
@@ -15,17 +15,30 @@
 import SideBarContainer from './components/SideBarContainer'
 import HeaderBar from './components/HeaderBar'
 import HelloWorld from './components/HelloWorld'
+import Home from './components/Home'
+import Sales from './components/sales/Sales'
+
+// Global Share Instance
+import {sharedParams} from './main'
 
 export default {
   data: function () {
     return {
-      value: 'ASDF'
+      currentPage: '',
+      sharedProp: sharedParams
     }
   },
   components: {
     'sidebar-container': SideBarContainer,
-    'header-bar': HeaderBar,
-    'message': HelloWorld
+    'appHeaderBar': HeaderBar,
+    'appMessage': HelloWorld,
+    'appHome': Home,
+    'appSales': Sales
+  },
+  created: function () {
+    this.$on('navButtonClicked', (event) => {
+      console.log(event)
+    })
   }
 }
 </script>
@@ -41,30 +54,51 @@ export default {
     --main-bg-color: #2b2b2b;
     --main-txt-color: blue;
     --main-padding: 15px;
-    --left-border-width: 10px;
+    --left-border-width: 5.px;
     --main-view-height : 100vh;
     --sidebar-width : 300px;
     --mobile-width: 768px;
-    --header-nav-height: 70px;
+    --header-nav-height: 45px;
+    --paidColor: #32c24d;
+    --dueColor: #c2070c;
+    --unpaidColor: #c29d07;
+    --draftColor: #505050;
   }
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
   }
 
   .main-content>#main{
     padding-top: var(--header-nav-height);
+    overflow-x: hidden;
     overflow-y: scroll;
-    width: 100%;
-    padding: 20px 20px 0 20px;
+    margin-top: 45px;
+    padding: 5px;
   }
 
   .main-content{
     --sidebar-width : 300px;
-    display: inline-flex;
-    width: calc(100% - var(--sidebar-width) - var(--left-border-width));
+    width: 100%;
     position: relative;
     overflow: hidden;
     height: 100vh;
+    box-sizing: border-box;
   }
+  .container{
+    display: -webkit-inline-box;
+    overflow-x: hidden;
+    width: 100vw;
+  }
+
+    input{
+      height: 25px;
+      width:100%;
+      font-size: 14px;
+    }
+
+    input:focus{
+      border: 1px solid red;
+    }
 </style>

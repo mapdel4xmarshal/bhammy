@@ -1,17 +1,19 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueResource from 'vue-resource';
 import App from './App'
-/* import HelloWorld from './components/HelloWorld'
 
-Vue.component('message', HelloWorld) */
-
+Vue.use(VueResource);
 Vue.config.productionTip = false
 
 // Share data between components
 export const sharedParams = new Vue({
   data: {
-    selectedPageIndex: 0
+    selectedPageIndex: 0,
+    currentPage: 'app-home',
+    currentPageName: 'Dashboard',
+    sidebarVisible : true
   }
 })
 

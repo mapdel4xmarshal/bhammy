@@ -1,43 +1,57 @@
 <template>
-   <div id="sidebar">
-     <div>Main Menu</div>
-     <img src="../assets/Logofull.png" alt="">
+   <div id="sidebar" :class="{'hide-menu' : !sharedProp.sidebarVisible}">
+     <div id="sidebarHeader">
+       <img src="../assets/images/logo.png" alt="">
+     </div>
      <nav-button v-for="(section, index) in sections"
-                 :key="section"
-                 :btnName="section"
-                 :className="classes[index]"
-                 :pageIndex="index"
-                 :isActive="selectedPageIndex == index"
-                 @pageChanged="selectedPageIndex = $event">
+                 :key="section.name"
+                 :btnName="section.name"
+                 :className="section.iconClass"
+                 :navButtonIndex="index"
+                 :component="section.component"
+                 :isActive="selectedNavIndex == index"
+                 @navButtonClicked="navigateToPage">
      </nav-button>
    </div>
 </template>
 
 <script>
 import NavigationButton from './sidebar/NavigationButton'
-/* import sharedParams from '../main' */
+import {sharedParams} from '../main'
 
 export default {
   name: 'SideBarContainer',
   data () {
     return {
-      sections: ['Dashboard', 'Flock management', 'Sales/Income', 'Expenditure', 'Vaccination', 'Settings'],
-      classes: ['fa fa-home', 'fa fa-users', 'fa fa-university', 'fa fa-address-card', 'fa fa-medkit', 'fa fa-cog'],
-      selectedPageIndex: 0
+      sections: [{name: 'Dashboard', component: 'app-home', iconClass: 'dashboard3.png'},
+        {name: 'Productions', component: 'app-message', iconClass: 'production.png'},
+        {name: 'Sales', component: 'app-sales', iconClass: 'sales.png'},
+        {name: 'Expenditure', component: 'app-message', iconClass: 'expenditure.png'},
+        {name: 'Activities', component: 'app-message', iconClass: 'activity-2.png'},
+        {name: 'Store', component: 'app-message', iconClass: 'store.png'},
+        {name: 'Settings', component: 'app-message', iconClass: 'settings.png'}],
+      selectedNavIndex: 0,
+      sharedProp: sharedParams
     }
   },
   components: {
     navButton: NavigationButton
   },
   methods: {
-    navigateToPage () {
-
+    navigateToPage (event) {
+      this.selectedNavIndex = event.navButtonIndex
+      this.sharedProp.selectedPageIndex = event.navButtonIndex
+      this.sharedProp.currentPage = event.component
+      this.sharedProp.currentPageName = event.navButtonName
+      this.sharedProp.sidebarVisible = false
+      console.log("navigateToPage", event)
     }
   },
-  created () {
-    /* globalEventBus.$emit('eventName', data)
-    * globalEventBus.$on('eventName', () => {
-     }) */
+  created: function () {
+    // globalEventBus.$emit('eventName', data)
+    /*this.$on('navButtonClicked', (event) => {
+      console.log(event, "hhhhheehe")
+    })*/
   }
 }
 </script>
@@ -47,20 +61,41 @@ export default {
     height: var(--main-view-height);
     background-color: var(--main-bg-color);
     max-width: var(--sidebar-width);
-    width:30%;
-    min-width: 100px;
+    width:80px;
     display: block;
     position: relative;
     float:left;
     border-left: var(--left-border-width) solid black;
+    transition: all 1s;
+    -moz-transition: all 300ms; /* Firefox 4 */
+    -webkit-transition: all 300ms; /* Safari and Chrome */
+    -o-transition: all 300ms; /* Opera */
   }
 
-  /** Mobile specific css **/
+  #sidebarHeader{
+    background-color: #fff;
+    padding:10px;
+    height: 50px;
+  }
+
+  .hide-menu{
+    width: 0px !important;
+    right: 80px;
+  }
+
+  #sidebarHeader>img{
+    max-height: 50px;
+  }
+
+  @media only screen and (min-width: 800px) {
+  }
+
+  /*!** Mobile specific css **!
   @media only screen
   and (min-width:0px)
   and (max-width: 1024px) {
     #sidebar{
       text-align: center;
     }
-  }
+  }*/
 </style>

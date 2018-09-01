@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="invoice-list" :class="paymentStatus">
+    <div class="invoice-list" :class="invoice.paymentStatus" @click="$emit('viewInvoice', invoice)">
       <div class="left-col">
-        <strong>{{ customerName }}</strong>
-        <span class="status" :class="paymentStatus">{{ paymentStatus }}</span><br>
-        <i>{{ description }}</i>
+        <span class="status" :class="invoice.paymentStatus">{{ invoice.paymentStatus }}</span>
+        <strong>{{ invoice.customerName }}</strong>
+        <br>
+        <i>{{ invoice.description }}</i>
       </div>
 
       <div class="right-col">
@@ -21,10 +22,10 @@ export default {
   data () {
     return {}
   },
-  props: ['customerName', 'paymentStatus', 'amount', 'description', 'paymentDate'],
+  props: ['invoice'],
   computed: {
     numberToAmount: function () {
-      return this.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      return this.invoice.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   }
 }
@@ -38,6 +39,7 @@ export default {
     padding:10px;
     width:100%;
     border-bottom: 2px solid var(--draftColor);
+    cursor: pointer;
   }
 
   .invoice-list .left-col{
@@ -75,11 +77,14 @@ export default {
 
   .status{
     font-size: 10px;
+    width:35px;
+    display: inline-block;
     color:white;
     font-weight: 400;
     border-radius: 2px;
     padding: 3px 10px;
     text-transform: uppercase;
+    text-align: center;
   }
 
   .status.paid{

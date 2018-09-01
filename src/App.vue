@@ -4,7 +4,6 @@
      <div class="main-content">
        <appHeaderBar></appHeaderBar>
        <section id="main">
-         <h1>{{currentPage}}</h1>
          <component :is="sharedProp.currentPage"></component>
        </section>
      </div>

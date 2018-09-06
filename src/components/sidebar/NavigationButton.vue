@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   div.nav-button{
     padding: 10px;
     color: #eee;

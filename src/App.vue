@@ -61,6 +61,7 @@ export default {
     --paidColor: #32c24d;
     --dueColor: #c2070c;
     --unpaidColor: #c29d07;
+    --partialColor: #c27e16;
     --draftColor: #505050;
   }
   body {

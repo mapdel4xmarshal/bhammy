@@ -84,7 +84,7 @@ export default {
         {
           id: 93,
           customerName: 'Mrs. Mapayi Semira',
-          description: '200 crates of Jumbo Eggs. 100 crates of pullets. 1000 crates of medium sized eggs',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
           amount: 1394099,
           paymentStatus: 'draft'
 

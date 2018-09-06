@@ -276,12 +276,15 @@ export default {
 
     table{
       display: table;
-      table-layout: fixed;
     }
 
     tr{
       display: table-row;
       height: 40px;
+    }
+
+    td{
+      padding: 10px;
     }
 
     td, thead th{

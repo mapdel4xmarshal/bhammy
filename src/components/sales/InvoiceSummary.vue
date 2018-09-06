@@ -314,12 +314,16 @@ export default {
       width: 50px;
     }
 
+    th:nth-child(6), td:nth-child(6){
+      display: none !important;
+    }
+
   }
 
   /* Large Desktop */
-  @media only screen and (min-width: 1000px) {
-    td:first-child{
-      display: table-cell;
+  @media only screen and (min-width: 1200px) {
+    th:nth-child(6), td:nth-child(6){
+      display: table-cell !important;
     }
   }
 

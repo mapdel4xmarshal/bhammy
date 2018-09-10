@@ -68,12 +68,11 @@ export default {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f4f4f4;
+    overflow: hidden;
   }
 
   .main-content>#main{
     padding-top: var(--header-nav-height);
-    overflow-x: hidden;
-    overflow-y: scroll;
     margin-top: 45px;
     padding: 5px;
   }
@@ -82,23 +81,41 @@ export default {
     --sidebar-width : 300px;
     width: 100%;
     position: relative;
-    overflow: hidden;
-    height: 100vh;
     box-sizing: border-box;
   }
   .container{
     display: -webkit-inline-box;
-    overflow-x: hidden;
-    width: 100vw;
+    //overflow-x: hidden;
+    width: 100%;
   }
 
-    input{
-      height: 25px;
-      width:100%;
-      font-size: 14px;
+  input{
+    height: 25px;
+    width:100%;
+    font-size: 14px;
+  }
+
+  input:focus{
+    border: 1px solid red;
+  }
+
+    ::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+      border-radius: 10px;
     }
 
-    input:focus{
-      border: 1px solid red;
+    ::-webkit-scrollbar
+    {
+      display: none;
     }
-</style>
+
+    ::-webkit-scrollbar-thumb
+    {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+
+
+  </style>

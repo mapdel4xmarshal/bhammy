@@ -13,8 +13,8 @@
               <span>Filter</span>
             </div>
             <div class="action-box">
-              <i class="fa fa-calendar-alt fa-2x"></i>
-              <span>Date</span>
+              <i class="fa fa-bar-chart fa-2x"></i>
+              <span>Stats</span>
             </div>
             <div class="action-box">
               <i class="fa fa-search fa-2x"></i>
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-      <div style="overflow-y: scroll; height: calc(100vh - 58px);">
+      <div class="scroll-section">
         <div style="height: 10px;"></div>
         <app-invoice-row
                          :key="invoices[0].id"
@@ -88,6 +88,86 @@ export default {
           amount: 1394099,
           paymentStatus: 'draft'
 
+        },
+        {
+          id: 2237,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 324099,
+          paymentStatus: 'paid'
+
+        },
+        {
+          id: 22307,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 394099,
+          paymentStatus: 'unpaid'
+
+        },
+        {
+          id: 22937,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: '1,394,990',
+          paymentStatus: 'due'
+
+        },
+        {
+          id: 122937,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 394099,
+          paymentStatus: 'partial'
+
+        },
+        {
+          id: 937,
+          customerName: 'Mrs. Mapayi Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 1394099,
+          paymentStatus: 'draft'
+
+        },
+        {
+          id: 2239,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 324099,
+          paymentStatus: 'paid'
+
+        },
+        {
+          id: 22309,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 394099,
+          paymentStatus: 'unpaid'
+
+        },
+        {
+          id: 22939,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: '1,394,990',
+          paymentStatus: 'due'
+
+        },
+        {
+          id: 122939,
+          customerName: 'Mrs. Saliu Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 394099,
+          paymentStatus: 'partial'
+
+        },
+        {
+          id: 939,
+          customerName: 'Mrs. Mapayi Semira',
+          description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          amount: 1394099,
+          paymentStatus: 'draft'
+
         }
       ]
     }
@@ -107,6 +187,11 @@ export default {
 </script>
 
 <style scoped>
+
+  .scroll-section{
+    overflow-y: auto;
+    height: calc(100vh - 58px);
+  }
 
   .action-menu{
     background-color: white;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="invoice-list" :class="invoice.paymentStatus" @click="showSubMenu = true" v-for="invoice in invoices" :key="invoice.id"><!--$emit('viewInvoice', invoice)-->
+   <!-- <div class="invoice-list" :class="invoice.paymentStatus" @click="showSubMenu = true" v-for="invoice in invoices" :key="invoice.id">&lt;!&ndash;$emit('viewInvoice', invoice)&ndash;&gt;
       <div v-if="showSubMenu"
            style="text-align: center; display: grid; grid-template-columns: 50% 50%; width:120px; background-color: rgba(43,43,43,0.94); position: absolute; right: 0; top: 0; height: 100%;">
         <div class="fa fa-eye fa-2x"></div>
@@ -17,11 +17,11 @@
         <span>Jan. 24 2018</span><br>
         <strong :class="invoice.paymentStatus">₦</strong>
       </div>
-    </div>
+    </div>-->
 
     <table style="width:100%;">
       <thead>
-        <th>Invoice #</th>
+        <th>Invoice#</th>
         <th>Status</th>
         <th>Customer name</th>
         <th style="width:30%;">Description</th>
@@ -32,16 +32,16 @@
         <th></th>
       </thead>
 
-      <tbody style="width:100%;">
+      <tbody>
         <tr class="" :class="invoice.paymentStatus" v-for="invoice in invoices" :key="invoice.id">
-          <td>2232</td>
+          <td>{{ invoice.id }}</td>
           <td id="tbl-status" class="mobile-view"><div class="status" :class="invoice.paymentStatus">{{ invoice.paymentStatus }}</div></td>
           <td id="tbl-name" class="mobile-view elipsis">{{ invoice.customerName }}</td>
           <td id="tbl-desc" class="mobile-view elipsis">{{ invoice.description }}</td>
           <td id="tbl-created" class="mobile-view">Jan. 24 2018</td>
           <td>Jan. 24 2018</td>
           <td id="tbl-amount" class="mobile-view" :class="invoice.paymentStatus">₦{{ invoice.amount }}</td>
-          <td :class="invoice.paymentStatus">₦{{ invoice.amount }}</td>
+          <td id="tbl-balance" :class="invoice.paymentStatus">₦{{ invoice.amount }}</td>
           <td><span class="imenu"></span></td>
         </tr>
       </tbody>
@@ -115,12 +115,12 @@ export default {
 
   .status{
     font-size: 10px;
-    width:35px;
+    width:40px;
     display: inline-block;
     color:white;
-    font-weight: 400;
+    font-weight: 600;
     border-radius: 2px;
-    padding: 3px 10px;
+    padding: 5px 10px;
     text-transform: uppercase;
     text-align: center;
   }
@@ -188,6 +188,8 @@ export default {
   table{
     font-size: 14px;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
   }
 
   thead th{
@@ -208,9 +210,14 @@ export default {
     padding-left: 20px;
   }
 
+  td:last-child{
+    cursor: pointer;
+  }
+
   .imenu:after {
     content: '\2807';
-    font-size: 15px;
+    font-size: 25px;
+    color: grey;
   }
 
   /* MOBILE SPECFIC CSS */
@@ -220,8 +227,9 @@ export default {
 
   tr{
     display: grid;
-    grid-template-columns: 60px auto auto;
-    padding:10px;
+    grid-template-columns: 60px 50% auto;
+    padding: 5px 10px;
+    /*width: calc(100vw - 30px);*/
   }
 
   #tbl-desc{
@@ -256,6 +264,10 @@ export default {
     margin-left: 10px;
   }
 
+  #tbl-name{
+    padding-left: 5px;
+  }
+
   .mobile-view{
     display: inline-block;
   }
@@ -267,15 +279,27 @@ export default {
 
   }
 
-
   /* For desktop: */
   @media only screen and (min-width: 768px) {
     .invoice-list{
       display: none;
     }
 
+    th:first-child, td:first-child, td:nth-child(7), th:nth-child(7){
+      display: none !important;
+    }
+
+    .elipsis{
+      white-space : normal;
+    }
+
+    td:nth-child(2), th:nth-child(2){
+      padding-left: 15px;
+    }
+
     table{
       display: table;
+      table-layout: auto;
     }
 
     tr{
@@ -318,6 +342,12 @@ export default {
       display: none !important;
     }
 
+  }
+
+  @media only screen and (min-width: 900px){
+    th:first-child, td:first-child, td:nth-child(7), th:nth-child(7){
+      display: table-cell !important;
+    }
   }
 
   /* Large Desktop */

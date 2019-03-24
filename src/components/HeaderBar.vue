@@ -8,8 +8,8 @@
       </div>
 
       <div class="right-section">
-        <i class="fa fa-envelope" aria-hidden="true"></i>
-        <i class="fa fa-bell" aria-hidden="true"></i>
+        <font-awesome-icon icon="envelope"></font-awesome-icon>
+        <font-awesome-icon icon="bell"></font-awesome-icon>
       </div>
     </div>
 </template>

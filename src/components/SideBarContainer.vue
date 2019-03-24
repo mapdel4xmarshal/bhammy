@@ -88,14 +88,14 @@ export default {
   }
 
   @media only screen and (min-width: 800px) {
+    #sidebar{
+      width: 300px;
+    }
+
+    .hide-menu{
+      width: 80px !important;
+      right: 0;
+    }
   }
 
-  /*!** Mobile specific css **!
-  @media only screen
-  and (min-width:0px)
-  and (max-width: 1024px) {
-    #sidebar{
-      text-align: center;
-    }
-  }*/
 </style>

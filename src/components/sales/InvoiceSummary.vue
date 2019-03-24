@@ -33,7 +33,7 @@
       </thead>
 
       <tbody>
-        <tr class="" :class="invoice.paymentStatus" v-for="invoice in invoices" :key="invoice.id">
+        <tr class="" :class="invoice.paymentStatus" v-for="invoice in invoices" :key="invoice.id" @click="$emit('viewInvoice', invoice)">
           <td>{{ invoice.id }}</td>
           <td id="tbl-status" class="mobile-view"><div class="status" :class="invoice.paymentStatus">{{ invoice.paymentStatus }}</div></td>
           <td id="tbl-name" class="mobile-view elipsis">{{ invoice.customerName }}</td>
@@ -69,6 +69,7 @@ export default {
 </script>
 
 <style scoped>
+
   .invoice-list{
     display: inline-block;
     box-sizing: border-box;
@@ -114,13 +115,16 @@ export default {
   }
 
   .status{
-    font-size: 10px;
+    font-size: 11px;
     width:40px;
     display: inline-block;
-    color:white;
+    /*color:white;*/
+    color:#000;
     font-weight: 600;
     border-radius: 2px;
-    padding: 5px 10px;
+    /*padding: 5px 10px;*/
+    background-color: #eeeeee;
+    padding: 3px 10px;
     text-transform: uppercase;
     text-align: center;
   }
@@ -146,23 +150,28 @@ export default {
   }
 
   .status.paid{
-    background-color: var(--paidColor);
+    border-bottom: 2px solid var(--paidColor);
+    color: var(--paidColor);
   }
 
   .status.due{
-    background-color: var(--dueColor);
+    border-bottom: 2px solid var(--dueColor);
+    color: var(--dueColor);
   }
 
   .status.unpaid{
-    background-color: var(--unpaidColor);
+    border-bottom: 2px solid var(--unpaidColor);
+    color: var(--unpaidColor);
   }
 
   .status.partial{
-    background-color: var(--partialColor);
+    border-bottom: 2px solid var(--partialColor);
+    color: var(--partialColor);
   }
 
   .status.draft{
-    background-color: var(--draftColor);
+    border-bottom: 2px solid var(--draftColor);
+    color: var(--draftColor);
   }
 
   .invoice-list.paid{
@@ -204,6 +213,7 @@ export default {
   table tr{
     background-color: #fff;
     border-bottom: 1px solid #808080;
+    cursor: pointer;
   }
 
   th:first-child, td:first-child{

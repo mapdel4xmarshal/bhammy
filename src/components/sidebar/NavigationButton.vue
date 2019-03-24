@@ -56,15 +56,17 @@ export default {
 
 <style>
   div.nav-button{
-    padding: 10px;
     color: #eee;
     background-color: #3F3F3F;
     vertical-align: middle;
     margin-bottom: 2px;
     cursor: pointer;
-    display: block;
+    display: grid;
     padding:  5px;
     font-size: 15px;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
     font-weight: 200;
     background: -webkit-linear-gradient(top, #414141, #3D3D3D);
     background:    -moz-linear-gradient(top, #414141, #3D3D3D);
@@ -98,13 +100,13 @@ export default {
     padding:5px;
   }
 
+  .nav-button img{
+    justify-self: center;
+  }
+
   .nav-button span{
     font-size: 12px;
     display: block;
-  }
-
-  .nav-button{
-    text-align: center;
   }
 
   .nav-button i:last-child{
@@ -115,8 +117,28 @@ export default {
   }
 
   @media only screen and (min-width: 800px) {
-    .nav-button i:last-child{
+    .nav-button svg:last-child{
        display: block;
+    }
+
+    .nav-button{
+      align-items: left;
+      grid-template-columns: 35px auto;
+      text-align: left !important;
+    }
+
+    .nav-button img{
+      justify-self: left;
+    }
+
+    .hide-menu .nav-button{
+      align-items: center;
+      grid-template-columns: auto;
+      text-align: center !important;
+    }
+
+     .hide-menu .nav-button img{
+      justify-self: center !important;
     }
   }
 </style>

@@ -5,7 +5,7 @@
   "author": "Emmanuel <emmanuel.mapayi@ssimwave.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 8080 --host 192.168.2.24",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 8080",
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -14,7 +14,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@fortawesome/vue-fontawesome": "^0.1.1",
     "bootstrap": "^4.1.2",
     "datatables": "^1.10.18",
     "node-sass": "^4.9.2",

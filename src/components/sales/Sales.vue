@@ -5,19 +5,19 @@
         <div id="sales-header">
           <div class="action-menu">
             <div class="action-box" @click="invoiceSection = 2">
-              <i class="fa fa-plus-circle fa-2x"></i>
+              <font-awesome-icon icon="plus-circle" size="2x" />
               <span>New sale</span>
             </div>
             <div class="action-box">
-              <i class="fa fa-sliders-h fa-2x"></i>
+              <font-awesome-icon icon="sliders-h" size="2x" />
               <span>Filter</span>
             </div>
             <div class="action-box">
-              <i class="fa fa-bar-chart fa-2x"></i>
+              <font-awesome-icon icon="chart-pie" size="2x" />
               <span>Stats</span>
             </div>
             <div class="action-box">
-              <i class="fa fa-search fa-2x"></i>
+              <font-awesome-icon icon="search" size="2x" />
               <span>Search</span>
             </div>
           </div>
@@ -26,9 +26,9 @@
         <div style="height: 10px;"></div>
         <app-invoice-row
                          :key="invoices[0].id"
-                         :invoices="invoices">
+                         :invoices="invoices"
+                         @viewInvoice="viewInvoice">
         </app-invoice-row>
-
 
       </div>
     </div>
@@ -175,12 +175,13 @@ export default {
   components: {
     appInvoiceRow: InvoiceRow,
     appViewInvoice: ViewInvoice,
-    appNewInvoice: NewInvoice,
+    appNewInvoice: NewInvoice
   },
   methods: {
-    viewInvoice: function (invoice) { console.log(invoice);
-      this.invoiceSection = 3;
-      this.selectedInvoiceData = invoice;
+    viewInvoice: function (invoice) {
+      console.log(invoice)
+      this.invoiceSection = 3
+      this.selectedInvoiceData = invoice
     }
   }
 }
@@ -190,7 +191,7 @@ export default {
 
   .scroll-section{
     overflow-y: auto;
-    height: calc(100vh - 58px);
+    height: calc(100vh - 120px);
   }
 
   .action-menu{
@@ -228,13 +229,13 @@ export default {
     border-right: none !important;
   }
 
-  .action-box i{
-    display: block;
+  .action-box svg{
     font-size: 20px !important;
   }
 
   .action-box span{
     font-size: 14px;
+    display: block;
   }
 
   #sales-header{

@@ -1,27 +1,27 @@
 <template>
-    <div id="header" @click="toggleSideBar">
-      <div class="menu-icon">
-        <img src="../assets/images/menu2.png" alt="">
-      </div>
-      <div class="title">
-        {{ sharedProp.currentPageName }}
-      </div>
-
-      <div class="right-section">
-        <font-awesome-icon icon="envelope"></font-awesome-icon>
-        <font-awesome-icon icon="bell"></font-awesome-icon>
-      </div>
+  <div id="header" @click="toggleSideBar">
+    <div class="menu-icon">
+      <img src="../assets/images/menu2.png" alt="">
     </div>
+    <div class="title">
+      {{ sharedProp.currentPageName }}
+    </div>
+
+    <div class="right-section">
+      <font-awesome-icon icon="envelope"></font-awesome-icon>
+      <font-awesome-icon icon="bell"></font-awesome-icon>
+    </div>
+  </div>
 </template>
 
 <script>
   import {sharedParams} from '../main'
 
-  export default {
+  export default {/**/
     name: 'HeaderBar',
-    data () {
+    data() {
       return {
-       //
+        //
         // sharedProp: sharedParams
       }
     },
@@ -30,45 +30,46 @@
         this.sharedProp.sidebarVisible = !this.sharedProp.sidebarVisible;
       }
     },
-    created () {
+    created() {
       this.sharedProp = sharedParams
     }
   }
 </script>
 
 <style scoped>
-   #header{
-     height: 45px;
-     background-color: #68284d;
-     position: absolute;
-     width:100%;
-     color: white;
-     box-shadow: 0 6px 6px -6px #777;
-   }
+  #header {
+    height: 45px;
+    background-color: #68284d;
+    position: absolute;
+    width: 100%;
+    color: white;
+    box-shadow: 0 6px 6px -6px #777;
+  }
 
-   .title{
-     line-height: 3;
-     display: inline-block;
-   }
+  .title {
+    line-height: 3;
+    display: inline-block;
+  }
 
-   .menu-icon{
-     display: inline-block;
-     padding: 10px;
-     float: left;
-     cursor: pointer;
-   }
-  .menu-icon img{
+  .menu-icon {
+    display: inline-block;
+    padding: 10px;
+    float: left;
+    cursor: pointer;
+  }
+
+  .menu-icon img {
     width: 25px;
     height: 28px;
   }
 
-  .right-section{
+  .right-section {
     float: right;
     line-height: 3;
     margin-right: 15px;
   }
 
-  .right-section i{
+  .right-section i {
     margin-left: 10px;
   }
 </style>

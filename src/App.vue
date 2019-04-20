@@ -50,10 +50,12 @@ export default {
   @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";*/
 
   :root{
-    --main-bg-color: #2b2b2b;
+    --main-bg-color: #FAFAFA;
+    --sidebar-bg-color: #FAFAFA;
     --main-txt-color: blue;
     --main-padding: 15px;
-    --left-border-width: 5.px;
+    --base-color: #7f2775;
+    --left-border-width: 5px;
     --main-view-height : 100vh;
     --sidebar-width : 300px;
     --mobile-width: 768px;
@@ -84,8 +86,6 @@ export default {
     box-sizing: border-box;
   }
   .container{
-    /*display: -webkit-inline-box;*/
-    //overflow-x: hidden;
     display: flex;
     width: 100%;
   }

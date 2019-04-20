@@ -2,7 +2,6 @@
    <div class="nav-button"
         :class="{active : isActive}"
         @click="setActivePage">
-    <!-- <i class="fa-2x" :class="className" aria-hidden="true"></i>-->
      <img :src="require('../../assets/images/' + className)" alt="">
      <span>{{ btnName }}</span>
      <i class="fa fa-angle-right fa-lg"></i>
@@ -56,8 +55,7 @@ export default {
 
 <style>
   div.nav-button{
-    color: #eee;
-    background-color: #3F3F3F;
+    color: var(--base-color);
     vertical-align: middle;
     margin-bottom: 2px;
     cursor: pointer;
@@ -68,30 +66,39 @@ export default {
     text-align: center;
     overflow: hidden;
     font-weight: 200;
-    background: -webkit-linear-gradient(top, #414141, #3D3D3D);
-    background:    -moz-linear-gradient(top, #414141, #3D3D3D);
-    background:     -ms-linear-gradient(top, #414141, #3D3D3D);
-    background:      -o-linear-gradient(top, #414141, #3D3D3D);
-    background:         linear-gradient(to bottom, #414141, #3D3D3D);
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
-    //text-shadow: 0 1px 0 rgba(220, 128, 105, 0.7), 0 -1px rgba(138, 66, 49, 0.5);
+    position: relative;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     transition: all 500ms ease;
   }
 
+  .nav-button::after{
+    opacity: 0;
+    border: 2px solid var(--base-color);
+    border-radius: 5px;
+    width: 0;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 1px;
+    height: 48px;
+    -webkit-transition: opacity .4s ease-in-out;
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    transition: opacity .4s ease-in-out;
+  }
+
   .nav-button:hover, .nav-button.active{
-    --hover-bg-color : #1f1f1f; /*181818*/
-    color: #bbb;
-    background-color: #2B2B2B;
-    border-left: 5px solid red;
-    background: -webkit-linear-gradient(top, var(--hover-bg-color), var(--hover-bg-color));
-    background:    -moz-linear-gradient(top, var(--hover-bg-color), var(--hover-bg-color));
-    background:     -ms-linear-gradient(top, var(--hover-bg-color), var(--hover-bg-color));
-    background:      -o-linear-gradient(top, var(--hover-bg-color), var(--hover-bg-color));
-    background:         linear-gradient(to bottom, var(--hover-bg-color), var(--hover-bg-color));
-    box-shadow: inset 0 1px 2px rgba(29, 29, 29, 0.16);
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+    --hover-bg-color : var(--base-color);
+    color: #7f2775;
+    background-color: #7f27750d;
+  }
+
+  .nav-button:hover::after, .nav-button.active::after{
+    opacity: 1;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    transition: all 500ms ease;
   }
 
   .nav-button .fa:first-child{

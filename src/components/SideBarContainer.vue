@@ -59,17 +59,21 @@ export default {
 <style scoped>
   #sidebar{
     height: var(--main-view-height);
-    background-color: var(--main-bg-color);
+    background-color: var(--sidebar-bg-color);
     max-width: var(--sidebar-width);
     width:80px;
     display: block;
     position: relative;
+    margin-right: 2px;
     float:left;
     border-left: var(--left-border-width) solid black;
     transition: all 1s;
     -moz-transition: all 300ms; /* Firefox 4 */
     -webkit-transition: all 300ms; /* Safari and Chrome */
     -o-transition: all 300ms; /* Opera */
+    -webkit-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
+    -moz-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
+    box-shadow: 0px 0px 3px 0px #9e9e9e8f;
   }
 
   #sidebarHeader{

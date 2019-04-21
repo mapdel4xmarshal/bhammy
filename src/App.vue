@@ -69,7 +69,7 @@ export default {
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--main-bg-color);
     overflow: hidden;
   }
 

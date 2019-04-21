@@ -38,12 +38,12 @@
 
 <style scoped>
   #header {
-    height: 45px;
-    background-color: #68284d;
+    height: 60px;
+    background-color: #fafafa;
     position: absolute;
     width: 100%;
     color: white;
-    box-shadow: 0 6px 6px -6px #777;
+    -webkit-box-shadow: 0px 6px 1px -6px #77777761;
   }
 
   .title {

@@ -2,7 +2,8 @@
   <div>
     <app-view-invoice v-if="invoiceSection == 3" :invoice="selectedInvoiceData"></app-view-invoice>
     <div v-else-if="invoiceSection == 1">
-        <div id="sales-header">
+      <app-button-pill>+ New Invoice</app-button-pill>
+      <div id="sales-header">
           <div class="action-menu">
             <div class="action-box" @click="invoiceSection = 2">
               <font-awesome-icon icon="plus-circle" size="2x" />
@@ -41,6 +42,7 @@
 import InvoiceRow from './InvoiceSummary'
 import ViewInvoice from './ViewInvoice'
 import NewInvoice from './NewInvoice'
+import ButtonPill from '../common/ButtonPill'
 
 export default {
   name: 'sales',
@@ -53,6 +55,8 @@ export default {
           id: 223,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 324099,
           paymentStatus: 'paid'
 
@@ -61,6 +65,8 @@ export default {
           id: 2230,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'unpaid'
 
@@ -69,6 +75,8 @@ export default {
           id: 2293,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: '1,394,990',
           paymentStatus: 'due'
 
@@ -77,6 +85,8 @@ export default {
           id: 12293,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'partial'
 
@@ -85,6 +95,8 @@ export default {
           id: 93,
           customerName: 'Mrs. Mapayi Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 1394099,
           paymentStatus: 'draft'
 
@@ -93,6 +105,8 @@ export default {
           id: 2237,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 324099,
           paymentStatus: 'paid'
 
@@ -101,6 +115,8 @@ export default {
           id: 22307,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'unpaid'
 
@@ -109,6 +125,8 @@ export default {
           id: 22937,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: '1,394,990',
           paymentStatus: 'due'
 
@@ -117,6 +135,8 @@ export default {
           id: 122937,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'partial'
 
@@ -125,6 +145,8 @@ export default {
           id: 937,
           customerName: 'Mrs. Mapayi Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 1394099,
           paymentStatus: 'draft'
 
@@ -133,6 +155,8 @@ export default {
           id: 2239,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 324099,
           paymentStatus: 'paid'
 
@@ -141,6 +165,8 @@ export default {
           id: 22309,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'unpaid'
 
@@ -149,6 +175,8 @@ export default {
           id: 22939,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: '1,394,990',
           paymentStatus: 'due'
 
@@ -157,6 +185,8 @@ export default {
           id: 122939,
           customerName: 'Mrs. Saliu Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 394099,
           paymentStatus: 'partial'
 
@@ -165,6 +195,8 @@ export default {
           id: 939,
           customerName: 'Mrs. Mapayi Semira',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
+          created: 'Jan. 24 2018',
+          modified: 'Jan. 24 2018',
           amount: 1394099,
           paymentStatus: 'draft'
 
@@ -173,6 +205,7 @@ export default {
     }
   },
   components: {
+    appButtonPill: ButtonPill,
     appInvoiceRow: InvoiceRow,
     appViewInvoice: ViewInvoice,
     appNewInvoice: NewInvoice

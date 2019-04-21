@@ -78,10 +78,10 @@ export default {
     border-radius: 5px;
     width: 0;
     content: "";
+    height: 90%;
     display: inline-block;
     position: absolute;
-    right: 1px;
-    height: 48px;
+    right: 0;
     -webkit-transition: opacity .4s ease-in-out;
     -moz-transition: opacity .4s ease-in-out;
     -o-transition: opacity .4s ease-in-out;
@@ -96,6 +96,7 @@ export default {
 
   .nav-button:hover::after, .nav-button.active::after{
     opacity: 1;
+    height: 48px;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     transition: all 500ms ease;
@@ -132,6 +133,11 @@ export default {
       align-items: left;
       grid-template-columns: 35px auto;
       text-align: left !important;
+    }
+
+    .nav-button:hover::after, .nav-button.active::after{
+      opacity: 1;
+      height: 90%;
     }
 
     .nav-button img{

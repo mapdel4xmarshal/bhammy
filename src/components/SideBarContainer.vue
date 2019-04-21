@@ -67,9 +67,9 @@ export default {
     margin-right: 2px;
     float:left;
     border-left: var(--left-border-width) solid black;
-    transition: all 1s;
-    -moz-transition: all 300ms; /* Firefox 4 */
-    -webkit-transition: all 300ms; /* Safari and Chrome */
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    transition: all 500ms ease;
     -o-transition: all 300ms; /* Opera */
     -webkit-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
     -moz-box-shadow: 0px 0px 3px 0px #9e9e9e8f;

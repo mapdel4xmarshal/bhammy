@@ -10,7 +10,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to SSIMWAVE'
+      msg: 'Welcome to BHAMMY FARMS'
     }
   },
   methods: {

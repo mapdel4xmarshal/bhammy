@@ -8,7 +8,7 @@
                  :btnName="section.name"
                  :className="section.iconClass"
                  :navButtonIndex="index"
-                 :component="section.component"
+                 :route="section.route"
                  :isActive="selectedNavIndex == index"
                  @navButtonClicked="navigateToPage">
      </nav-button>
@@ -23,14 +23,14 @@ export default {
   name: 'SideBarContainer',
   data () {
     return {
-      sections: [{name: 'Dashboard', component: 'app-home', iconClass: 'dashboard3.png'},
-        {name: 'Productions', component: 'app-message', iconClass: 'production.png'},
-        {name: 'Sales', component: 'app-sales', iconClass: 'sales.png'},
-        {name: 'Expenditure', component: 'app-message', iconClass: 'expenditure.png'},
-        {name: 'Activities', component: 'app-message', iconClass: 'activity-2.png'},
-        {name: 'Store', component: 'app-message', iconClass: 'store.png'},
-        {name: 'Settings', component: 'app-message', iconClass: 'settings.png'}],
-      selectedNavIndex: 0,
+      sections: [{name: 'Dashboard', route: '/', iconClass: 'dashboard3.png'},
+        {name: 'Productions', route: '/production', iconClass: 'production.png'},
+        {name: 'Sales', route: '/sales', iconClass: 'sales.png'},
+        {name: 'Expenditure', route: '/dashboard', iconClass: 'expenditure.png'},
+        {name: 'Activities', route: '/dashboard', iconClass: 'activity-2.png'},
+        {name: 'Store', route: '/dashboard', iconClass: 'store.png'},
+        {name: 'Settings', route: '/dashboard', iconClass: 'settings.png'}],
+      selectedNavIndex: sharedParams.selectedPageIndex,
       sharedProp: sharedParams
     }
   },
@@ -44,14 +44,18 @@ export default {
       this.sharedProp.currentPage = event.component
       this.sharedProp.currentPageName = event.navButtonName
       this.sharedProp.sidebarVisible = false
-      console.log("navigateToPage", event)
+
+      this.$router.push({ path: event.route})
+      console.log('navigateToPage', event)
     }
   },
   created: function () {
-    // globalEventBus.$emit('eventName', data)
-    /*this.$on('navButtonClicked', (event) => {
-      console.log(event, "hhhhheehe")
-    })*/
+    console.log(this.$route)
+    this.sections.forEach((section, index) => {
+      if (this.$route.path.startsWith(section.route)) {
+        this.selectedNavIndex = index
+      }
+    })
   }
 }
 </script>

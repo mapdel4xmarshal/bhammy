@@ -1,5 +1,5 @@
 <template>
-    <div><slot></slot></div>
+    <div @click="clickHandler()"><slot></slot></div>
 </template>
 
 <script>
@@ -9,6 +9,9 @@ export default {
     title: {
       type: String,
       default: 'Button'
+    },
+    clickHandler: {
+      type: Function
     }
   }
 }
@@ -23,5 +26,8 @@ export default {
    width: 100%;
    display: inline;
    padding: 5px 10px;
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-select: none;
  }
 </style>

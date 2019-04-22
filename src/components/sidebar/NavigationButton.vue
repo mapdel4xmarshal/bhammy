@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import {sharedParams} from '../../main'
-
 export default {
   props: {
     btnName: {
@@ -30,25 +28,25 @@ export default {
     isActive: {
       type: Boolean
     },
-    component: {
+    route: {
       type: String
     }
   },
   data () {
     return {
-      sharedProp: sharedParams
     }
   },
   methods: {
     setActivePage () {
-      this.$emit('navButtonClicked', {component: this.component,
+      this.$emit('navButtonClicked', {
+        route: this.route,
         navButtonIndex: this.navButtonIndex,
         navButtonName: this.btnName
       })
     }
   },
   created () {
-    console.log(sharedParams.selectedPageIndex)
+
   }
 }
 </script>

@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import {routes} from './router/index'
+import VueRouter from 'vue-router'
 import App from './App'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -27,8 +29,15 @@ library.add(faPlusCircle, faChartPie, faSlidersH, faSearch, faDownload, faPlus, 
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+Vue.use(VueRouter)
 
-Vue.use(VueResource);
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
+
+Vue.use(VueResource)
+
 Vue.config.productionTip = false
 
 // Share data between components
@@ -37,12 +46,13 @@ export const sharedParams = new Vue({
     selectedPageIndex: 0,
     currentPage: 'app-home',
     currentPageName: 'Dashboard',
-    sidebarVisible : true
+    sidebarVisible: true
   }
 })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 })

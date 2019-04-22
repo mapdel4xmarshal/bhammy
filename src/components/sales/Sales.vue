@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-view-invoice v-if="invoiceSection == 3" :invoice="selectedInvoiceData"></app-view-invoice>
+    <!--<app-view-invoice v-if="invoiceSection == 3" :invoice="selectedInvoiceData"></app-view-invoice>
     <div v-else-if="invoiceSection == 1">
       <app-button-pill>+ New Invoice</app-button-pill>
       <div id="sales-header">
@@ -33,13 +33,25 @@
 
       </div>
     </div>
-    <app-new-invoice v-else @showSales="invoiceSection = $event"></app-new-invoice>
+    <app-new-invoice v-else @showSales="invoiceSection = $event"></app-new-invoice>-->
+
+    <h1>Sales</h1>
+    <small>sales/new</small>
+    <transition name="slide-fade" appear mode="out-in">
+      <router-view :invoices="invoices"></router-view>
+    </transition>
+
+    <!--<app-invoice-row
+      :key="invoices[0].id"
+      :invoices="invoices"
+      @viewInvoice="viewInvoice">
+    </app-invoice-row>-->
   </div>
 
 </template>
 
 <script>
-import InvoiceRow from './InvoiceSummary'
+import InvoiceRow from './InvoiceRecords'
 import ViewInvoice from './ViewInvoice'
 import NewInvoice from './NewInvoice'
 import ButtonPill from '../common/ButtonPill'

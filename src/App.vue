@@ -4,7 +4,9 @@
      <div class="main-content">
        <appHeaderBar></appHeaderBar>
        <section id="main">
-         <component :is="sharedProp.currentPage"></component>
+         <transition name="slide-fade" appear mode="out-in">
+          <router-view></router-view>
+         </transition>
        </section>
      </div>
   </div>
@@ -42,7 +44,8 @@ export default {
 }
 </script>
 
-  <style lang="scss">/*
+<style lang="scss">
+  /*
     $fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
   @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
   @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
@@ -118,5 +121,14 @@ export default {
       border-radius: 10px;
     }
 
-
-  </style>
+  .slide-fade-enter-active {
+    transition: all .4s ease-in-out;
+  }
+  .slide-fade-leave-active {
+    transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to{
+    transform: translateX(10px);
+    opacity: 0;
+  }
+</style>

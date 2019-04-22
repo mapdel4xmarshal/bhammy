@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <!--<div class="container">
       <table style="width:100%;">
         <thead>
         <th>Invoice Id</th>
@@ -29,9 +29,20 @@
         </tbody>
       </table>
 
+    </div>-->
+    <div style="display: block;">
+      <div style="display: inline-block;">
+        <div style="font-size: 1.5em; font-weight: bold">Orders</div>
+        <small>some infi</small>
+      </div>
+      <div style="display: inline-block; float: right;">
+        <app-button-pill :click-handler="newInvoice">+ New Invoice</app-button-pill>
+      </div>
     </div>
+
     <custom-table
       :usePagination="true"
+      :title="'Orders'"
       :headers="headers"
       :records="invoices">
       <template v-slot:paymentStatus="slotProps">
@@ -45,9 +56,10 @@
 
 <script>
 import customTable from '../common/CustomTable'
+import ButtonPill from '../common/ButtonPill'
 
 export default {
-  name: 'InvoiceRow',
+  name: 'InvoiceRecords',
   data () {
     return {
       showSubMenu: false,
@@ -67,13 +79,20 @@ export default {
     }
   },
   props: ['invoices'],
+  methods: {
+    newInvoice () {
+      console.log('clicked')
+      this.$router.push({name: 'newSale'})
+    }
+  },
   computed: {
     /* numberToAmount: function () {
         // return invoice.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } */
   },
   components: {
-    customTable
+    customTable,
+    appButtonPill: ButtonPill
   }
 }
 </script>

@@ -2,11 +2,20 @@
   <div id="container">
     <table>
       <thead>
+      <th :key="header.id"
+          v-for="header in headers">
+        {{header.label}}
+      </th>
+      </thead>
+    </table>
+    <div class="scrollable" style="height: 400px;">
+      <table>
+     <!-- <thead>
         <th :key="header.id"
             v-for="header in headers">
           {{header.label}}
         </th>
-      </thead>
+      </thead>-->
       <tbody>
         <tr v-for="record in records" :key="record.id">
           <td v-for="header in headers" :key="record.id + '-' + header.id">
@@ -15,6 +24,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <pagination v-if="usePagination"></pagination>
   </div>
 </template>
@@ -25,6 +35,10 @@ import Pagination from './Pagination'
 export default {
   name: 'customTable',
   props: {
+    title: {
+      type: String,
+      required: false
+    },
     usePagination: {
       type: Boolean,
       required: true,
@@ -56,6 +70,10 @@ export default {
     border-top-right-radius: 5px;
     box-shadow: 1px 1px #000000;
     padding: 20px;
+  }
+
+  .scrollable{
+    overflow: auto;
   }
 
   table{

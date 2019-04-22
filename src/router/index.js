@@ -1,15 +1,39 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '../components/Home'
+import Sales from '../components/sales/Sales.vue'
+import InvoiceRecords from '../components/sales/InvoiceRecords.vue'
+import NewInvoice from '../components/sales/NewInvoice.vue'
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
-})
+export const routes = [
+  {
+    path: '/',
+    name: 'dashboard',
+    component: HelloWorld
+  },
+  {
+    path: '/production',
+    name: 'production',
+    component: HelloWorld
+  },
+  {
+    path: '/sales',
+    name: 'sales',
+    component: Sales,
+    children: [
+      {
+        path: '',
+        name: 'allSales',
+        component: InvoiceRecords
+      },
+      {
+        path: 'new',
+        name: 'newSale',
+        component: NewInvoice
+      }
+    ]
+  },
+  {
+    path: '*',
+    name: 'redirection',
+    redirect: {name: 'dashboard'}
+  }
+]

@@ -10,12 +10,6 @@
     </table>
     <div class="scrollable" style="height: 400px;">
       <table>
-     <!-- <thead>
-        <th :key="header.id"
-            v-for="header in headers">
-          {{header.label}}
-        </th>
-      </thead>-->
       <tbody>
         <tr v-for="record in records" :key="record.id">
           <td v-for="header in headers" :key="record.id + '-' + header.id">

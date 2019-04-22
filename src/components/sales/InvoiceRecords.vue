@@ -86,9 +86,7 @@ export default {
     }
   },
   computed: {
-    /* numberToAmount: function () {
-        // return invoice.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      } */
+
   },
   components: {
     customTable,

@@ -88,7 +88,7 @@ export default {
 
   .nav-button:hover, .nav-button.active{
     --hover-bg-color : var(--base-color);
-    color: #7f2775;
+    color: var(--base-color);
     background-color: #7f27750d;
   }
 
@@ -100,6 +100,11 @@ export default {
     transition: all 500ms ease;
   }
 
+  .nav-button:hover img, .nav-button.active img{
+    background-color: var(--base-color);
+    border-radius: 50px;
+  }
+
   .nav-button .fa:first-child{
     position: relative;
     font-size: 25px;
@@ -108,11 +113,15 @@ export default {
 
   .nav-button img{
     justify-self: center;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    transition: all 500ms ease;
   }
 
   .nav-button span{
-    font-size: 12px;
+    font-size: 13px;
     display: block;
+    font-weight: 400;
   }
 
   .nav-button i:last-child{

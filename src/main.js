@@ -6,25 +6,27 @@ import {routes} from './router/index'
 import VueRouter from 'vue-router'
 import App from './App'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { faChartPie } from '@fortawesome/free-solid-svg-icons'
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faPrint } from '@fortawesome/free-solid-svg-icons'
-import { faDownload } from '@fortawesome/free-solid-svg-icons'
-import { faSave } from '@fortawesome/free-solid-svg-icons'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faBell } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle,
+  faChartPie,
+  faSlidersH,
+  faSearch,
+  faDownload,
+  faPlus,
+  faPrint,
+  faSave,
+  faTimes,
+  faTimesCircle,
+  faEdit,
+  faAngleDown,
+  faAngleUp,
+  faAngleLeft,
+  faAngleRight,
+  faEnvelope,
+  faBell } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faPlusCircle, faChartPie, faSlidersH, faSearch, faDownload, faPlus, faPrint, faSave, faTimes, faTimesCircle,
-  faEdit, faAngleDown, faAngleUp, faEnvelope, faBell
+  faEdit, faAngleDown, faAngleUp, faEnvelope, faBell, faAngleLeft, faAngleRight
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

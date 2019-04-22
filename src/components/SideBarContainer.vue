@@ -45,7 +45,7 @@ export default {
       this.sharedProp.currentPageName = event.navButtonName
       this.sharedProp.sidebarVisible = false
 
-      this.$router.push({ path: event.route})
+      this.$router.push({path: event.route})
       console.log('navigateToPage', event)
     }
   },
@@ -70,7 +70,6 @@ export default {
     position: relative;
     margin-right: 2px;
     float:left;
-    border-left: var(--left-border-width) solid black;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     transition: all 500ms ease;

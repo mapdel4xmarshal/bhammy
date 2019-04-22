@@ -15,25 +15,23 @@
 </template>
 
 <script>
-  import {sharedParams} from '../main'
+import {sharedParams} from '../main'
 
-  export default {/**/
-    name: 'HeaderBar',
-    data() {
-      return {
-        //
-        // sharedProp: sharedParams
-      }
-    },
-    methods: {
-      toggleSideBar: function () {
-        this.sharedProp.sidebarVisible = !this.sharedProp.sidebarVisible;
-      }
-    },
-    created() {
-      this.sharedProp = sharedParams
+export default {
+  name: 'HeaderBar',
+  data () {
+    return {
     }
+  },
+  methods: {
+    toggleSideBar: function () {
+      this.sharedProp.sidebarVisible = !this.sharedProp.sidebarVisible
+    }
+  },
+  created () {
+    this.sharedProp = sharedParams
   }
+}
 </script>
 
 <style scoped>

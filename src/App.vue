@@ -54,7 +54,7 @@ export default {
 
   :root{
     --main-bg-color: #FAFAFA;
-    --sidebar-bg-color: #FAFAFA;
+    --sidebar-bg-color: #FFFFFF;
     --main-txt-color: blue;
     --main-padding: 15px;
     --base-color: #7f2775;

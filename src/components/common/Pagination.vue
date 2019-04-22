@@ -7,17 +7,17 @@
       <div class="pagination__controls">
         <div>1 - 20 of 200</div>
         <div>
-          <div> < </div>
-          <div>></div>
+          <div> <font-awesome-icon icon="angle-left"/> </div>
+          <div> <font-awesome-icon icon="angle-right"/> </div>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "Pagination"
-    }
+export default {
+  name: 'Pagination'
+}
 </script>
 
 <style scoped>
@@ -27,7 +27,8 @@
 
   .pagination{
     display: block;
-    width: 100%
+    width: 100%;
+    height: 40px;
   }
 
   .pagination__records{
@@ -40,9 +41,20 @@
 
   .pagination__controls > div:last-of-type{
     display: inline-grid;
-    width: 60px;
-    height: 30px;
-    border: 1px solid grey;
-    grid-template-columns: auto auto;
+    border: 1px solid #ccc;
+    grid-template-columns: 40px 40px;
+    margin-left: 10px;
+    line-height: 40px;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+  }
+
+  .pagination__controls > div:last-of-type div:hover{
+    background-color: #FAFAFA;
+  }
+
+  .pagination__controls > div:last-of-type div:first-of-type{
+    border-right: 1px solid #ccc;
   }
 </style>

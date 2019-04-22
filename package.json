@@ -1,8 +1,8 @@
 {
-  "name": "vuejs-project",
+  "name": "Bhammy",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Emmanuel <emmanuel.mapayi@ssimwave.com>",
+  "author": "Emmanuel <bamidele.mapayi@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 80",

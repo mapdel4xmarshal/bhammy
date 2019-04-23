@@ -54,7 +54,7 @@ import InvoiceRow from './InvoiceRecords'
 import ViewInvoice from './ViewInvoice'
 import NewInvoice from './NewInvoice'
 import ButtonPill from '../common/ButtonPill'
-import Breadcrumb from '../common/Brreadcrumb'
+import Breadcrumb from '../common/Breadcrumb'
 
 export default {
   name: 'sales',

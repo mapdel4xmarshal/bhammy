@@ -53,7 +53,7 @@ export default {
 
 <style>
   div.nav-button{
-    color: var(--base-color);
+    color: #9e9e9e;
     vertical-align: middle;
     margin-bottom: 2px;
     cursor: pointer;

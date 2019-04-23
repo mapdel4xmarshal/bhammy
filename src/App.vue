@@ -47,21 +47,22 @@ export default {
 <style lang="scss">
 
   :root{
-    --main-bg-color: #FAFAFA;
-    --sidebar-bg-color: #FFFFFF;
-    --main-txt-color: blue;
-    --main-padding: 15px;
     --base-color: #7f2775;
-    --left-border-width: 5px;
-    --main-view-height : 100vh;
-    --sidebar-width : 300px;
-    --mobile-width: 768px;
-    --header-nav-height: 45px;
-    --paidColor: #32c24d;
-    --dueColor: #c2070c;
-    --unpaidColor: #c29d07;
-    --partialColor: #c27e16;
     --draftColor: #505050;
+    --dueColor: #c2070c;
+    --glow-color: #8E24AA;
+    --header-nav-height: 45px;
+    --left-border-width: 5px;
+    --main-bg-color: #FAFAFA;
+    --main-padding: 15px;
+    --main-txt-color: blue;
+    --main-view-height : 100vh;
+    --mobile-width: 768px;
+    --paidColor: #32c24d;
+    --partialColor: #c27e16;
+    --sidebar-bg-color: #FFFFFF;
+    --sidebar-width : 300px;
+    --unpaidColor: #c29d07;
   }
   body {
     margin: 0;

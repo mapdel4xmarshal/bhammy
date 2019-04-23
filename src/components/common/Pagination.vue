@@ -7,8 +7,8 @@
       <div class="pagination__controls">
         <div>1 - 20 of 200</div>
         <div>
-          <div> <font-awesome-icon icon="angle-left"/> </div>
-          <div> <font-awesome-icon icon="angle-right"/> </div>
+          <div><font-awesome-icon icon="angle-left"/> </div>
+          <div><font-awesome-icon icon="angle-right"/> </div>
         </div>
       </div>
     </div>

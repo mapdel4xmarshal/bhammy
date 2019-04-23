@@ -35,8 +35,7 @@
     </div>
     <app-new-invoice v-else @showSales="invoiceSection = $event"></app-new-invoice>-->
 
-    <h1>Sales</h1>
-    <small>sales/new</small>
+    <app-breadcrumb></app-breadcrumb>
     <transition name="slide-fade" appear mode="out-in">
       <router-view :invoices="invoices"></router-view>
     </transition>
@@ -55,6 +54,7 @@ import InvoiceRow from './InvoiceRecords'
 import ViewInvoice from './ViewInvoice'
 import NewInvoice from './NewInvoice'
 import ButtonPill from '../common/ButtonPill'
+import Breadcrumb from '../common/Brreadcrumb'
 
 export default {
   name: 'sales',
@@ -220,7 +220,8 @@ export default {
     appButtonPill: ButtonPill,
     appInvoiceRow: InvoiceRow,
     appViewInvoice: ViewInvoice,
-    appNewInvoice: NewInvoice
+    appNewInvoice: NewInvoice,
+    appBreadcrumb: Breadcrumb
   },
   methods: {
     viewInvoice: function (invoice) {

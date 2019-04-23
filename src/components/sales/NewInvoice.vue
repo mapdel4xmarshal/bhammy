@@ -707,8 +707,6 @@ export default {
     }
   }
 
-  //----------------------------
-
   .action-box{
     text-align: center;
     display: inline-block;
@@ -737,7 +735,6 @@ export default {
   .action-menu{
     background-color: white;
     border-radius: 3px;
-    /*padding: 10px 0;*/
     text-align: center;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
@@ -745,7 +742,6 @@ export default {
     z-index: 19;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  //box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 4px 5px -5px rgba(0,0,0,0.75);
   }
 

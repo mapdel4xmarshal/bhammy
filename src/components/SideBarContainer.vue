@@ -81,7 +81,7 @@ export default {
 
   #sidebarHeader{
     background-color: #fff;
-    padding:10px;
+    border-bottom: 1px solid #eee;
     height: 50px;
   }
 

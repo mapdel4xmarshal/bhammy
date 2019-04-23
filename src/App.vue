@@ -45,12 +45,6 @@ export default {
 </script>
 
 <style lang="scss">
-  /*
-    $fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
-  @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
-  @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
-  @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
-  @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";*/
 
   :root{
     --main-bg-color: #FAFAFA;
@@ -74,6 +68,13 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--main-bg-color);
     overflow: hidden;
+  }
+
+  .animate{
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
   }
 
   .main-content>#main{

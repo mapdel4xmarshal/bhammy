@@ -5,13 +5,13 @@
     </div>
 
     <div class="right-section">
+      <div><font-awesome-icon icon="envelope" color="#EEEEEE"></font-awesome-icon></div>
+      <div><font-awesome-icon icon="bell"></font-awesome-icon></div>
       <div class="profile">
         <span>Hello, <strong>Bamidele Mapayi</strong></span>
         <div class="avatar">B</div>
         <font-awesome-icon icon="angle-down" class="toggle"></font-awesome-icon>
       </div>
-      <div><font-awesome-icon icon="envelope" color="#EEEEEE"></font-awesome-icon></div>
-      <div><font-awesome-icon icon="bell"></font-awesome-icon></div>
     </div>
   </div>
 </template>
@@ -94,7 +94,7 @@ export default {
     color: #2b2b2b;
     display: inline-grid;
     max-width: 350px;
-    grid-template-columns: auto 50px 50px;
+    grid-template-columns: 50px 50px auto;
     align-items: center;
   }
 

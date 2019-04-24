@@ -1,23 +1,25 @@
 <template>
-  <div id="container">
-    <table>
-      <thead>
-      <th :key="header.id"
-          v-for="header in headers">
-        {{header.label}}
-      </th>
-      </thead>
-    </table>
-    <div class="scrollable" style="height: 400px;">
+  <div>
+    <div id="container">
       <table>
-      <tbody>
-        <tr v-for="record in records" :key="record.id">
-          <td v-for="header in headers" :key="record.id + '-' + header.id">
-            <slot :name="header.slot" v-bind:invoice="record">{{header.representedAs?header.representedAs(record) : record[header.id]}}</slot>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <thead>
+        <th :key="header.id"
+            v-for="header in headers">
+          {{header.label}}
+        </th>
+        </thead>
+      </table>
+      <div class="scrollable" style="height: 400px;">
+        <table>
+        <tbody>
+          <tr v-for="record in records" :key="record.id">
+            <td v-for="header in headers" :key="record.id + '-' + header.id">
+              <slot :name="header.slot" v-bind:invoice="record">{{header.representedAs?header.representedAs(record) : record[header.id]}}</slot>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
     </div>
     <pagination v-if="usePagination"></pagination>
   </div>

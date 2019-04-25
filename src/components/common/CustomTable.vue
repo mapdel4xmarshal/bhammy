@@ -67,7 +67,7 @@ export default {
     box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
     -webkit-box-sizing: 0px 0px 4px -3px rgba(0,0,0,0.75);
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .scrollable{
@@ -84,12 +84,20 @@ export default {
   th{
     color: #e0e0e0;
     font-size: 13px;
-    padding: 10px 0;
+    padding: 10px 5px;
   }
 
   td{
     font-size: 12px;
-    padding: 5px 0;
+    padding: 10px 5px;
+  }
+
+  th:first-child, td:first-child{
+    padding-left: 20px;
+  }
+
+  th:last-child, td:last-child{
+    padding-left: 20px;
   }
 
   tr{

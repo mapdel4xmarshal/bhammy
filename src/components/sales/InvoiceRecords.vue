@@ -31,7 +31,7 @@
 
     </div>-->
     <div style="display: block;">
-      <div style="display: inline-block;">
+      <div style="display: inline-block; padding: 0 10px 10px 10px;">
         <div style="font-size: 1.5em; font-weight: bold">Orders</div>
         <small>some infi</small>
       </div>

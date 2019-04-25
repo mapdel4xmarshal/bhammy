@@ -26,16 +26,18 @@ export default {
     background-color: var(--base-color);
     display: inline-block;
     cursor: pointer;
+    position: relative;
   }
 
   .avatar:after{
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
     color: aquamarine;
     position: absolute;
-    bottom: 8px;
+    bottom: -2px;
+    right: -3px;
     content: '';
-    background-color: aqua;
+    background-color: #00BCD4;
     border-radius: 15px;
   }
 

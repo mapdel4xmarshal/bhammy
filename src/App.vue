@@ -80,7 +80,7 @@ export default {
 
   .main-content>#main{
     padding-top: var(--header-nav-height);
-    padding: 5px 30px;
+    padding: 5px 10px;
   }
 
   .main-content{
@@ -104,23 +104,23 @@ export default {
     border: 1px solid red;
   }
 
-    ::-webkit-scrollbar-track
-    {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      background-color: #F5F5F5;
-      border-radius: 10px;
-    }
+  ::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
 
-    ::-webkit-scrollbar
-    {
-      display: none;
-    }
+  ::-webkit-scrollbar
+  {
+    display: none;
+  }
 
-    ::-webkit-scrollbar-thumb
-    {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-    }
+  ::-webkit-scrollbar-thumb
+  {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
 
   .slide-fade-enter-active {
     transition: all .4s ease-in-out;
@@ -131,5 +131,11 @@ export default {
   .slide-fade-enter, .slide-fade-leave-to{
     transform: translateX(10px);
     opacity: 0;
+  }
+
+  @media only screen and (min-width: 800px) {
+    .main-content>#main{
+      padding: 5px 30px;
+    }
   }
 </style>

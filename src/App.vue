@@ -80,8 +80,7 @@ export default {
 
   .main-content>#main{
     padding-top: var(--header-nav-height);
-    margin-top: 45px;
-    padding: 5px;
+    padding: 5px 30px;
   }
 
   .main-content{

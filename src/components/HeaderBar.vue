@@ -40,7 +40,6 @@ export default {
   #header {
     height: 50px;
     background-color: #FFFFFF;
-    position: absolute;
     width: 100%;
     color: white;
     -webkit-box-shadow: 0 1px 3px -2px #77777761;

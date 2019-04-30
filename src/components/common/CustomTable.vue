@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="container">
+    <div id="card">
       <table>
         <thead>
         <th :key="header.id"
@@ -9,12 +9,14 @@
         </th>
         </thead>
       </table>
-      <div class="scrollable" style="height: 400px;">
+      <div class="scrollable" style="height: calc(100vh - 50px);">
         <table>
         <tbody>
           <tr v-for="record in records" :key="record.id">
             <td v-for="header in headers" :key="record.id + '-' + header.id">
-              <slot :name="header.slot" v-bind:invoice="record">{{header.representedAs?header.representedAs(record) : record[header.id]}}</slot>
+              <slot :name="header.slot" v-bind:invoice="record">
+                {{header.representedAs?header.representedAs(record) : record[header.id]}}
+              </slot>
             </td>
           </tr>
         </tbody>
@@ -60,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-  #container {
+  #card {
     background-color: #FFF;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -68,6 +70,7 @@ export default {
     -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
     -webkit-box-sizing: 0px 0px 4px -3px rgba(0,0,0,0.75);
     padding: 20px 0;
+    margin-bottom: 20px;
   }
 
   .scrollable{

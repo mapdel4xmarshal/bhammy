@@ -1,7 +1,11 @@
 <template>
    <div id="sidebar" :class="{'hide-menu' : !sharedProp.sidebarVisible}">
      <div id="sidebarHeader">
-       <img src="../assets/images/logo.png" alt="">
+       <!--<img src="../assets/images/logo.png" alt="">-->
+       <div class="farm-selector">
+         <span class="farm-selector__title">FARM 1</span>
+         <small class="farm-selector__sub-title">Ajegunle Branch</small>
+       </div>
      </div>
      <nav-button v-for="(section, index) in sections"
                  :key="section.name"
@@ -72,7 +76,7 @@ export default {
     float:left;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
-    transition: all 500ms ease;
+    transition: all 500ms cubic-bezier(0.5,-0.25, 0.25, 1.5);
     -o-transition: all 300ms; /* Opera */
     -webkit-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
     -moz-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
@@ -83,6 +87,21 @@ export default {
     background-color: #fff;
     border-bottom: 1px solid #eee;
     height: 50px;
+  }
+
+  .farm-selector{
+    display: inline-block;
+    padding: 5px;
+    line-height: 15px;
+  }
+
+  .farm-selector__title{
+    display: block;
+  }
+
+  .farm-selector__sub-title{
+    font-size: 12px;
+    color: #CCCCCC;
   }
 
   .hide-menu{

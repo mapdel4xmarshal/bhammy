@@ -65,7 +65,7 @@ export default {
       invoices: [
         {
           id: 223,
-          customerName: 'Mrs. Saliu Semira',
+          customerName: 'Mrs. Saliu Semira.',
           description: '200 crates of Jumbo Eggs. 100 crates of pullets.',
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',

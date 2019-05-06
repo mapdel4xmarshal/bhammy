@@ -4,19 +4,26 @@
       <table>
         <thead>
         <th :key="header.id"
-            v-for="header in headers">
+            v-for="header in headers"
+            :class="header.breakPoint"
+            :style="{width: header.width}"
+            :title="header.label">
           {{header.label}}
         </th>
         </thead>
       </table>
-      <div class="scrollable" style="height: calc(100vh - 50px);">
+      <div class="scrollable">
         <table>
         <tbody>
           <tr v-for="record in records" :key="record.id">
-            <td v-for="header in headers" :key="record.id + '-' + header.id">
-              <slot :name="header.slot" v-bind:invoice="record">
-                {{header.representedAs?header.representedAs(record) : record[header.id]}}
-              </slot>
+            <td v-for="header in headers"
+                :key="record.id + '-' + header.id"
+                :class="header.breakPoint"
+                :style="{width: header.width}"
+                :title="header.representedAs? header.representedAs(record) : record[header.id]">
+                <slot :name="header.slot" v-bind:invoice="record">
+                  {{header.representedAs? header.representedAs(record) : record[header.id]}}
+                </slot>
             </td>
           </tr>
         </tbody>
@@ -61,7 +68,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
   #card {
     background-color: #FFF;
     border-top-left-radius: 5px;
@@ -69,12 +77,13 @@ export default {
     box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
     -webkit-box-sizing: 0px 0px 4px -3px rgba(0,0,0,0.75);
-    padding: 20px 0;
+    padding: 10px 0;
     margin-bottom: 20px;
   }
 
   .scrollable{
     overflow: auto;
+    max-height: calc(100vh - 300px);
   }
 
   table{
@@ -87,20 +96,27 @@ export default {
   th{
     color: #e0e0e0;
     font-size: 13px;
-    padding: 10px 5px;
+    overflow: hidden;
+    padding: 10px 0 10px 5px;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   td{
     font-size: 12px;
-    padding: 10px 5px;
-  }
-
-  th:first-child, td:first-child{
-    padding-left: 20px;
+    overflow: hidden;
+    padding: 10px 0 10px 5px;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   th:last-child, td:last-child{
-    padding-left: 20px;
+    padding-right: 5px;
+    text-align: right;
   }
 
   tr{
@@ -114,5 +130,43 @@ export default {
   tr:hover{
     background-color: #F5F5F5;
     cursor: pointer;
+  }
+
+ .small, .medium, .large{
+    display: none;
+  }
+
+  @media (min-width: 500px) {
+    .small{
+      display: table-cell;
+    }
+
+    th:first-child, td:first-child{
+      padding-left: 10px;
+    }
+
+    th:last-child, td:last-child{
+      padding-right: 10px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .medium{
+      display: table-cell;
+    }
+
+    th:first-child, td:first-child{
+      padding-left: 20px;
+    }
+
+    th:last-child, td:last-child{
+      padding-right: 20px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .large{
+      display: table-cell;
+    }
   }
 </style>

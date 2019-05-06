@@ -65,13 +65,14 @@ export default {
       showSubMenu: false,
       invoice: {},
       headers: [
-        {label: 'Invoice id', id: 'id'},
-        {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus'},
-        {label: 'Customer', id: 'customerName'},
-        {label: 'Description', id: 'description'},
-        {label: 'Created', id: 'created'},
+        {label: 'Invoice id', id: 'id', breakPoint: 'medium', width: '5%'},
+        {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus', width: '10%'},
+        {label: 'Customer', id: 'customerName', width: '15%'},
+        {label: 'Description', id: 'description', breakPoint: 'small', width: '30%'},
+        {label: 'Created', id: 'created', width: '10%'},
         {label: 'Amount',
           id: 'amount',
+          width: '10%',
           representedAs: function (record) {
             return `₦${record.amount}`
           }}

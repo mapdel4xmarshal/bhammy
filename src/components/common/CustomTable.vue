@@ -14,16 +14,24 @@
       </table>
       <div class="scrollable">
         <table>
-        <tbody>
-          <tr v-for="record in records" :key="record.id">
+        <tbody v-for="record in records" :key="record.id">
+          <tr>
             <td v-for="header in headers"
-                :key="record.id + '-' + header.id"
+                :key="'key-' + header.id"
                 :class="header.breakPoint"
                 :style="{width: header.width}"
                 :title="header.representedAs? header.representedAs(record) : record[header.id]">
                 <slot :name="header.slot" v-bind:invoice="record">
                   {{header.representedAs? header.representedAs(record) : record[header.id]}}
                 </slot>
+            </td>
+          </tr>
+          <tr v-if="record.id == 223">
+            <td colspan="6" style="text-align: left;">
+              <span><strong>ID:</strong>2334</span><br>
+              <span><strong>ID:</strong>2334</span><br>
+              <span><strong>ID:</strong>2334</span><br>
+              <span><strong>ID:</strong>2334</span>
             </td>
           </tr>
         </tbody>

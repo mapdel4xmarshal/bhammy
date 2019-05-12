@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="card">
-      <table>
+      <!--<table>
         <thead>
         <th :key="header.id"
             v-for="header in headers"
@@ -10,32 +10,73 @@
             :title="header.label">
           {{header.label}}
         </th>
+        <th v-if="expandable" class="expandable"></th>
         </thead>
-      </table>
+      </table>-->
       <div class="scrollable">
-        <table>
-        <tbody v-for="record in records" :key="record.id">
-          <tr>
-            <td v-for="header in headers"
-                :key="'key-' + header.id"
-                :class="header.breakPoint"
-                :style="{width: header.width}"
-                :title="header.representedAs? header.representedAs(record) : record[header.id]">
-                <slot :name="header.slot" v-bind:invoice="record">
-                  {{header.representedAs? header.representedAs(record) : record[header.id]}}
-                </slot>
-            </td>
-          </tr>
-          <tr v-if="record.id == 223">
-            <td colspan="6" style="text-align: left;">
-              <span><strong>ID:</strong>2334</span><br>
-              <span><strong>ID:</strong>2334</span><br>
-              <span><strong>ID:</strong>2334</span><br>
-              <span><strong>ID:</strong>2334</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="table__header">
+          <div v-for="header in headers"
+               class="table__column"
+               :key="header.id"
+               :class="header.breakPoint"
+               :style="{width: header.width}"
+               :title="header.label">
+            {{header.label}}
+          </div>
+          <div v-if="expandable" class="table__column--expandable"></div>
+        </div>
+        <!-- <table>
+         <tbody v-for="record in records" :key="record.id" :class="{'expanded' : record.id == 2230}">
+           <tr>
+             <td v-for="header in headers"
+                 :key="'key-' + header.id"
+                 :class="header.breakPoint"
+                 :style="{width: header.width}"
+                 :title="header.representedAs? header.representedAs(record) : record[header.id]">
+                 <slot :name="header.slot" v-bind:invoice="record">
+                   {{header.representedAs? header.representedAs(record) : record[header.id]}}
+                 </slot>
+             </td>
+             <td v-if="expandable" class="expandable">
+               <div class="dropdown__toggle">
+                 <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
+               </div>
+             </td>
+           </tr>
+           <tr v-if="record.id == 2230">
+             <td colspan="1" style="text-align: left;">
+               <span><strong>ID:</strong>2334</span><br>
+               <span><strong>ID:</strong>2334</span><br>
+               <span><strong>ID:</strong>2334</span><br>
+               <span><strong>ID:</strong>2334</span>
+             </td>
+           </tr>
+         </tbody>
+       </table>-->
+
+        <div class="table__row"
+             v-for="record in records" :key="record.id" :class="{'dropdown--active' : record.id == 2230}">
+          <div class="table__column"
+               v-for="header in headers"
+               :key="'key-' + header.id"
+               :class="header.breakPoint"
+               :style="{width: header.width}"
+               :title="header.representedAs? header.representedAs(record) : record[header.id]">
+            <slot :name="header.slot" v-bind:invoice="record">
+              {{header.representedAs? header.representedAs(record) : record[header.id]}}
+            </slot>
+          </div>
+
+          <div v-if="expandable" class="table__column--expandable">
+            <div class="dropdown__toggle">
+              <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
+            </div>
+          </div>
+
+          <div v-if="record.id == 2230" class="table__column dropdown">
+            <div>hehehehehe</div>
+          </div>
+        </div>
       </div>
     </div>
     <pagination v-if="usePagination"></pagination>
@@ -62,14 +103,17 @@ export default {
     },
     headers: {
       type: Array
+    },
+    expandable: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   components: {
     Pagination
   },
-  computed: {
-
-  },
+  computed: {},
   created () {
     console.log(this.records)
   }
@@ -78,15 +122,111 @@ export default {
 
 <style lang="scss" scoped>
 
+  .animate {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+
   #card {
     background-color: #FFF;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 4px -3px rgba(0,0,0,0.75);
-    -webkit-box-sizing: 0px 0px 4px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
+    -o-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
     padding: 10px 0;
     margin-bottom: 20px;
+  }
+
+  .dropdown {
+    border: none !important;
+    flex: 1 100% !important;
+  }
+
+  .dropdown--active {
+    border: none !important;
+    border-radius: 10px;
+    margin: 5px auto;
+    -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
+    -o-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
+  }
+
+  .dropdown--active + .table__row{
+    border-top: none !important;
+  }
+
+  .dropdown__toggle {
+    @extend .animate;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .dropdown__toggle:hover {
+    background-color: #CCC;
+  }
+
+  .table__header {
+    border-top: none !important;
+  }
+
+  .table__row, .table__header {
+    @extend .animate;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .table__row:hover{
+    background-color: #F5F5F5;
+    cursor: pointer;
+  }
+
+  .table__column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    font-size: 12px;
+    height: 30px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .table__column--expandable {
+    @extend .table__column;
+    flex-basis: 40px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  /*tbody.expanded{
+    border-radius: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px -2px #212121;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  tbody.expanded, tbody.expanded + tbody{
+    border: none;
   }
 
   .scrollable{
@@ -127,7 +267,7 @@ export default {
     text-align: right;
   }
 
-  tr{
+  tbody{
     border-top: 1px solid #e0e0e0;
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
@@ -135,7 +275,7 @@ export default {
     transition: all .4s ease-in-out;
   }
 
-  tr:hover{
+  tbody:hover{
     background-color: #F5F5F5;
     cursor: pointer;
   }
@@ -176,5 +316,5 @@ export default {
     .large{
       display: table-cell;
     }
-  }
+  }*/
 </style>

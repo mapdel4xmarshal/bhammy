@@ -33,14 +33,16 @@
     <div style="display: block;">
       <div style="display: inline-block; padding: 0 10px 10px 10px;">
         <div style="font-size: 1.5em; font-weight: bold">Orders</div>
-        <small>some infi</small>
+        <small>some info</small>
       </div>
+      <app-button-pill :click-handler="newInvoice">+ Search</app-button-pill>
       <div style="display: inline-block; float: right;">
         <app-button-pill :click-handler="newInvoice">+ New Invoice</app-button-pill>
       </div>
     </div>
 
     <custom-table
+      expandable="true"
       :usePagination="true"
       :title="'Orders'"
       :headers="headers"
@@ -62,10 +64,9 @@ export default {
   name: 'InvoiceRecords',
   data () {
     return {
-      showSubMenu: false,
       invoice: {},
       headers: [
-        {label: 'Invoice id', id: 'id', breakPoint: 'medium', width: '5%'},
+        {label: 'Invoice id', id: 'id', breakPoint: 'medium', width: '10%'},
         {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus', width: '10%'},
         {label: 'Customer', id: 'customerName', width: '15%'},
         {label: 'Description', id: 'description', breakPoint: 'small', width: '30%'},

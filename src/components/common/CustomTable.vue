@@ -123,7 +123,7 @@ export default {
     toggleDropdown (record) {
       //event.currentTarget.classList.toggle('dropdown--active')
       record.showDropdown = !record.showDropdown
-      this.activeDropdown = record.id
+      this.activeDropdown = record.id === this.activeDropdown ? -1 : record.id
       console.log(record)
     }
   },
@@ -165,7 +165,7 @@ export default {
     border: none !important;
     border-radius: 10px;
     height: 100%;
-    margin: 5px auto;
+    /*margin: 5px auto;*/
     -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
     -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
     -o-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
@@ -228,10 +228,10 @@ export default {
   }
 
   .slide-fade-enter-active {
-    transition: all .3s ease;
+    transition: all .5s ease;
   }
   .slide-fade-leave-active {
-    transition: all .9s ease;
+    transition: all .2s ease;
   }
   .slide-fade-enter {
     height: 0;

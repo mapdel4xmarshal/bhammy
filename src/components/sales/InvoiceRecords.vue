@@ -42,7 +42,7 @@
     </div>
 
     <custom-table
-      expandable="true"
+      :expandable="true"
       :usePagination="true"
       :title="'Orders'"
       :headers="headers"

@@ -55,7 +55,7 @@
        </table>-->
 
         <div class="table__row"
-             v-for="record in records" :key="record.id" :class="{'dropdown--active' : record.id == 2230}">
+             v-for="record in records" :key="record.id" :class="{'dropdown--active' : record.id == activeDropdown}">
           <div class="table__column"
                v-for="header in headers"
                :key="'key-' + header.id"
@@ -68,14 +68,15 @@
           </div>
 
           <div v-if="expandable" class="table__column--expandable">
-            <div class="dropdown__toggle">
+            <div class="dropdown__toggle" @click="toggleDropdown(record)">
               <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
             </div>
           </div>
-
-          <div v-if="record.id == 2230" class="table__column dropdown">
-            <div>hehehehehe</div>
-          </div>
+          <transition name="slide-fade">
+            <div v-if="record.id == activeDropdown" class="table__column dropdown">
+              <div>hehehehehe</div>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -88,6 +89,11 @@ import Pagination from './Pagination'
 
 export default {
   name: 'customTable',
+  data () {
+    return {
+      activeDropdown: -1
+    }
+  },
   props: {
     title: {
       type: String,
@@ -112,6 +118,14 @@ export default {
   },
   components: {
     Pagination
+  },
+  methods: {
+    toggleDropdown (record) {
+      //event.currentTarget.classList.toggle('dropdown--active')
+      record.showDropdown = !record.showDropdown
+      this.activeDropdown = record.id
+      console.log(record)
+    }
   },
   computed: {},
   created () {
@@ -147,8 +161,10 @@ export default {
   }
 
   .dropdown--active {
+    @extend .animate;
     border: none !important;
     border-radius: 10px;
+    height: 100%;
     margin: 5px auto;
     -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
     -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
@@ -209,6 +225,21 @@ export default {
     flex-basis: 40px;
     flex-grow: 0;
     flex-shrink: 0;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .9s ease;
+  }
+  .slide-fade-enter {
+    height: 0;
+    opacity: 0;
+  }
+  .slide-fade-leave-to {
+    height: 0;
+    opacity: 0;
   }
 
   /*tbody.expanded{

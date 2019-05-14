@@ -74,7 +74,9 @@
           </div>
           <transition name="slide-fade">
             <div v-if="record.id == activeDropdown" class="table__column dropdown">
-              <div>hehehehehe</div>
+              <div><slot name="ordersSummary" v-bind:records="records" :headers="headers"></slot></div>
+              <hr>
+              <div>Action buttons just like google compose area</div>
             </div>
           </transition>
         </div>
@@ -158,17 +160,20 @@ export default {
   .dropdown {
     border: none !important;
     flex: 1 100% !important;
+    height: 100% !important;
+    padding: 10px !important;
   }
 
   .dropdown--active {
     @extend .animate;
     border: none !important;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 100%;
     /*margin: 5px auto;*/
-    -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
-    -o-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.99);
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
+    -o-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
   }
 
   .dropdown--active + .table__row{

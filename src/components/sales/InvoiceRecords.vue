@@ -52,6 +52,19 @@
           {{ slotProps.invoice.paymentStatus }}
         </div>
       </template>
+
+      <template v-slot:ordersSummary="slotProps">
+        <div>
+          <custom-table
+            :expandable="false"
+            :usePagination="false"
+            :title="'f'"
+            :headers="slotProps.headers"
+            :records="slotProps.records">
+          </custom-table>
+        </div>
+      </template>
+
     </custom-table>
   </div>
 </template>

@@ -1,66 +1,26 @@
 <template>
   <div>
     <div id="card">
-      <!--<table>
-        <thead>
-        <th :key="header.id"
-            v-for="header in headers"
-            :class="header.breakPoint"
-            :style="{width: header.width}"
-            :title="header.label">
-          {{header.label}}
-        </th>
-        <th v-if="expandable" class="expandable"></th>
-        </thead>
-      </table>-->
       <div class="scrollable">
         <div class="table__header">
-          <div v-for="header in headers"
+          <div v-for="(header, index) in headers"
                class="table__column"
                :key="header.id"
                :class="header.breakPoint"
-               :style="{width: header.width}"
+               :style="columnStyles[index]"
                :title="header.label">
             {{header.label}}
           </div>
           <div v-if="expandable" class="table__column--expandable"></div>
         </div>
-        <!-- <table>
-         <tbody v-for="record in records" :key="record.id" :class="{'expanded' : record.id == 2230}">
-           <tr>
-             <td v-for="header in headers"
-                 :key="'key-' + header.id"
-                 :class="header.breakPoint"
-                 :style="{width: header.width}"
-                 :title="header.representedAs? header.representedAs(record) : record[header.id]">
-                 <slot :name="header.slot" v-bind:invoice="record">
-                   {{header.representedAs? header.representedAs(record) : record[header.id]}}
-                 </slot>
-             </td>
-             <td v-if="expandable" class="expandable">
-               <div class="dropdown__toggle">
-                 <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
-               </div>
-             </td>
-           </tr>
-           <tr v-if="record.id == 2230">
-             <td colspan="1" style="text-align: left;">
-               <span><strong>ID:</strong>2334</span><br>
-               <span><strong>ID:</strong>2334</span><br>
-               <span><strong>ID:</strong>2334</span><br>
-               <span><strong>ID:</strong>2334</span>
-             </td>
-           </tr>
-         </tbody>
-       </table>-->
 
         <div class="table__row"
              v-for="record in records" :key="record.id" :class="{'dropdown--active' : record.id == activeDropdown}">
           <div class="table__column"
-               v-for="header in headers"
+               v-for="(header, index) in headers"
                :key="'key-' + header.id"
                :class="header.breakPoint"
-               :style="{width: header.width}"
+               :style="columnStyles[index]"
                :title="header.representedAs? header.representedAs(record) : record[header.id]">
             <slot :name="header.slot" v-bind:record="record">
               {{header.representedAs? header.representedAs(record) : record[header.id]}}
@@ -92,7 +52,8 @@ export default {
   name: 'customTable',
   data () {
     return {
-      activeDropdown: -1
+      activeDropdown: -1,
+      columnStyles: this.populateWidths()
     }
   },
   props: {
@@ -122,13 +83,19 @@ export default {
   },
   methods: {
     toggleDropdown (record) {
-      //event.currentTarget.classList.toggle('dropdown--active')
+      // event.currentTarget.classList.toggle('dropdown--active')
       record.showDropdown = !record.showDropdown
       this.activeDropdown = record.id === this.activeDropdown ? -1 : record.id
-      console.log(record)
+      console.log(record, this.columnStyles)
+    },
+    populateWidths () {
+      return this.headers.map(
+        header => header.width ? {flex: `0 0 ${header.width}`} : {}
+      )
     }
   },
-  computed: {},
+  computed: {
+  },
   created () {
     console.log(this.records)
   }

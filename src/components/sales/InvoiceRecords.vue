@@ -55,21 +55,20 @@ export default {
     return {
       invoice: {},
       headers: [
-        {label: 'Invoice id', id: 'id', breakPoint: 'medium', width: '10%'},
-        {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus', width: '10%'},
-        {label: 'Customer', id: 'customerName', width: '15%'},
-        {label: 'Description', id: 'description', breakPoint: 'small', width: '30%'},
-        {label: 'Created', id: 'created', width: '10%'},
+        {label: 'Invoice id', id: 'id', breakPoint: 'medium'},
+        {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus'},
+        {label: 'Customer', id: 'customerName'},
+        {label: 'Description', id: 'description', breakPoint: 'small'},
+        {label: 'Created', id: 'created'},
         {label: 'Amount',
           id: 'amount',
-          width: '10%',
           representedAs: function (record) {
             return `₦${record.amount}`
           }}
       ],
       itemsHeader: [
         {label: 'SKU', id: 'id'},
-        {label: 'Name', id: 'name'},
+        {label: 'Name', id: 'name', width: '50%'},
         {label: 'Price', id: 'price'},
         {label: 'Qty', id: 'quantity'},
         {label: 'Disc.', id: 'discount'},

@@ -1,35 +1,5 @@
 <template>
   <div>
-    <!--<div class="container">
-      <table style="width:100%;">
-        <thead>
-        <th>Invoice Id</th>
-        <th>Status</th>
-        <th>Customer</th>
-        <th style="width:30%;">Description</th>
-        <th class="created-date">Created</th>
-        <th>Due date</th>
-        <th>Amount</th>
-        <th>Balance</th>
-        <th></th>
-        </thead>
-
-        <tbody>
-        <tr class="" :class="invoice.paymentStatus" v-for="invoice in invoices" :key="invoice.id" @click="$emit('viewInvoice', invoice)">
-          <td>{{ invoice.id }}</td>
-          <td id="tbl-status" class="mobile-view"><div class="status" :class="invoice.paymentStatus">{{ invoice.paymentStatus }}</div></td>
-          <td id="tbl-name" class="mobile-view elipsis">{{ invoice.customerName }}</td>
-          <td id="tbl-desc" class="mobile-view elipsis">{{ invoice.description }}</td>
-          <td id="tbl-created" class="mobile-view">Jan. 24 2018</td>
-          <td>Jan. 24 2018</td>
-          <td id="tbl-amount" class="mobile-view" :class="invoice.paymentStatus">₦{{ invoice.amount }}</td>
-          <td id="tbl-balance" :class="invoice.paymentStatus">₦{{ invoice.amount }}</td>
-          <td><span class="imenu"></span></td>
-        </tr>
-        </tbody>
-      </table>
-
-    </div>-->
     <div style="display: block;">
       <div style="display: inline-block; padding: 0 10px 10px 10px;">
         <div style="font-size: 1.5em; font-weight: bold">Orders</div>
@@ -48,20 +18,26 @@
       :headers="headers"
       :records="invoices">
       <template v-slot:paymentStatus="slotProps">
-        <div class="status" :class="slotProps.invoice.paymentStatus">
-          {{ slotProps.invoice.paymentStatus }}
+        <div class="status" :class="slotProps.record.paymentStatus">
+          {{ slotProps.record.paymentStatus }}
         </div>
       </template>
 
-      <template v-slot:ordersSummary="slotProps">
+      <template v-slot:dropdown="slotProps">
         <div>
           <custom-table
             :expandable="false"
             :usePagination="false"
             :title="'f'"
-            :headers="slotProps.headers"
-            :records="slotProps.records">
+            :headers="itemsHeader"
+            :records="slotProps.record.items">
           </custom-table>
+
+          <hr>
+          <div>
+            <div style="display: inline-block; width: 100px; border: 1px solid #CCC; padding: 5px; border-radius: 5px; text-align: center;">Edit</div>
+            <div style="display: inline-block; border: 1px solid #CCC; padding: 5px; border-radius: 5px;">View</div>
+          </div>
         </div>
       </template>
 
@@ -89,6 +65,19 @@ export default {
           width: '10%',
           representedAs: function (record) {
             return `₦${record.amount}`
+          }}
+      ],
+      itemsHeader: [
+        {label: 'SKU', id: 'id'},
+        {label: 'Name', id: 'name'},
+        {label: 'Price', id: 'price'},
+        {label: 'Qty', id: 'quantity'},
+        {label: 'Disc.', id: 'discount'},
+        {label: 'Total',
+          id: 'amount',
+          width: '10%',
+          representedAs: function (record) {
+            return `₦${record.total}`
           }}
       ]
     }

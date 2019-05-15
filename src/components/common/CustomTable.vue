@@ -62,7 +62,7 @@
                :class="header.breakPoint"
                :style="{width: header.width}"
                :title="header.representedAs? header.representedAs(record) : record[header.id]">
-            <slot :name="header.slot" v-bind:invoice="record">
+            <slot :name="header.slot" v-bind:record="record">
               {{header.representedAs? header.representedAs(record) : record[header.id]}}
             </slot>
           </div>
@@ -72,11 +72,10 @@
               <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
             </div>
           </div>
+
           <transition name="slide-fade">
             <div v-if="record.id == activeDropdown" class="table__column dropdown">
-              <div><slot name="ordersSummary" v-bind:records="records" :headers="headers"></slot></div>
-              <hr>
-              <div>Action buttons just like google compose area</div>
+              <div><slot name="dropdown" v-bind:record="record" :headers="headers"></slot></div>
             </div>
           </transition>
         </div>
@@ -166,14 +165,18 @@ export default {
 
   .dropdown--active {
     @extend .animate;
-    border: none !important;
+    border: 1px solid #CCC !important;
     border-radius: 5px;
     height: 100%;
-    /*margin: 5px auto;*/
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
-    -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
-    -o-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.50);
+  }
+
+  .dropdown--active:hover{
+    border: 1px solid transparent !important;
+    box-shadow: 0px 0px 2px 1.5px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF !important;
+    -moz-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 2px 1.5px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
   }
 
   .dropdown--active + .table__row{

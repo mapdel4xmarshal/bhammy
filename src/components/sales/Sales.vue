@@ -70,8 +70,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 324099,
-          paymentStatus: 'paid'
-
+          paymentStatus: 'paid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 2230,
@@ -80,8 +84,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'unpaid'
-
+          paymentStatus: 'unpaid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 2293,
@@ -90,8 +98,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: '1,394,990',
-          paymentStatus: 'due'
-
+          paymentStatus: 'due',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 12293,
@@ -100,8 +112,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'partial'
-
+          paymentStatus: 'partial',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 93,
@@ -110,8 +126,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 1394099,
-          paymentStatus: 'draft'
-
+          paymentStatus: 'draft',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 2237,
@@ -120,8 +140,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 324099,
-          paymentStatus: 'paid'
-
+          paymentStatus: 'paid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 22307,
@@ -130,8 +154,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'unpaid'
-
+          paymentStatus: 'unpaid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 22937,
@@ -140,8 +168,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: '1,394,990',
-          paymentStatus: 'due'
-
+          paymentStatus: 'due',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 122937,
@@ -150,8 +182,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'partial'
-
+          paymentStatus: 'partial',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 937,
@@ -160,8 +196,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 1394099,
-          paymentStatus: 'draft'
-
+          paymentStatus: 'draft',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 2239,
@@ -170,8 +210,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 324099,
-          paymentStatus: 'paid'
-
+          paymentStatus: 'paid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 22309,
@@ -180,8 +224,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'unpaid'
-
+          paymentStatus: 'unpaid',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 22939,
@@ -190,8 +238,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: '1,394,990',
-          paymentStatus: 'due'
-
+          paymentStatus: 'due',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 122939,
@@ -200,8 +252,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 394099,
-          paymentStatus: 'partial'
-
+          paymentStatus: 'partial',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         },
         {
           id: 939,
@@ -210,8 +266,12 @@ export default {
           created: 'Jan. 24 2018',
           modified: 'Jan. 24 2018',
           amount: 1394099,
-          paymentStatus: 'draft'
-
+          paymentStatus: 'draft',
+          items: [
+            {id: 433, name: 'Medium size egg', price: 750, discount: 10, quantity: 100, total: 74000},
+            {id: 562, name: 'Jumbo size egg', price: 900, discount: 50, quantity: 100, total: 85000},
+            {id: 675, name: 'Pullet size egg', price: 600, discount: 0, quantity: 50, total: 30000}
+          ]
         }
       ]
     }

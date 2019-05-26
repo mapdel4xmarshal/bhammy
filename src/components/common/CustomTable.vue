@@ -16,7 +16,7 @@
       <div class="table__row"
            v-for="record in records"
            :key="record.id"
-           @click="(record) => { if(clickHandler) clickHandler(record)}"
+           @click="clickHandler(record)"
            :class="{'dropdown--active' : record.id == activeDropdown}">
         <div class="table__column"
              v-for="(header, index) in headers"
@@ -66,7 +66,7 @@ export default {
     },
     usePagination: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false
     },
     records: {
@@ -82,7 +82,8 @@ export default {
     },
     clickHandler: {
       type: Function,
-      required: false
+      required: false,
+      default: () => {}
     }
   },
   components: {

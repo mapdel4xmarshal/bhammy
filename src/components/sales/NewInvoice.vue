@@ -1,5 +1,14 @@
 <template>
   <div>
+    <custom-dialog :active.sync="showDialog">
+      <add-item />
+    </custom-dialog>
+
+    <!-- <div name="dialog-actions">
+        <button @click="showDialog = false">close</button>
+      </div>-->
+
+
       <div class="scroll-section">
       <div class="invoice-details">
         <span class="title">
@@ -55,86 +64,6 @@
 
       <div class="items-title"><strong>Items</strong></div>
       <div class="items__container">
-        <!--<table>
-          <thead>
-            <th class="no-mobile">#</th>
-            <th>ITEM TYPE</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY.</th>
-            <th></th>
-            <th>TOTAL</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="no-mobile">1</td>
-              <td>Jumbo Sized Eggs</td>
-              <td class="desc">Fresh Large sized Eggs </td>
-              <td>₦850</td>
-              <td>100</td>
-              <td>100 x ₦850</td>
-              <td>₦85,000</td>
-              <td>
-                <span>
-                  <font-awesome-icon icon="edit" size="2x" color="#ccc" />
-                </span>
-                <span>
-                  <font-awesome-icon icon="times-circle" size="2x" color="#ccc" /></span>
-              </td>
-            </tr>
-            <tr>
-              <td class="no-mobile">2</td>
-              <td>Jumbo Sized Eggs</td>
-              <td class="desc">Fresh Large sized Eggs </td>
-              <td>₦850</td>
-              <td>100</td>
-              <td>100 x ₦850</td>
-              <td>₦85,000</td>
-              <td>
-                <span>
-                  <font-awesome-icon icon="edit" size="2x" color="#ccc" />
-                </span>
-                <span>
-                  <font-awesome-icon icon="times-circle" size="2x" color="#ccc" /></span>
-              </td>
-            </tr>
-            <tr>
-              <td class="no-mobile">3</td>
-              <td>Jumbo Sized Eggs</td>
-              <td class="desc">Fresh Large sized Eggs </td>
-              <td>₦800</td>
-              <td>100</td>
-              <td>100 x ₦8050</td>
-              <td>₦85,000</td>
-              <td>
-                <span>
-                  <font-awesome-icon icon="edit" size="2x" color="#ccc"/>
-                </span>
-                <span>
-                  <font-awesome-icon icon="times-circle" size="2x" color="#ccc"/></span>
-              </td>
-            </tr>
-
-            <tr class="edit">
-              <td class="no-mobile">4</td>
-              <td><input type="text" placeholder="Item type..."></td>
-              <td class="desc"><input type="text" placeholder="Item description..."></td>
-              <td><input type="number" placeholder="Item price..."></td>
-              <td><input type="number" placeholder="Quantity"></td>
-              <td>100 x ₦8050</td>
-              <td>₦</td>
-              <td>
-                <span>
-                  <font-awesome-icon icon="edit" size="2x" color="#ccc"/>
-                </span>
-                <span>
-                  <font-awesome-icon icon="times-circle" size="2x" color="#ccc" /></span>
-              </td>
-            </tr>
-
-          </tbody>
-        </table>-->
-
         <custom-table :records="invoice.items"
                       :title="'Items'"
                       :clickHandler="itemClickHandler"
@@ -170,6 +99,8 @@
 
 <script>
 import CustomTable from '@/components/common/CustomTable'
+import CustomDialog from '@/components/common/Dialog'
+import AddItem from './AddItem'
 
 export default {
   name: 'NewInvoice',
@@ -197,15 +128,19 @@ export default {
           representedAs: function (record) {
             return `₦${record.total}`
           }}
-      ]
+      ],
+      showDialog: false
     }
   },
   components: {
-    CustomTable
+    AddItem,
+    CustomTable,
+    CustomDialog
   },
   methods: {
     itemClickHandler (item) {
       console.log(item)
+      this.showDialog = true;
     }
   },
   created () {

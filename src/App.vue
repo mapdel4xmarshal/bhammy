@@ -5,8 +5,11 @@
        <appHeaderBar></appHeaderBar>
        <section id="main">
          <transition name="slide-fade" appear mode="out-in">
-          <router-view></router-view>
+          <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
          </transition>
+         <div class="main__summary">
+
+         </div>
        </section>
      </div>
   </div>
@@ -79,8 +82,14 @@ export default {
   }
 
   .main-content>#main{
-    padding-top: var(--header-nav-height);
-    padding: 5px 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main__summary {
+    width: 275px;
+    background-color: #f3e5f5;
   }
 
   .main-content{
@@ -135,7 +144,7 @@ export default {
 
   @media only screen and (min-width: 800px) {
     .main-content>#main{
-      padding: 5px 30px;
+     /* padding: 5px 30px;*/
     }
   }
 </style>

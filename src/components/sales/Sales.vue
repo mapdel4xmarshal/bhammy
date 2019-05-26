@@ -1,50 +1,9 @@
 <template>
   <div>
-    <!--<app-view-invoice v-if="invoiceSection == 3" :invoice="selectedInvoiceData"></app-view-invoice>
-    <div v-else-if="invoiceSection == 1">
-      <app-button-pill>+ New Invoice</app-button-pill>
-      <div id="sales-header">
-          <div class="action-menu">
-            <div class="action-box" @click="invoiceSection = 2">
-              <font-awesome-icon icon="plus-circle" size="2x" />
-              <span>New sale</span>
-            </div>
-            <div class="action-box">
-              <font-awesome-icon icon="sliders-h" size="2x" />
-              <span>Filter</span>
-            </div>
-            <div class="action-box">
-              <font-awesome-icon icon="chart-pie" size="2x" />
-              <span>Stats</span>
-            </div>
-            <div class="action-box">
-              <font-awesome-icon icon="search" size="2x" />
-              <span>Search</span>
-            </div>
-          </div>
-        </div>
-      <div class="scroll-section">
-        <div style="height: 10px;"></div>
-        <app-invoice-row
-                         :key="invoices[0].id"
-                         :invoices="invoices"
-                         @viewInvoice="viewInvoice">
-        </app-invoice-row>
-
-      </div>
-    </div>
-    <app-new-invoice v-else @showSales="invoiceSection = $event"></app-new-invoice>-->
-
     <app-breadcrumb></app-breadcrumb>
     <transition name="slide-fade" appear mode="out-in">
       <router-view :invoices="invoices"></router-view>
     </transition>
-
-    <!--<app-invoice-row
-      :key="invoices[0].id"
-      :invoices="invoices"
-      @viewInvoice="viewInvoice">
-    </app-invoice-row>-->
   </div>
 
 </template>

@@ -58,7 +58,6 @@ export default {
         {label: 'Invoice id', id: 'id', breakPoint: 'medium'},
         {label: 'Status', id: 'paymentStatus', slot: 'paymentStatus'},
         {label: 'Customer', id: 'customerName'},
-        {label: 'Description', id: 'description', breakPoint: 'small'},
         {label: 'Created', id: 'created'},
         {label: 'Amount',
           id: 'amount',

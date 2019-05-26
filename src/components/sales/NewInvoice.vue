@@ -1,55 +1,6 @@
 <template>
   <div>
-    <header>
-      <div id="tools-container">
-        <span class="tool">
-          <font-awesome-icon icon="save"/>
-        </span>
-
-        <span class="tool">
-          <font-awesome-icon icon="download"/>
-        </span>
-
-        <span class="tool">
-          <font-awesome-icon icon="print"/>
-        </span>
-
-        <span class="vertical-divider"></span>
-
-        <span class="tool">
-          PAY NOW
-        </span>
-
-      </div>
-      <div style="float:left; font-size: 20px; line-height; margin: 5px 10px;" @click="$emit('showSales', 1)">
-        <span class="tool" style=" border: none; font-size: 25px !important;">
-          <font-awesome-icon icon="times"/>
-        </span>
-      </div>
-    </header>
-
-  <!--  <div id="sales-header">
-      <div class="action-menu">
-        <div class="action-box">
-          <font-awesome-icon icon="save" size="2x" />
-          <span>Save</span>
-        </div>
-        <div class="action-box">
-          <font-awesome-icon icon="download" size="2x" />
-          <span>Download</span>
-        </div>
-        <div class="action-box">
-          <font-awesome-icon icon="print" size="2x" />
-          <span>print</span>
-        </div>
-        <div class="action-box">
-          <font-awesome-icon icon="search" size="2x" />
-          <span>Pay Now</span>
-        </div>
-      </div>
-    </div>-->
-
-    <div class="scroll-section">
+      <div class="scroll-section">
       <div class="invoice-details">
         <span class="title">
           Invoice details
@@ -103,8 +54,8 @@
       </div>
 
       <div class="items-title"><strong>Items</strong></div>
-      <div class="items-container">
-        <table>
+      <div class="items__container">
+        <!--<table>
           <thead>
             <th class="no-mobile">#</th>
             <th>ITEM TYPE</th>
@@ -182,7 +133,13 @@
             </tr>
 
           </tbody>
-        </table>
+        </table>-->
+
+        <custom-table :records="invoice.items"
+                      :title="'Items'"
+                      :clickHandler="itemClickHandler"
+                      :headers="itemsHeader">
+        </custom-table>
 
         <button style="margin:10px 0;">+ New Item</button>
 
@@ -190,14 +147,14 @@
 
       <div class="invoice-footer">
         <div id="invoice-summary">
-            <strong class="summary-title">Net total</strong>
-            <strong class="value">₦37,098</strong>
+          <strong class="summary-title">Net total</strong>
+          <strong class="value">₦37,098</strong>
 
-            <span class="summary-title">Discount</span>
-            <span class="value">&mdash;</span>
+          <span class="summary-title">Discount</span>
+          <span class="value">&mdash;</span>
 
-            <strong id="total" class="summary-title">TOTAL</strong>
-            <strong class="value summary-total">₦67,098</strong>
+          <strong id="total" class="summary-title">TOTAL</strong>
+          <strong class="value summary-total">₦67,098</strong>
         </div>
         <div id="comment">
           <textarea>Comment...</textarea>
@@ -205,22 +162,50 @@
       </div>
       <br>
       <small>
-      <strong>Last Modified </strong> by Emmanuel on 19-11-2019
+        <strong>Last Modified </strong> by Emmanuel on 19-11-2019
       </small>
     </div>
   </div>
 </template>
 
 <script>
+import CustomTable from '@/components/common/CustomTable'
+
 export default {
   name: 'NewInvoice',
   data () {
     return {
       invoice: {
         paymentDate: '',
-        invoiceDate: ''
+        invoiceDate: '',
+        items: [
+          {id: 1, name: 'Jumbo Sized Egg', price: '₦850', quantity: 100, discount: 0, total: 85000},
+          {id: 2, name: 'Medium Sized Egg', price: '₦750', quantity: 100, discount: 0, total: 75000},
+          {id: 3, name: 'Pullet Sized Egg', price: '₦600', quantity: 100, discount: 0, total: 60000}
+        ]
       },
-      showFullCustomerDetails: false
+      showFullCustomerDetails: false,
+      itemsHeader: [
+        {label: 'SKU', id: 'id', width: '10%'},
+        {label: 'Name', id: 'name', width: '40%'},
+        {label: 'Price', id: 'price', width: '10%'},
+        {label: 'Qty', id: 'quantity', width: '10%'},
+        {label: 'Disc.', id: 'discount', width: '10%'},
+        {label: 'Total',
+          id: 'amount',
+          width: '10%',
+          representedAs: function (record) {
+            return `₦${record.total}`
+          }}
+      ]
+    }
+  },
+  components: {
+    CustomTable
+  },
+  methods: {
+    itemClickHandler (item) {
+      console.log(item)
     }
   },
   created () {
@@ -234,52 +219,48 @@ export default {
 
 <style scoped>
 
-  .scroll-section{
+  .scroll-section {
     overflow-y: auto;
     height: calc(100vh - 50px);
   }
 
-  #invoice-date, #payment-date{
-    border: 1px solid #ccc; /*#808080;*/
+  #invoice-date, #payment-date {
+    border: 1px solid #ccc;
     border-right: none;
     padding: 5px;
   }
 
-  #invoice-date{
+  #invoice-date {
     border-left: none;
   }
 
-  #payment-date{
+  #payment-date {
     text-align: right;
   }
 
-  #invoice-date span, #payment-date span{
+  #invoice-date span, #payment-date span {
     display: block;
     font-size: 23px;
     color: #616161;
     white-space: nowrap;
   }
 
-  .items-title{
+  .items-title {
     margin-top: 20px;
   }
 
-  .items-container{
-    border-top: 1px dashed #808080;
-    border-bottom: 1px dashed #808080;
-    margin: 5px 0 20px 0;
+  .items__container {
     padding: 10px;
     clear: both;
-    background-color: #fff;
   }
 
-  .items-container table{
-    width:100%;
+  .items__container table {
+    width: 100%;
     border-collapse: collapse;
     table-layout: auto;
   }
 
-  .items-container table tr{
+  .items__container table tr {
     font-size: 14px;
     border-bottom: 1px solid #9e9e9e;
     display: grid;
@@ -289,11 +270,11 @@ export default {
     height: 50px;
   }
 
-  .items-container table thead{
+  .items__container table thead {
     display: none;
   }
 
-  .items-container table tr:hover{
+  .items__container table tr:hover {
     border-bottom-width: 1px;
     border-left-width: 4px;
     position: relative;
@@ -301,34 +282,29 @@ export default {
     box-shadow: 0px 3px 5px -3px #757575;
   }
 
-  #invoice-id{
-    /*display: inline-block;
-    line-height: 30px;*/
+  #invoice-id {
     display: flex;
     align-items: center;
   }
 
-  #invoice-id span{
+  #invoice-id span {
     border: 1px solid #ccc;
     padding: 5px 10px;
     background-color: #e1e1e1;
     border-bottom-right-radius: 15px;
-    /* margin-bottom: 35px; */
     border-top-right-radius: 15px;
     border-left: none;
     white-space: nowrap;
   }
 
-  #invoice-status{
-    /*text-align: right;
-    line-height: 30px;*/
+  #invoice-status {
     display: flex;
     align-items: center;
     float: right;
     justify-content: flex-end;
   }
 
-  #invoice-status>span{
+  #invoice-status > span {
     text-transform: uppercase;
     border: 1px solid #66BB6A;
     background-color: #e1e1e1;
@@ -336,30 +312,29 @@ export default {
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     border-right: 2px solid #66BB6A;
-    /*border-right: none;*/
   }
 
-  #invoice-status>span.paid{
+  #invoice-status > span.paid {
     border-color: var(--paidColor);
   }
 
-  #invoice-status>span.due{
+  #invoice-status > span.due {
     border-color: var(--dueColor);
   }
 
-  #invoice-status>span.partial{
+  #invoice-status > span.partial {
     border-color: var(--partialColor);
   }
 
-  #invoice-status>span.draft{
+  #invoice-status > span.draft {
     border-color: var(--draftColor);
   }
 
-  #invoice-id label, #invoice-status label{
+  #invoice-id label, #invoice-status label {
     display: none;
   }
 
-  table tr:hover td:last-child{
+  table tr:hover td:last-child {
     position: absolute;
     float: right;
     display: grid;
@@ -370,7 +345,7 @@ export default {
     justify-items: center;
   }
 
-  table tr:hover td:last-child span{
+  table tr:hover td:last-child span {
     display: grid;
     align-items: center;
     border-left: 1px solid darkgray;
@@ -384,23 +359,23 @@ export default {
     cursor: pointer;
   }
 
-  table tr:hover td span:first-child{
+  table tr:hover td span:first-child {
     border: none;
   }
 
-  table tr:hover td > svg{
+  table tr:hover td > svg {
     color: #000;
   }
 
-  td:nth-child(4), td:nth-child(5), td:last-child{
+  td:nth-child(4), td:nth-child(5), td:last-child {
     display: none;
   }
 
-  td:nth-child(2){
+  td:nth-child(2) {
     font-weight: 600;
   }
 
-  td:nth-last-child(2){
+  td:nth-last-child(2) {
     text-align: right;
     grid-column: 2 / 3;
     grid-row: 2;
@@ -408,19 +383,19 @@ export default {
     font-size: 18px;
   }
 
-  td:nth-last-child(3){
+  td:nth-last-child(3) {
     text-align: right;
     color: #808080;
     font-size: 12px;
   }
 
-  .invoice-footer{
+  .invoice-footer {
     display: grid;
     grid-template-columns: auto;
     grid-gap: 10px;
   }
 
-  #comment > textarea{
+  #comment > textarea {
     width: calc(100% - 12px);
     border: 1px dashed rgb(128, 128, 128);
     border-radius: 6px;
@@ -428,53 +403,53 @@ export default {
     max-height: 102px;
     background-color: transparent;
     color: #808080;
-    padding:5px;
+    padding: 5px;
   }
 
-  #invoice-summary{
+  #invoice-summary {
     background-color: #e1e1e1;
     display: grid;
     grid-gap: 5px;
-    padding : 10px;
+    padding: 10px;
     border: 1px solid #ccc;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
   }
 
-  #invoice-summary>div{
+  #invoice-summary > div {
     display: block;
   }
 
-  .summary-total{
+  .summary-total {
     font-size: 30px;
   }
 
-  th{
+  th {
     font-size: 14px;
     color: #808080;
     font-weight: normal;
   }
 
-  th:last-child{
-    width:65px;
+  th:last-child {
+    width: 65px;
   }
 
-  td:first-child, th:first-child{
+  td:first-child, th:first-child {
     padding-left: 15px;
   }
 
-  tr.edit{
+  tr.edit {
     display: none !important;
   }
 
-  .desc{
+  .desc {
     grid-column: 1 / 3;
     grid-row: 2;
     font-size: 13px;
     color: #808080;
   }
 
-  td > svg{
+  td > svg {
     color: #808080;
     display: inline-block;
     padding: 5px;
@@ -482,77 +457,78 @@ export default {
     cursor: pointer;
   }
 
-  .no-mobile{
+  .no-mobile {
     display: none;
   }
 
-  .customer{
-    background-color: #fff; /*#e0e0e0;*/
+  .customer {
+    background-color: #fff;
     padding: 10px 10px 0 10px;
     font-size: 14px;
     position: relative;
   }
 
-  .customer #edit{
+  .customer #edit {
     float: right;
     position: absolute;
-    right: 5px; top: 5px;
+    right: 5px;
+    top: 5px;
     font-size: 20px;
   }
 
-  #invoice-summary .summary-title{
+  #invoice-summary .summary-title {
     float: left;
     color: #616161;
   }
 
-  #invoice-summary #total{
+  #invoice-summary #total {
     font-size: 30px;
   }
 
-  #invoice-summary .value{
+  #invoice-summary .value {
     text-align: right;
   }
 
-  .vertical-divider{
+  .vertical-divider {
     border-right: 1px solid #bbb;
     margin-right: 10px;
   }
 
-  label{
+  label {
     font-size: 12px;
     color: #808080;
   }
 
-  .customer>span{
+  .customer > span {
     display: block;
   }
 
-  .customer-info, .invoice-details{
+  .customer-info, .invoice-details {
     width: 100%;
     display: inline-block;
     margin-top: 10px;
   }
 
-  .invoice-details{
+  .invoice-details {
     margin-top: 70px;
   }
 
-  .invoice-details>div{
+  .invoice-details > div {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto auto;
     grid-gap: 10px 0;
   }
 
-  .invoice-details .title{
+  .invoice-details .title {
     display: none;
   }
 
-  .invoice-details>div input{
+  .invoice-details > div input {
     display: none;
   }
 
-  .tool{
+  .tool {
     padding: 7px;
     border: 1px solid #2b2b2b;
     border-radius: 3px;
@@ -563,37 +539,21 @@ export default {
     cursor: pointer;
   }
 
-  .tool:hover{
+  .tool:hover {
     background-color: #bbb;
   }
 
-  #tools-container{
-    display: inline-block;
-    float: right;
-    padding: 10px 0;
-  }
-
-  header{
-    background-color: #fff;
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    z-index:2;
-    border-bottom: 1px solid #808080;
-  }
-
-  input{
+  input {
     width: calc(100% - 15px);
   }
 
-  #title{
+  #title {
     display: inline-block;
     position: relative;
     float: left;
   }
 
-  span.title{
+  span.title {
     border-bottom: 1px solid #000;
     width: 100%;
     display: inline-block;
@@ -603,27 +563,27 @@ export default {
   /* For tablets: */
   @media only screen and (min-width: 600px) {
 
-    .items-title{
+    .items-title {
       clear: both;
     }
 
-    tr.edit{
+    tr.edit {
       display: table-row !important;
     }
 
-    tr.edit input{
+    tr.edit input {
       border: none;
       padding: 0;
       border-radius: 0;
       border-bottom: 1px dashed #ccc !important;
     }
 
-    table thead th:last-child{
-      width:120px;
+    table thead th:last-child {
+      width: 120px;
       display: table-cell !important;
     }
 
-    table tr:hover td:last-child{
+    table tr:hover td:last-child {
       display: grid !important;
       -webkit-box-shadow: -7px 0px 5px -2px #e1e1e1;
       box-shadow: -7px 0px 5px -2px #e1e1e1;
@@ -632,82 +592,82 @@ export default {
       height: 21px;
     }
 
-    #invoice-date, #payment-date{
+    #invoice-date, #payment-date {
       border: none;
     }
 
-    #invoice-date span, #payment-date span{
+    #invoice-date span, #payment-date span {
       display: none;
     }
 
-    #invoice-date input, #payment-date input{
+    #invoice-date input, #payment-date input {
       display: inline-block;
     }
 
-    .customer-info, .invoice-details{
+    .customer-info, .invoice-details {
       width: 40%;
-      margin-top:70px;
+      margin-top: 70px;
     }
 
-    .items-container table tr{
+    .items__container table tr {
       display: table-row;
     }
 
-    .items-container table tr td{
+    .items__container table tr td {
       display: table-cell;
       text-align: left !important;
     }
 
-    td:nth-last-child(3),th:nth-last-child(3){
+    td:nth-last-child(3), th:nth-last-child(3) {
       display: none !important;
     }
 
-    td:last-child,th:last-child{
+    td:last-child, th:last-child {
       display: none !important;
     }
 
-    td.desc{
+    td.desc {
       color: #000 !important;
     }
 
-    .invoice-footer{
+    .invoice-footer {
       grid-template-columns: auto 30% !important;
     }
 
-    .invoice-footer div:first-child{
-      order:2;
+    .invoice-footer div:first-child {
+      order: 2;
       grid-column: 2/3;
     }
 
-    .customer-info{
+    .customer-info {
       float: right;
     }
 
-    .invoice-details{
+    .invoice-details {
       float: left;
     }
 
-    .no-mobile{
+    .no-mobile {
       display: table-cell;
     }
 
-    .items-container table thead{
+    .items__container table thead {
       border-bottom: 2px solid #68284d;
       margin-bottom: 10px;
       display: table-row;
     }
 
-    .items-container table tr {
+    .items__container table tr {
       height: 30px;
     }
 
-    td, th{
+    td, th {
       text-align: left;
       padding: 5px;
     }
   }
 
-  .action-box{
+  .action-box {
     text-align: center;
     display: inline-block;
     border-right: 1px solid #808080;
@@ -715,24 +675,24 @@ export default {
     padding: 5px 0;
   }
 
-  .action-box:hover{
+  .action-box:hover {
     background-color: #eee;
   }
 
-  .action-menu .action-box:last-child{
+  .action-menu .action-box:last-child {
     border-right: none !important;
   }
 
-  .action-box svg{
+  .action-box svg {
     font-size: 20px !important;
   }
 
-  .action-box span{
+  .action-box span {
     font-size: 14px;
     display: block;
   }
 
-  .action-menu{
+  .action-menu {
     background-color: white;
     border-radius: 3px;
     text-align: center;
@@ -740,12 +700,12 @@ export default {
     grid-template-columns: 25% 25% 25% 25%;
     position: relative;
     z-index: 19;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 5px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 5px -5px rgba(0, 0, 0, 0.75);
   }
 
-  .action-box{
+  .action-box {
     text-align: center;
     display: inline-block;
     border-right: 1px solid #808080;
@@ -753,36 +713,36 @@ export default {
     padding: 5px 0;
   }
 
-  .action-box:hover{
+  .action-box:hover {
     background-color: #eee;
   }
 
-  .action-menu .action-box:last-child{
+  .action-menu .action-box:last-child {
     border-right: none !important;
   }
 
-  .action-box svg{
+  .action-box svg {
     font-size: 20px !important;
   }
 
-  .action-box span{
+  .action-box span {
     font-size: 14px;
     display: block;
   }
 
-  input[type='date'], input[type='text']{
+  input[type='date'], input[type='text'] {
     background-color: #ffffffd1;
     border: 1px solid #bbb;
     border-radius: 5px;
     padding-left: 10px;
   }
 
-  .input-container{
+  .input-container {
     margin: 10px 0;
     display: flex;
   }
 
-  .input-container select{
+  .input-container select {
     width: 100%;
     height: 30px;
     border-radius: 5px;

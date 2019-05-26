@@ -68,7 +68,7 @@ export default {
       ],
       itemsHeader: [
         {label: 'SKU', id: 'id'},
-        {label: 'Name', id: 'name', width: '50%'},
+        {label: 'Name', id: 'name', width: '45%'},
         {label: 'Price', id: 'price'},
         {label: 'Qty', id: 'quantity'},
         {label: 'Disc.', id: 'discount'},

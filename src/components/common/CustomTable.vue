@@ -1,44 +1,47 @@
 <template>
   <div>
-    <div id="card">
-      <div class="scrollable">
-        <div class="table__header">
-          <div v-for="(header, index) in headers"
-               class="table__column"
-               :key="header.id"
-               :class="header.breakPoint"
-               :style="columnStyles[index]"
-               :title="header.label">
-            {{header.label}}
-          </div>
-          <div v-if="expandable" class="table__column--expandable"></div>
+    <div class="scrollable">
+      <div class="table__header">
+        <div v-for="(header, index) in headers"
+             class="table__column"
+             :key="header.id"
+             :class="header.breakPoint"
+             :style="columnStyles[index]"
+             :title="header.label">
+          {{header.label}}
+        </div>
+        <div v-if="expandable" class="table__column--expandable"></div>
+      </div>
+
+      <div class="table__row"
+           v-for="record in records"
+           :key="record.id"
+           @click="(record) => { if(clickHandler) clickHandler(record)}"
+           :class="{'dropdown--active' : record.id == activeDropdown}">
+        <div class="table__column"
+             v-for="(header, index) in headers"
+             :key="'key-' + header.id"
+             :class="header.breakPoint"
+             :style="columnStyles[index]"
+             :title="header.representedAs? header.representedAs(record) : record[header.id]">
+          <slot :name="header.slot" v-bind:record="record">
+            {{header.representedAs? header.representedAs(record) : record[header.id]}}
+          </slot>
         </div>
 
-        <div class="table__row"
-             v-for="record in records" :key="record.id" :class="{'dropdown--active' : record.id == activeDropdown}">
-          <div class="table__column"
-               v-for="(header, index) in headers"
-               :key="'key-' + header.id"
-               :class="header.breakPoint"
-               :style="columnStyles[index]"
-               :title="header.representedAs? header.representedAs(record) : record[header.id]">
-            <slot :name="header.slot" v-bind:record="record">
-              {{header.representedAs? header.representedAs(record) : record[header.id]}}
-            </slot>
+        <div v-if="expandable" class="table__column--expandable">
+          <div class="dropdown__toggle" @click="toggleDropdown(record)">
+            <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
           </div>
-
-          <div v-if="expandable" class="table__column--expandable">
-            <div class="dropdown__toggle" @click="toggleDropdown(record)">
-              <font-awesome-icon icon="angle-down" focusable="true" class="toggle"/>
-            </div>
-          </div>
-
-          <transition name="slide-fade">
-            <div v-if="record.id == activeDropdown" class="table__column dropdown">
-              <div><slot name="dropdown" v-bind:record="record" :headers="headers"></slot></div>
-            </div>
-          </transition>
         </div>
+
+        <transition name="slide-fade">
+          <div v-if="record.id == activeDropdown" class="table__column dropdown">
+            <div class="dropdown--animate">
+              <slot name="dropdown" v-bind:record="record" :headers="headers"></slot>
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
     <pagination v-if="usePagination"></pagination>
@@ -76,6 +79,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    clickHandler: {
+      type: Function,
+      required: false
     }
   },
   components: {
@@ -83,7 +90,6 @@ export default {
   },
   methods: {
     toggleDropdown (record) {
-      // event.currentTarget.classList.toggle('dropdown--active')
       record.showDropdown = !record.showDropdown
       this.activeDropdown = record.id === this.activeDropdown ? -1 : record.id
       console.log(record, this.columnStyles)
@@ -94,8 +100,7 @@ export default {
       )
     }
   },
-  computed: {
-  },
+  computed: {},
   created () {
     console.log(this.records)
   }
@@ -105,39 +110,29 @@ export default {
 <style lang="scss" scoped>
 
   .animate {
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-  }
-
-  #card {
-    background-color: #FFF;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
-    -o-box-shadow: 0px 0px 4px -3px rgba(0, 0, 0, 0.75);
-    padding: 10px 0;
-    margin-bottom: 20px;
+    -webkit-transition: all .35s ease-in-out;
+    -moz-transition: all .35s ease-in-out;
+    -o-transition: all .35s ease-in-out;
+    transition: all .35s ease-in-out;
   }
 
   .dropdown {
     border: none !important;
     flex: 1 100% !important;
-    height: 100% !important;
+    height: auto !important;
     padding: 10px !important;
   }
 
   .dropdown--active {
-    @extend .animate;
     border: 1px solid #CCC !important;
     border-radius: 5px;
-    height: 100%;
+
+    & .toggle {
+      transform: rotate(-180deg);
+    }
   }
 
-  .dropdown--active:hover{
+  .dropdown--active:hover {
     border: 1px solid transparent !important;
     box-shadow: 0px 0px 2px 1.5px rgba(0, 0, 0, 0.2);
     background-color: #FFFFFF !important;
@@ -146,7 +141,7 @@ export default {
     -o-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
   }
 
-  .dropdown--active + .table__row{
+  .dropdown--active + .table__row {
     border-top: none !important;
   }
 
@@ -168,20 +163,25 @@ export default {
   }
 
   .table__row, .table__header {
-    @extend .animate;
     border-top: 1px solid #e0e0e0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    overflow: hidden;
     width: 100%;
+
+    .table__column:first-child{
+      margin-left: 5px;
+    }
   }
 
-  .table__row:hover{
+  .table__row:hover {
     background-color: #F5F5F5;
     cursor: pointer;
   }
 
   .table__column {
+    transition: height .5s 1s ease-in-out;
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
@@ -202,19 +202,27 @@ export default {
     flex-shrink: 0;
   }
 
+  .toggle {
+    transition: transform 0.35s ease-in;
+  }
+
   .slide-fade-enter-active {
-    transition: all .5s ease;
+    transition: max-height .35s ease, opacity 0.35s .35s ease-in, transform 0.35s .35s ease-in;
+    max-height: 500px;
   }
+
   .slide-fade-leave-active {
-    transition: all .2s ease;
+    transition: max-height .35s .15s ease, opacity 0.35s ease-in, transform 0.35s ease-in;
   }
-  .slide-fade-enter {
-    height: 0;
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    max-height: 0px;
+    transform: translateY(-10px);
     opacity: 0;
   }
-  .slide-fade-leave-to {
-    height: 0;
-    opacity: 0;
+
+  .slide-fade-leave {
+    max-height: 500px;
   }
 
   /*tbody.expanded{

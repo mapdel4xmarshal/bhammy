@@ -20,48 +20,48 @@
 </template>
 
 <script>
-  import NavigationButton from './sidebar/NavigationButton'
-  import {sharedParams} from '../main'
+import NavigationButton from './sidebar/NavigationButton'
+import {sharedParams} from '../main'
 
-  export default {
-    name: 'SideBarContainer',
-    data () {
-      return {
-        sections: [{name: 'Dashboard', route: '/', iconClass: 'dashboard3.png'},
-          {name: 'Productions', route: '/production', iconClass: 'production.png'},
-          {name: 'Sales', route: '/sales', iconClass: 'sales.png'},
-          {name: 'Expenditure', route: '/dashboard', iconClass: 'expenditure.png'},
-          {name: 'Activities', route: '/dashboard', iconClass: 'activity-2.png'},
-          {name: 'Store', route: '/dashboard', iconClass: 'store.png'},
-          {name: 'Settings', route: '/dashboard', iconClass: 'settings.png'}],
-        selectedNavIndex: sharedParams.selectedPageIndex,
-        sharedProp: sharedParams
-      }
-    },
-    components: {
-      navButton: NavigationButton
-    },
-    methods: {
-      navigateToPage (event) {
-        this.selectedNavIndex = event.navButtonIndex
-        this.sharedProp.selectedPageIndex = event.navButtonIndex
-        this.sharedProp.currentPage = event.component
-        this.sharedProp.currentPageName = event.navButtonName
-        this.sharedProp.sidebarVisible = false
-
-        this.$router.push({path: event.route})
-        console.log('navigateToPage', event)
-      }
-    },
-    created: function () {
-      console.log(this.$route)
-      this.sections.forEach((section, index) => {
-        if (this.$route.path.startsWith(section.route)) {
-          this.selectedNavIndex = index
-        }
-      })
+export default {
+  name: 'SideBarContainer',
+  data () {
+    return {
+      sections: [{name: 'Dashboard', route: '/', iconClass: 'dashboard3.png'},
+        {name: 'Productions', route: '/production', iconClass: 'production.png'},
+        {name: 'Sales', route: '/sales', iconClass: 'sales.png'},
+        {name: 'Expenditure', route: '/dashboard', iconClass: 'expenditure.png'},
+        {name: 'Activities', route: '/dashboard', iconClass: 'activity-2.png'},
+        {name: 'Store', route: '/dashboard', iconClass: 'store.png'},
+        {name: 'Settings', route: '/dashboard', iconClass: 'settings.png'}],
+      selectedNavIndex: sharedParams.selectedPageIndex,
+      sharedProp: sharedParams
     }
+  },
+  components: {
+    navButton: NavigationButton
+  },
+  methods: {
+    navigateToPage (event) {
+      this.selectedNavIndex = event.navButtonIndex
+      this.sharedProp.selectedPageIndex = event.navButtonIndex
+      this.sharedProp.currentPage = event.component
+      this.sharedProp.currentPageName = event.navButtonName
+      this.sharedProp.sidebarVisible = false
+
+      this.$router.push({path: event.route})
+      console.log('navigateToPage', event)
+    }
+  },
+  created: function () {
+    console.log(this.$route)
+    this.sections.forEach((section, index) => {
+      if (this.$route.path.startsWith(section.route)) {
+        this.selectedNavIndex = index
+      }
+    })
   }
+}
 </script>
 
 <style scoped>

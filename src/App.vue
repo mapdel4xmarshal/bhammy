@@ -5,10 +5,10 @@
        <appHeaderBar></appHeaderBar>
        <section id="main">
          <transition name="slide-fade" appear mode="out-in">
-          <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
+           <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
          </transition>
-         <div class="main__summary">
-
+         <div class="main__summary">summarySection
+           <router-view name="summarySection"></router-view>
          </div>
        </section>
      </div>
@@ -48,13 +48,13 @@ export default {
 </script>
 
 <style lang="scss">
+  @import './scss/_variables';
 
   :root{
     --base-color: #7f2775;
     --draftColor: #505050;
     --dueColor: #c2070c;
     --glow-color: #8E24AA;
-    --header-nav-height: 45px;
     --left-border-width: 5px;
     --main-bg-color: #FAFAFA;
     --main-padding: 15px;
@@ -67,6 +67,7 @@ export default {
     --sidebar-width : 300px;
     --unpaidColor: #c29d07;
   }
+
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -85,6 +86,7 @@ export default {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    height: calc(100vh - $header-height);
   }
 
   .main__summary {

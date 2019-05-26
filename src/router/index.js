@@ -17,7 +17,9 @@ export const routes = [
   {
     path: '/sales',
     name: 'sales',
-    component: Sales,
+    components: {
+      default: Sales
+    },
     children: [
       {
         path: '',

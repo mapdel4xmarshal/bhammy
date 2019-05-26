@@ -36,9 +36,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import '../scss/_variables';
+
   #header {
-    height: 50px;
+    height: $header-height;
     background-color: #FFFFFF;
     width: 100%;
     color: white;

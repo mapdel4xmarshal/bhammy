@@ -2,7 +2,8 @@
   <div>
     <app-breadcrumb></app-breadcrumb>
     <transition name="slide-fade" appear mode="out-in">
-      <router-view :invoices="invoices"></router-view>
+      <router-view :invoices="invoices" class="thehehehehehe"></router-view>
+      <router-view name="summary" />
     </transition>
   </div>
 

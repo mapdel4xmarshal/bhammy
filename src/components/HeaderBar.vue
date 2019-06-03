@@ -1,5 +1,8 @@
 <template>
-  <div id="header" @click="toggleSideBar">
+  <header @click="toggleSideBar">
+
+    <farm-selector class="header__farm-selector"/>
+
     <div class="menu-icon">
       <img src="../assets/images/menu2.png" alt="">
     </div>
@@ -9,12 +12,13 @@
       <div><font-awesome-icon icon="bell" color="#757575"></font-awesome-icon></div>
       <app-profile></app-profile>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
 import {sharedParams} from '../main'
 import Profile from './common/Profile'
+import FarmSelector from './header/FarmSelector'
 
 export default {
   name: 'HeaderBar',
@@ -31,6 +35,7 @@ export default {
     this.sharedProp = sharedParams
   },
   components: {
+    FarmSelector,
     appProfile: Profile
   }
 }
@@ -39,20 +44,26 @@ export default {
 <style lang="scss" scoped>
   @import '../scss/_variables';
 
-  #header {
+  header {
     height: $header-height;
     background-color: #FFFFFF;
-    width: 100%;
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
     color: white;
     -webkit-box-shadow: 0 1px 3px -2px #77777761;
     box-shadow: 0 1px 3px -2px #77777761;
     -moz-box-shadow: 0 1px 3px -2px #77777761;
   }
 
+  .header__farm-selector {
+    width: 200px;
+  }
+
   .menu-icon {
     display: inline-block;
     padding: 10px;
-    float: left;
+    margin-right: auto;
     cursor: pointer;
   }
 
@@ -62,14 +73,13 @@ export default {
   }
 
   .right-section {
-    float: right;
     line-height: 3;
     padding-left: 10px;
-    margin-right: 15px;
     color: #2b2b2b;
     display: inline-grid;
     max-width: 350px;
     grid-template-columns: 50px 50px auto;
+    grid-auto-rows: $header-height;
     align-items: center;
     cursor: pointer;
   }

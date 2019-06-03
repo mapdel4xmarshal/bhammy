@@ -14,7 +14,8 @@ export default {
 
 <style scoped>
   .profile{
-    padding: 0 10px
+    padding-left: 10px;
+    min-width: 50px;
   }
 
   .avatar{
@@ -59,6 +60,10 @@ export default {
   }
 
   @media only screen and (min-width: 800px) {
+    .profile {
+      padding: 0 10px;
+    }
+
     .profile > span{
       display: inline-block;
     }

@@ -1,12 +1,5 @@
 <template>
   <div id="sidebar" :class="{'hide-menu' : !sharedProp.sidebarVisible}">
-    <div id="sidebarHeader">
-      <!--<img src="../assets/images/logo.png" alt="">-->
-      <div class="farm-selector">
-        <span class="farm-selector__title">FARM 1</span>
-        <small class="farm-selector__sub-title">Ajegunle Branch</small>
-      </div>
-    </div>
     <nav-button v-for="(section, index) in sections"
                 :key="section.name"
                 :btnName="section.name"
@@ -64,64 +57,43 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "../scss/_variables";
+
   #sidebar{
-    height: var(--main-view-height);
+    height: 100%;
     background-color: var(--sidebar-bg-color);
-    max-width: var(--sidebar-width);
-    width:80px;
+    max-width: $sidebar-desktop-width;
+    width: $sidebar-mobile-width;
     display: block;
     position: absolute;
     margin-right: 2px;
+    margin-top: 2px;
+    padding: 2px 0;
     float:left;
     left: 0;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     transition: all 500ms cubic-bezier(0.5,-0.25, 0.25, 1.5);
     -o-transition: all 300ms cubic-bezier(0.5,-0.25, 0.25, 1.5); /* Opera */
-    -webkit-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
-    -moz-box-shadow: 0px 0px 3px 0px #9e9e9e8f;
-    box-shadow: 0px 0px 3px 0px #9e9e9e8f;
+    -webkit-box-shadow: 0px 2px 3px 0px #9e9e9e8f;
+    -moz-box-shadow: 0px 2px 3px 0px #9e9e9e8f;
+    box-shadow: 0px 2px 3px 0px #9e9e9e8f;
     z-index: 1;
-  }
-
-  #sidebarHeader{
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-    height: 50px;
-  }
-
-  .farm-selector{
-    display: inline-block;
-    padding: 5px;
-    line-height: 15px;
-  }
-
-  .farm-selector__title{
-    display: block;
-  }
-
-  .farm-selector__sub-title{
-    font-size: 12px;
-    color: #CCCCCC;
   }
 
   .hide-menu{
     left: -100px !important;
   }
 
-  #sidebarHeader>img{
-    max-height: 50px;
-  }
-
   @media only screen and (min-width: 800px) {
     #sidebar{
-      width: 300px;
+      width: $sidebar-desktop-width;
       position: relative;
     }
 
     .hide-menu{
-      width: 80px !important;
+      width: $sidebar-mobile-width !important;
       left: 0 !important;
     }
   }

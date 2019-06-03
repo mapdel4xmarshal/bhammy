@@ -1,17 +1,17 @@
 <template>
   <div class="container">
-     <sidebar-container></sidebar-container>
-     <div class="main-content">
-       <appHeaderBar></appHeaderBar>
-       <section id="main">
-         <transition name="slide-fade" appear mode="out-in">
-           <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
-         </transition>
-         <div class="main__summary">summarySection
-           <router-view name="summarySection"></router-view>
-         </div>
-       </section>
-     </div>
+    <appHeaderBar></appHeaderBar>
+    <section class="content-area">
+      <sidebar-container></sidebar-container>
+      <section id="main">
+        <transition name="slide-fade" appear mode="out-in">
+          <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
+        </transition>
+        <div class="main__summary">summarySection
+          <router-view name="summarySection"></router-view>
+        </div>
+      </section>
+    </section>
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
     --paidColor: #32c24d;
     --partialColor: #c27e16;
     --sidebar-bg-color: #FFFFFF;
-    --sidebar-width : 300px;
+    --sidebar-width : 250px;
     --unpaidColor: #c29d07;
   }
 
@@ -75,18 +75,10 @@ export default {
     overflow: hidden;
   }
 
-  .animate{
-    -webkit-transition: all 300ms ease-in-out;
-    -moz-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
-    -o-transition: all 300ms ease-in-out;
-  }
-
-  .main-content>#main{
+  #main{
     display: flex;
     width: 100%;
     justify-content: space-between;
-    height: calc(100vh - $header-height);
   }
 
   .main__summary {
@@ -102,35 +94,15 @@ export default {
   }
   .container{
     display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
     width: 100%;
   }
 
-  input{
-    height: 25px;
-    width:100%;
-    font-size: 14px;
-  }
-
-  input:focus{
-    border: 1px solid red;
-  }
-
-  ::-webkit-scrollbar-track
-  {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar
-  {
-    display: none;
-  }
-
-  ::-webkit-scrollbar-thumb
-  {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+  .content-area{
+    width: 100%;
+    display: inline-flex;
+    height: calc(100vh - #{$header-height});
   }
 
   .slide-fade-enter-active {

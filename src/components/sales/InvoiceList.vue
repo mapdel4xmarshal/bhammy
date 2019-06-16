@@ -3,10 +3,11 @@
     <div style="display: block;">
       <div style="display: inline-block; padding: 0 10px 10px 10px;">
         <div style="font-size: 1.5em; font-weight: bold">Orders</div>
-        <small>some info</small>
+        <small>shows a list of sales</small>
       </div>
-      <app-button-pill :click-handler="newInvoice">+ Search</app-button-pill>
+
       <div style="display: inline-block; float: right;">
+        <app-button-pill :click-handler="newInvoice" :is-primary="false">+ Filter</app-button-pill>
         <app-button-pill :click-handler="newInvoice">+ New Invoice</app-button-pill>
       </div>
     </div>

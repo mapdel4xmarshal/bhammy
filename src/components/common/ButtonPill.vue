@@ -1,5 +1,5 @@
 <template>
-    <div @click="clickHandler()" class="animate">
+    <div @click="clickHandler()" class="button-pill animate" :class="{'button-pill--style2' : !isPrimary}">
       <slot></slot>
     </div>
 </template>
@@ -14,32 +14,45 @@ export default {
     },
     clickHandler: {
       type: Function
+    },
+    isPrimary: {
+      type: Boolean,
+      default: true
     }
   }
 }
 </script>
 
-<style scoped>
- div{
+<style lang="scss" scoped>
+  @import '../../scss/global.scss';
+
+ .button-pill {
    color: #FFFFFF;
    font-size: 13px;
    border-radius: 30px;
-   background-color: #7f2775;
+   background-color: $theme-color;
    cursor: pointer;
-   width: 100%;
    display: inline;
    padding: 7px 10px;
+   white-space: nowrap;
    user-select: none;
    -moz-user-select: none;
    -webkit-user-select: none;
+
+   &:hover{
+     border-color: $theme-color;
+     outline: 0;
+     box-shadow: inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 3px var(--glow-color);
+   }
+
+   &--style2 {
+     background-color: transparent;
+     color: $theme-color;
+     border: 1px solid $theme-color;
+   }
  }
 
  div:hover{
-   border-color: #7f2775;
-   color: #eee;
-   outline: 0;
-   -webkit-box-shadow: inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 4px var(--glow-color);
-   box-shadow: inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 3px var(--glow-color);
-   -moz-box-shadow: inset 0 1px 0px 0px rgba(0,0,0,.075), 0 0 3px var(--glow-color);
+
  }
 </style>

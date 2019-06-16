@@ -109,13 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  .animate {
-    -webkit-transition: all .35s ease-in-out;
-    -moz-transition: all .35s ease-in-out;
-    -o-transition: all .35s ease-in-out;
-    transition: all .35s ease-in-out;
-  }
+  @import "../../scss/global";
 
   .dropdown {
     border: none !important;
@@ -226,110 +220,25 @@ export default {
     max-height: 500px;
   }
 
-  /*tbody.expanded{
-    border-radius: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px -2px #212121;
-  }
-
-  tr {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  tbody.expanded, tbody.expanded + tbody{
-    border: none;
-  }
-
-  .scrollable{
-    overflow: auto;
-    max-height: calc(100vh - 300px);
-  }
-
-  table{
-    table-layout: fixed;
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-  }
-
-  th{
-    color: #e0e0e0;
-    font-size: 13px;
-    overflow: hidden;
-    padding: 10px 0 10px 5px;
-    text-overflow: ellipsis;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  td{
-    font-size: 12px;
-    overflow: hidden;
-    padding: 10px 0 10px 5px;
-    text-overflow: ellipsis;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  th:last-child, td:last-child{
-    padding-right: 5px;
-    text-align: right;
-  }
-
-  tbody{
-    border-top: 1px solid #e0e0e0;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-  }
-
-  tbody:hover{
-    background-color: #F5F5F5;
-    cursor: pointer;
-  }
-
- .small, .medium, .large{
+  .small, .medium, .large{
     display: none;
   }
 
-  @media (min-width: 500px) {
-    .small{
-      display: table-cell;
-    }
-
-    th:first-child, td:first-child{
-      padding-left: 10px;
-    }
-
-    th:last-child, td:last-child{
-      padding-right: 10px;
+  @include respond-to(mobile) {
+    .small {
+      display: inherit;
     }
   }
 
-  @media (min-width: 900px) {
-    .medium{
-      display: table-cell;
-    }
-
-    th:first-child, td:first-child{
-      padding-left: 20px;
-    }
-
-    th:last-child, td:last-child{
-      padding-right: 20px;
+  @include respond-to(tablet) {
+    .medium {
+      display: inherit;
     }
   }
 
-  @media (min-width: 1200px) {
-    .large{
-      display: table-cell;
+  @include respond-to(desktop) {
+    .large {
+      display: inherit;
     }
-  }*/
+  }
 </style>

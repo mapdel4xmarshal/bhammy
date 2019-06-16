@@ -83,6 +83,7 @@ export default {
 
   .main__summary {
     width: 275px;
+    display: none;
     background-color: #f3e5f5;
   }
 
@@ -117,8 +118,8 @@ export default {
   }
 
   @media only screen and (min-width: 800px) {
-    .main-content>#main{
-     /* padding: 5px 30px;*/
+    .main__summary {
+      display: inherit;
     }
   }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <app-breadcrumb></app-breadcrumb>
     <transition name="slide-fade" appear mode="out-in">
-      <router-view :invoices="invoices" class="thehehehehehe"></router-view>
+      <router-view :invoices="invoices"></router-view>
       <router-view name="summary" />
     </transition>
   </div>
@@ -10,11 +9,11 @@
 </template>
 
 <script>
-import InvoiceRow from './InvoiceRecords'
+import InvoiceRow from './InvoiceList'
 import ViewInvoice from './ViewInvoice'
 import NewInvoice from './NewInvoice'
 import ButtonPill from '../common/ButtonPill'
-import Breadcrumb from '../common/Breadcrumb'
+import AppPageHeader from '../common/AppPageHeader'
 
 export default {
   name: 'sales',
@@ -241,7 +240,7 @@ export default {
     appInvoiceRow: InvoiceRow,
     appViewInvoice: ViewInvoice,
     appNewInvoice: NewInvoice,
-    appBreadcrumb: Breadcrumb
+    appPageHeader: AppPageHeader
   },
   methods: {
     viewInvoice: function (invoice) {

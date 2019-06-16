@@ -1,6 +1,8 @@
 <template>
   <ul class="breadcrumb">
-    <li v-for="p in getCurrentPath" :key="p.name">
+    <li class="breadcrumb__link"
+      v-for="p in getCurrentPath"
+        :key="p.name">
       <router-link :to="p.path" exact-active-class="active">{{p.name}}</router-link>
     </li>
   </ul>
@@ -9,11 +11,6 @@
 <script>
 export default {
   name: 'Breadcrumb',
-  data () {
-    return {
-
-    }
-  },
   computed: {
     getCurrentPath () {
       const paths = {}
@@ -35,31 +32,34 @@ export default {
 }
 </script>
 
-<style scoped>
-  ul.breadcrumb {
-    padding: 5px 16px;
+<style lang="scss" scoped>
+  .breadcrumb {
+    display: inline-flex;
+    padding: 0;
     list-style: none;
-  }
+    margin: 0;
 
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 14px;
-  }
+    &__link {
+      display: inline;
+      font-size: 14px;
+    }
 
-  ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-  }
+    & li+li:before {
+      padding: 8px;
+      color: black;
+      content: "|";
+      font-size: 13px;
+    }
 
-  ul.breadcrumb li a {
-    color: var(--base-color);
-    text-decoration: none;
-  }
+    & li a {
+      color: var(--base-color);
+      text-decoration: none;
 
-  ul.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
+      &:hover {
+        color: #01447e;
+        text-decoration: underline;
+      }
+    }
   }
 
   .active{

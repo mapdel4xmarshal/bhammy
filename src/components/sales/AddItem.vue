@@ -1,6 +1,6 @@
 <template>
     <div class="add-item">
-      <input type="text">
+      <input type="text" placeholder="Ite">
       <input type="text">
       <input type="text">
       <input type="text">
@@ -9,7 +9,8 @@
 
 <script>
   export default {
-    name: "AddItem"
+    name: "AddItem",
+    props: ["item"]
   }
 </script>
 

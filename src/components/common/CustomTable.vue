@@ -164,6 +164,7 @@ export default {
     flex-wrap: wrap;
     overflow: hidden;
     width: 100%;
+    justify-content: space-between;
 
     .table__column:first-child{
       margin-left: 5px;

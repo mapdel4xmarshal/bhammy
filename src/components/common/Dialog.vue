@@ -1,16 +1,22 @@
 <template>
-  <transition name="slide-fade">
+  <transition name="fade">
     <div v-if="active">
       <div class="dialog">
-        <header class="dialog__title">
-          <h1>Add Item</h1>
-        </header>
-
+        <span class="dialog__close-btn"
+              @click="$emit('update:active', false)">
+          <font-awesome-icon icon="times" color="#9e9e9e"/>
+        </span>
+        <!-- header-->
+        <slot name="title">
+          <header class="dialog__title" v-if="title">
+            <h1>{{ title }}</h1>
+          </header>
+        </slot>
+        <!-- Content -->
         <section class="dialog__content">
-          This is the content area
-          <slot></slot>
+          <slot/>
         </section>
-
+        <!-- Footer -->
         <footer class="dialog__actions">
           <!--<slot name="dialog-actions"></slot>-->
         </footer>
@@ -28,24 +34,29 @@
       active: {
         type: Boolean,
         default: false
+      },
+      title: {
+        type: String,
+        default: null
       }
     },
     computed: {}
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "@/scss/global.scss";
+
   .dialog {
     background-color: #FFFFFF;
     box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
-    min-width: 280px;
-    max-width: 80%;
-    max-height: 80%;
     margin: auto;
     display: flex;
     flex-flow: column;
     overflow: hidden;
     position: fixed;
+    width: 90%;
+    height: 90%;
     top: 50%;
     left: 50%;
     z-index: 13;
@@ -53,12 +64,35 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     pointer-events: auto;
+    padding: 10px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
+
+    @include respond-to(tablet) {
+      max-width: 80%;
+      max-height: 80%;
+      width: unset;
+      height: unset;
+      min-width: 280px;
+    }
+  }
+
+  .dialog__close-btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
   }
 
   .dialog__title {
     display: block;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
   }
 
   .dialog__overlay {
@@ -72,27 +106,11 @@
     background: rgba(0, 0, 0, .6);
   }
 
-  .zoom-fade-enter-active {
-    transition: all .3s ease;
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity $fast-animation;
   }
 
-  .zoom-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .zoom-fade-enter, .zoom-fade-leave-to {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-
-  .slide-fade-enter-active {
-    transition: all .3s ease;
-  }
-  .slide-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to{
-    transform: translateX(10px);
+  .fade-enter, .fade-leave-to {
     opacity: 0;
   }
 </style>

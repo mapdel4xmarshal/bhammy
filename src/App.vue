@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './scss/_variables';
+  @import "./scss/global.scss";
 
   :root{
     --base-color: #7f2775;

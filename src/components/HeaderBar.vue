@@ -1,11 +1,9 @@
 <template>
-  <header @click="toggleSideBar">
-
-    <farm-selector class="header__farm-selector"/>
-
+  <header>
     <div class="menu-icon">
-      <img src="../assets/images/menu2.png" alt="">
+      <img src="../assets/images/menu2.png" alt="" @click="toggleSideBar">
     </div>
+    <farm-selector class="header__farm-selector"/>
 
     <div class="right-section">
       <div><font-awesome-icon icon="envelope" color="#757575"></font-awesome-icon></div>
@@ -58,12 +56,12 @@ export default {
 
   .header__farm-selector {
     width: 200px;
+    margin-right: auto !important;
   }
 
   .menu-icon {
     display: inline-block;
     padding: 10px;
-    margin-right: auto;
     cursor: pointer;
   }
 

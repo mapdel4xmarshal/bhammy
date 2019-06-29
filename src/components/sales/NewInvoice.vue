@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-dialog :active.sync="showDialog">
+    <custom-dialog :active.sync="showDialog" :title="'Edit Item'">
       <add-item />
     </custom-dialog>
 
@@ -93,7 +93,6 @@
     <section class="invoice">
       <app-page-header>
         <template v-slot:controls>
-          <button-pill :is-primary="false">+ New item</button-pill>
           <button-pill>+ Save invoice</button-pill>
         </template>
 
@@ -111,12 +110,10 @@
                       :headers="itemsHeader">
         </custom-table>
 
-        <button style="margin:10px 0;">+ New Item</button>
+        <button-pill :is-primary="false" class="items__add-item">+ New item</button-pill>
 
         <div class="invoice__footer">
-          <div class="invoice__comment">
-            <textarea>Comment...</textarea>
-          </div>
+          <textarea class="invoice__comment">Comment...</textarea>
           <div class="invoice__summary">
             <strong>Net total</strong>
             <strong>₦37,098</strong>
@@ -153,21 +150,20 @@ export default {
         paymentDate: '',
         invoiceDate: '',
         items: [
-          {id: 1, name: 'Jumbo Sized Egg', price: '₦850', quantity: 100, discount: 0, total: 85000},
-          {id: 2, name: 'Medium Sized Egg', price: '₦750', quantity: 100, discount: 0, total: 75000},
-          {id: 3, name: 'Pullet Sized Egg', price: '₦600', quantity: 100, discount: 0, total: 60000}
+          {id: 1, name: 'Jumbo Sized Egg', price: '₦850', quantity: 100, discount: '₦0.00', total: 85000},
+          {id: 2, name: 'Medium Sized Egg', price: '₦750', quantity: 100, discount: '₦0.00', total: 75000},
+          {id: 3, name: 'Pullet Sized Egg', price: '₦600', quantity: 100, discount: '₦0.00', total: 60000}
         ]
       },
       showFullCustomerDetails: false,
       itemsHeader: [
-        {label: 'SKU', id: 'id', width: '10%', breakPoint: 'medium'},
-        {label: 'Name', id: 'name', width: '40%'},
-        {label: 'Price', id: 'price', width: '10%'},
-        {label: 'Qty', id: 'quantity', width: '10%'},
-        {label: 'Disc.', id: 'discount', width: '10%'},
+        {label: 'SKU', id: 'id', width: '5%', breakPoint: 'medium'},
+        {label: 'Name', id: 'name', width: '50%'},
+        {label: 'Price', id: 'price'},
+        {label: 'Qty', id: 'quantity'},
+        {label: 'Disc.', id: 'discount', breakPoint: 'medium'},
         {label: 'Total',
           id: 'amount',
-          width: '10%',
           representedAs: function (record) {
             return `₦${record.total}`
           }}
@@ -204,13 +200,12 @@ export default {
   }
 
   .invoice__footer {
-    display: flex;
-    flex-direction: column-reverse;
-    flex: 1 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 10px;
 
-    @include respond-to(tablet) {
-      flex-direction: row;
+    @include respond-to(mobile) {
+      grid-template-columns: 3fr minmax(200px, 1.5fr);
     }
   }
 
@@ -228,16 +223,16 @@ export default {
     }
   }
 
-  .invoice__comment > textarea {
-    width: calc(100% - 12px);
+  .invoice__comment {
     border: 1px dashed rgb(128, 128, 128);
-    border-radius: 6px;
-    height: 90%;
-    max-height: 102px;
     background-color: transparent;
     color: #808080;
     padding: 5px;
-    margin: 5px 0;
+    resize: none;
   }
 
+  .items__add-item {
+    margin: 10px auto;
+    display: inline-block !important;
+  }
 </style>

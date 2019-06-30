@@ -18,24 +18,24 @@
 </template>
 
 <script>
-  import TheBreadcrumb from './TheBreadcrumb.vue'
+import TheBreadcrumb from './TheBreadcrumb.vue'
 
-  export default {
-    name: "AppPageHeader",
-    props: {
-      title: {
-        type: String,
-        default: 'Page Title'
-      },
-      hasSearch: {
-        type: Boolean,
-        default: true
-      }
+export default {
+  name: 'AppPageHeader',
+  props: {
+    title: {
+      type: String,
+      default: 'Page Title'
     },
-    components: {
-      TheBreadcrumb
+    hasSearch: {
+      type: Boolean,
+      default: true
     }
+  },
+  components: {
+    TheBreadcrumb
   }
+}
 </script>
 
 <style lang="scss" scoped>

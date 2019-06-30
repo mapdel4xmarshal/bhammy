@@ -1,6 +1,6 @@
 <template>
     <div @click="clickHandler()" class="button-pill animate" :class="{'button-pill--style2' : !isPrimary}">
-      <slot></slot>
+      <slot>{{ title }}</slot>
     </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../scss/global.scss';
+  @import '../../scss/variables.scss';
 
  .button-pill {
    color: #FFFFFF;

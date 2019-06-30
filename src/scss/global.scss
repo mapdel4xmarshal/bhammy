@@ -1,5 +1,5 @@
 @import './variables.scss';
-@import "./mixin.scss";
+@import './mixin.scss';
 
 //Font sizes
 .title {
@@ -19,6 +19,7 @@ select, input {
   border: unset;
   outline: transparent;
   transition: all 0.35s ease;
+  background-color: transparent;
 }
 
 label {

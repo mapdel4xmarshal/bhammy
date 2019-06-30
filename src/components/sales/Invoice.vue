@@ -1,8 +1,13 @@
 <template>
   <div>
-    <custom-dialog :active.sync="showDialog" :title="'Edit Item'">
+    <item v-if="showDialog" :data="selectedItem"/>
+   <!-- <custom-dialog :active.sync="showDialog" :title="'Edit Item'">
       <add-item />
-    </custom-dialog>
+      <template v-slot:dialog-actions>
+        <button-pill :is-primary="false">cancel</button-pill>
+        <button-pill :title="'Add item'"/>
+      </template>
+    </custom-dialog>-->
 
      <!-- <div class="scroll-section">
       <div class="invoice-details">
@@ -138,9 +143,9 @@
 <script>
 import CustomTable from '@/components/common/CustomTable'
 import CustomDialog from '@/components/common/Dialog'
-import AddItem from './AddItem'
-import AppPageHeader from "../common/AppPageHeader";
-import ButtonPill from "../common/ButtonPill";
+import Item from './Item'
+import AppPageHeader from '../common/AppPageHeader'
+import ButtonPill from '../common/ButtonPill'
 
 export default {
   name: 'NewInvoice',
@@ -168,20 +173,21 @@ export default {
             return `₦${record.total}`
           }}
       ],
-      showDialog: false
+      showDialog: false,
+      selectedItem: {}
     }
   },
   components: {
     ButtonPill,
     AppPageHeader,
-    AddItem,
+    Item,
     CustomTable,
     CustomDialog
   },
   methods: {
     itemClickHandler (item) {
       console.log(item)
-      this.showDialog = true
+      this.selectedItem = item
     }
   },
   created () {
@@ -195,6 +201,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../scss/global.scss";
+
   .invoice {
 
   }

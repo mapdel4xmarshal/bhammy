@@ -6,9 +6,9 @@
 </template>
 
 <script>
-  export default {
-    name: "FarmSelector"
-  }
+export default {
+  name: 'FarmSelector'
+}
 </script>
 
 <style lang="scss" scoped>

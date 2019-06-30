@@ -17,8 +17,8 @@
           <slot/>
         </section>
         <!-- Footer -->
-        <footer class="dialog__actions">
-          <!--<slot name="dialog-actions"></slot>-->
+        <footer class="dialog__footer">
+          <slot name="dialog-actions"></slot>
         </footer>
       </div>
 
@@ -28,20 +28,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'Dialog',
-    props: {
-      active: {
-        type: Boolean,
-        default: false
-      },
-      title: {
-        type: String,
-        default: null
-      }
+export default {
+  name: 'Dialog',
+  props: {
+    active: {
+      type: Boolean,
+      default: false
     },
-    computed: {}
-  }
+    title: {
+      type: String,
+      default: null
+    }
+  },
+  computed: {}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -65,7 +65,6 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     pointer-events: auto;
-    padding: 10px 20px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
 
@@ -81,8 +80,8 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 0;
+    top: 0;
     font-size: 20px;
     line-height: 40px;
     text-align: center;
@@ -93,6 +92,11 @@
     display: block;
     border-bottom: 1px solid #CCC;
     margin-bottom: 10px;
+    padding: 5px 10px;
+  }
+
+  .dialog__content {
+    padding: 10px 20px;
   }
 
   .dialog__overlay {
@@ -104,6 +108,12 @@
     z-index: 6;
     overflow: hidden;
     background: rgba(0, 0, 0, .6);
+  }
+
+  .dialog__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
   }
 
   .fade-enter-active, .fade-leave-active {

@@ -204,7 +204,7 @@ export default {
     grid-template-columns: 100%;
     grid-gap: 10px;
 
-    @include respond-to(mobile) {
+    @include respond-to(tablet) {
       grid-template-columns: 3fr minmax(200px, 1.5fr);
     }
   }

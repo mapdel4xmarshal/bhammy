@@ -1,7 +1,7 @@
 import HelloWorld from '../components/Home'
 import Sales from '../components/sales/Sales.vue'
 import InvoiceRecords from '../components/sales/InvoiceList.vue'
-import NewInvoice from '../components/sales/NewInvoice.vue'
+import NewInvoice from '../components/sales/Invoice.vue'
 
 export const routes = [
   {

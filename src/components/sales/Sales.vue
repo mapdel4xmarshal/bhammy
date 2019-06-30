@@ -11,7 +11,7 @@
 <script>
 import InvoiceRow from './InvoiceList'
 import ViewInvoice from './ViewInvoice'
-import NewInvoice from './NewInvoice'
+import NewInvoice from './Invoice'
 import ButtonPill from '../common/ButtonPill'
 import AppPageHeader from '../common/AppPageHeader'
 

@@ -49,7 +49,7 @@
 
   .dialog {
     background-color: #FFFFFF;
-    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
     margin: auto;
     display: flex;
     flex-flow: column;
@@ -61,17 +61,17 @@
     left: 50%;
     z-index: 13;
     border-radius: 2px;
+    box-sizing: border-box;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     pointer-events: auto;
-    padding: 10px;
+    padding: 10px 20px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
 
     @include respond-to(tablet) {
-      max-width: 80%;
+      max-width: 768px;
       max-height: 80%;
-      width: unset;
       height: unset;
       min-width: 280px;
     }
@@ -81,7 +81,7 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 5px;
     font-size: 20px;
     line-height: 40px;

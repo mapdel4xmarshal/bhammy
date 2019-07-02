@@ -22,7 +22,10 @@
         </footer>
       </div>
 
-      <div class="dialog__overlay" @click="$emit('update:active', false)"></div>
+      <div class="dialog__overlay"
+           @click="$emit('update:active', false)">
+
+      </div>
     </div>
   </transition>
 </template>

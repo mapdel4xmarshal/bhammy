@@ -13,7 +13,8 @@ export default {
       default: 'Button'
     },
     clickHandler: {
-      type: Function
+      type: Function,
+      default: () => {}
     },
     isPrimary: {
       type: Boolean,
@@ -34,6 +35,7 @@ export default {
    cursor: pointer;
    display: inline;
    padding: 7px 10px;
+   margin: 5px;
    white-space: nowrap;
    user-select: none;
    -moz-user-select: none;

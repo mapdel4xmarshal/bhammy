@@ -2,12 +2,10 @@
   <header class="page-header">
     <the-breadcrumb class="page-header__items"/>
     <div class="page-header__search page-header__items">
-      <div v-if="hasSearch">
-        <slot name="search">
+        <slot name="search" v-if="hasSearch">
           <input type="text" placeholder="search..."/>
         </slot>
-        <font-awesome-icon icon="search"/>
-      </div>
+        <font-awesome-icon icon="search" v-if="hasSearch"/>
     </div>
     <div class="page-header__items">
       <slot name="title">

@@ -5,7 +5,7 @@
       <sidebar-container></sidebar-container>
       <section id="main">
         <transition name="slide-fade" appear mode="out-in">
-          <router-view style="width: 100%; padding:0 20px; height: 100%;"></router-view>
+          <router-view class="main__content"></router-view>
         </transition>
         <div class="main__summary">summarySection
           <router-view name="summarySection"></router-view>
@@ -87,12 +87,13 @@ export default {
     background-color: #f3e5f5;
   }
 
-  .main-content{
-    --sidebar-width : 300px;
+  .main__content {
     width: 100%;
-    position: relative;
-    box-sizing: border-box;
+    padding: 0 10px;
+    height: 100%;
+    overflow: auto;
   }
+
   .container{
     display: flex;
     flex: 1 1 100%;
@@ -120,6 +121,10 @@ export default {
   @media only screen and (min-width: 800px) {
     .main__summary {
       display: inherit;
+    }
+
+    .main__content {
+      padding: 0 20px;
     }
   }
 </style>

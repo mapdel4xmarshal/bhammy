@@ -1,10 +1,13 @@
 <template>
   <header class="page-header">
     <the-breadcrumb class="page-header__items"/>
-    <div class="page-header__items">
-      <slot name="search" v-if="hasSearch">
-        <input type="text" placeholder="search" />
-      </slot>
+    <div class="page-header__search page-header__items">
+      <div v-if="hasSearch">
+        <slot name="search">
+          <input type="text" placeholder="search..."/>
+        </slot>
+        <font-awesome-icon icon="search"/>
+      </div>
     </div>
     <div class="page-header__items">
       <slot name="title">
@@ -18,24 +21,24 @@
 </template>
 
 <script>
-import TheBreadcrumb from './TheBreadcrumb.vue'
+  import TheBreadcrumb from './TheBreadcrumb.vue'
 
-export default {
-  name: 'AppPageHeader',
-  props: {
-    title: {
-      type: String,
-      default: 'Page Title'
+  export default {
+    name: 'AppPageHeader',
+    props: {
+      title: {
+        type: String,
+        default: 'Page Title'
+      },
+      hasSearch: {
+        type: Boolean,
+        default: true
+      }
     },
-    hasSearch: {
-      type: Boolean,
-      default: true
+    components: {
+      TheBreadcrumb
     }
-  },
-  components: {
-    TheBreadcrumb
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -47,12 +50,12 @@ export default {
     align-items: center;
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: minmax(40px, auto) auto;
     grid-gap: 5px;
     justify-content: space-between;
   }
-  .page-header__items {
 
+  .page-header__items {
     &:nth-child(even) {
       justify-self: end;
     }
@@ -60,6 +63,29 @@ export default {
     @include respond-to(mobile) {
       &:last-child {
         row-span: 2 / 3;
+      }
+    }
+  }
+
+  .page-header__search {
+    display: grid;
+    grid-template-columns: auto 30px;
+    justify-items: end;
+    align-items: center;
+
+    input {
+      border-bottom: 1px solid #ccc;
+      height: 25px;
+      width: 120px;
+    }
+
+    svg {
+      color: #CCCCCC;
+      cursor: pointer;
+      justify-self: center;
+
+      :hover {
+        color: #00000090;
       }
     }
   }

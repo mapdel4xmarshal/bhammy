@@ -99,6 +99,7 @@ export default {
   }
 
   .dialog__content {
+    height: 100%;
     padding: 10px 20px;
   }
 

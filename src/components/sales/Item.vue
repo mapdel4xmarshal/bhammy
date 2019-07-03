@@ -41,62 +41,75 @@
     </div>
 
     <template v-slot:dialog-actions>
-      <button-pill :is-primary="false" :click-handler="close">Cancel</button-pill>
+      <button-pill
+        :is-primary="false"
+        :click-handler="close"
+        class="item__cancel-button">
+        Cancel
+      </button-pill>
+
+      <button-pill
+        v-if="editMode"
+        :is-primary="false"
+        :click-handler="close">
+        Delete
+      </button-pill>
+
       <button-pill :title="action"/>
     </template>
   </custom-dialog>
 </template>
 
 <script>
-  import ButtonPill from '../common/ButtonPill'
-  import CustomDialog from '@/components/common/Dialog'
+import ButtonPill from '../common/ButtonPill'
+import CustomDialog from '@/components/common/Dialog'
 
-  export default {
-    name: 'AddItem',
-    data () {
-      return {
+export default {
+  name: 'AddItem',
+  data () {
+    return {
+    }
+  },
+  props: {
+    data: {
+      type: Object
+    },
+    editMode: {
+      type: Boolean
+    },
+    show: {
+      type: Boolean,
+      default: true
+    }
+  },
+  components: {
+    ButtonPill,
+    CustomDialog
+  },
+  computed: {
+    isVisible: {
+      // getter
+      get: function () {
+        return this.show
+      },
+      // setter
+      set: function (newValue) {
+        this.$emit('update:show', newValue)
       }
     },
-    props: {
-      data: {
-        type: Object
-      },
-      edit: {
-        type: Boolean
-      },
-      show: {
-        type: Boolean,
-        default: true
-      }
+    action () {
+      return this.editMode ? 'Update item' : 'Add item'
     },
-    components: {
-      ButtonPill,
-      CustomDialog
-    },
-    computed: {
-      isVisible: {
-        // getter
-        get: function () {
-          return this.show
-        },
-        // setter
-        set: function (newValue) {
-          this.$emit('update:show', newValue)
-        }
-      },
-      action () {
-        return this.edit ? 'Update' : 'Add'
-      },
-      title () {
-        return this.edit ? 'Edit item' : 'Add item'
-      }
-    },
-    methods: {
-      close () {
-        this.$emit('update:show', false)
-      }
+    title () {
+      return this.editMode ? 'Edit item' : 'Add item'
+    }
+  },
+  methods: {
+    close () {
+      this.$emit('update:show', false)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -135,5 +148,9 @@
     & + input {
       padding-left: 15px;
     }
+  }
+
+  .item__cancel-button {
+     margin-right: auto !important;
   }
 </style>

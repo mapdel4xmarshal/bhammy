@@ -1,16 +1,15 @@
 <template>
   <div>
-    <div style="display: block;">
-      <div style="display: inline-block; padding: 0 10px 10px 10px;">
-        <div style="font-size: 1.5em; font-weight: bold">Orders</div>
-        <small>shows a list of sales</small>
-      </div>
-
-      <div style="display: inline-block; float: right;">
+    <app-page-header :has-search="true">
+      <template v-slot:controls>
         <app-button-pill :click-handler="newInvoice" :is-primary="false">+ Filter</app-button-pill>
         <app-button-pill :click-handler="newInvoice">+ New Invoice</app-button-pill>
-      </div>
-    </div>
+      </template>
+
+      <template v-slot:title>
+        <h1>Orders</h1>
+      </template>
+    </app-page-header>
 
     <custom-table
       :expandable="true"
@@ -49,6 +48,7 @@
 <script>
 import customTable from '../common/CustomTable'
 import ButtonPill from '../common/ButtonPill'
+import AppPageHeader from '../common/AppPageHeader'
 
 export default {
   name: 'InvoiceRecords',
@@ -93,7 +93,8 @@ export default {
   },
   components: {
     customTable,
-    appButtonPill: ButtonPill
+    appButtonPill: ButtonPill,
+    AppPageHeader
   }
 }
 </script>

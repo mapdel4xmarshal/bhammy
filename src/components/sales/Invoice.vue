@@ -2,7 +2,7 @@
   <div>
     <item
       :data="selectedItem"
-      :edit="true"
+      :edit-mode="itemEditMode"
       :show.sync="showItemDialog"
     />
 
@@ -93,26 +93,35 @@
    </div>-->
 
     <section class="invoice">
-      <app-page-header>
+      <app-page-header :has-search="false">
         <template v-slot:controls>
           <button-pill>+ Save invoice</button-pill>
         </template>
 
-        <template v-slot:title class="invoice__title">
+        <template v-slot:title>
           <h1>INVOICE# 23542</h1>
         </template>
-
       </app-page-header>
 
-      <div class="items-title"><strong>Items</strong></div>
+      <div class="invoice__detail">
+        <div>date area</div>
+        <add-customer />
+      </div>
+
+      <div class="items__title"><strong>Items</strong></div>
       <div class="items__container">
         <custom-table :records="invoice.items"
                       :title="'Items'"
-                      :clickHandler="itemClickHandler"
+                      :clickHandler="editItem"
                       :headers="itemsHeader">
         </custom-table>
 
-        <button-pill :is-primary="false" class="items__add-item">+ New item</button-pill>
+        <button-pill
+          :is-primary="false"
+          class="items__add-item"
+          :click-handler="addItem">
+          + New item
+        </button-pill>
 
         <div class="invoice__footer">
           <textarea class="invoice__comment">Comment...</textarea>
@@ -138,72 +147,108 @@
 </template>
 
 <script>
-  import CustomTable from '@/components/common/CustomTable'
-  import Item from './Item'
-  import AppPageHeader from '../common/AppPageHeader'
-  import ButtonPill from '../common/ButtonPill'
+import CustomTable from '@/components/common/CustomTable'
+import Item from './Item'
+import AppPageHeader from '../common/AppPageHeader'
+import ButtonPill from '../common/ButtonPill'
+import AddCustomer from '../common/AddCustomer'
 
-  export default {
-    name: 'NewInvoice',
-    data() {
-      return {
-        invoice: {
-          paymentDate: '',
-          invoiceDate: '',
-          items: [
-            {id: 1, name: 'Jumbo Sized Egg', price: '850', quantity: 100, discount: '0.00', total: 85000, size: 'Jumbo'},
-            {id: 2, name: 'Medium Sized Egg', price: '750', quantity: 100, discount: '0.00', total: 75000, size: 'Medium'},
-            {id: 3, name: 'Pullet Sized Egg', price: '600', quantity: 100, discount: '0.00', total: 60000, size: 'Pullet'}
-          ]
-        },
-        showFullCustomerDetails: false,
-        itemsHeader: [
-          {label: 'SKU', id: 'id', width: '5%', breakPoint: 'medium'},
-          {label: 'Name', id: 'name', width: '50%'},
-          {label: 'Price',
-            id: 'price',
-            representedAs: function (record) {
-              return `₦${record.price}`
-            }},
-          {label: 'Qty', id: 'quantity'},
-          {label: 'Disc.',
-            id: 'discount',
-            breakPoint: 'medium',
-            representedAs: function (record) {
-              return `₦${record.discount}`
-            }},
+export default {
+  name: 'NewInvoice',
+  data () {
+    return {
+      invoice: {
+        paymentDate: '',
+        invoiceDate: '',
+        items: [
           {
-            label: 'Total',
-            id: 'amount',
-            representedAs: function (record) {
-              return `₦${record.total}`
-            }
+            id: 1,
+            name: 'Jumbo Sized Egg',
+            price: '850',
+            quantity: 100,
+            discount: '0.00',
+            total: 85000,
+            size: 'Jumbo'
+          },
+          {
+            id: 2,
+            name: 'Medium Sized Egg',
+            price: '750',
+            quantity: 100,
+            discount: '0.00',
+            total: 75000,
+            size: 'Medium'
+          },
+          {
+            id: 3,
+            name: 'Pullet Sized Egg',
+            price: '600',
+            quantity: 100,
+            discount: '0.00',
+            total: 60000,
+            size: 'Pullet'
           }
-        ],
-        showItemDialog: false,
-        selectedItem: {}
-      }
-    },
-    components: {
-      ButtonPill,
-      AppPageHeader,
-      Item,
-      CustomTable
-    },
-    methods: {
-      itemClickHandler(item) {
-        this.showItemDialog = true
-        console.log(item)
-        this.selectedItem = item
-      }
-    },
-    created() {
-      const currentDate = new Date().toISOString().split('T')[0]
-      this.invoice.invoiceDate = currentDate
-      this.invoice.paymentDate = currentDate
-      this.invoice.id = new Date().getTime()
+        ]
+      },
+      showFullCustomerDetails: false,
+      itemsHeader: [
+        {label: 'SKU', id: 'id', width: '5%', breakPoint: 'medium'},
+        {label: 'Name', id: 'name', width: '50%'},
+        {
+          label: 'Price',
+          id: 'price',
+          representedAs: function (record) {
+            return `₦${record.price}`
+          }
+        },
+        {label: 'Qty', id: 'quantity'},
+        {
+          label: 'Disc.',
+          id: 'discount',
+          breakPoint: 'medium',
+          representedAs: function (record) {
+            return `₦${record.discount}`
+          }
+        },
+        {
+          label: 'Total',
+          id: 'amount',
+          representedAs: function (record) {
+            return `₦${record.total}`
+          }
+        }
+      ],
+      showItemDialog: false,
+      selectedItem: {},
+      itemEditMode: false
     }
+  },
+  components: {
+    AddCustomer,
+    ButtonPill,
+    AppPageHeader,
+    Item,
+    CustomTable
+  },
+  methods: {
+    editItem (item) {
+      this.showItemDialog = true
+      this.selectedItem = item
+      this.itemEditMode = true
+    },
+    addItem () {
+      this.showItemDialog = true
+      this.selectedItem = {}
+      this.itemEditMode = false
+    }
+  },
+  created () {
+    const currentDate = new Date().toISOString().split('T')[0]
+    this.invoice.invoiceDate = currentDate
+    this.invoice.paymentDate = currentDate
+    this.invoice.id = new Date().getTime()
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -220,6 +265,19 @@
 
     @include respond-to(tablet) {
       grid-template-columns: 3fr minmax(200px, 1.5fr);
+    }
+  }
+
+  .invoice__detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    grid-gap: 10px;
+    box-sizing: border-box;
+    margin: 20px 0;
+
+    div {
+      background-color: #f3e5f58c;
+      padding: 5px;
     }
   }
 

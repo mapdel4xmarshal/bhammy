@@ -17,7 +17,7 @@
 
 <script>
 import SideBarContainer from './components/SideBarContainer'
-import HeaderBar from './components/HeaderBar'
+import HeaderBar from './components/header/HeaderBar'
 import HelloWorld from './components/HelloWorld'
 import Home from './components/Home'
 import Sales from './components/sales/Sales'

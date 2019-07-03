@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="menu-icon">
-      <img src="../assets/images/menu2.png" alt="" @click="toggleSideBar">
+      <img src="../../assets/images/menu2.png" alt="" @click="toggleSideBar">
     </div>
     <farm-selector class="header__farm-selector"/>
 
@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import {sharedParams} from '../main'
-import Profile from './common/Profile'
-import FarmSelector from './header/FarmSelector'
+import {sharedParams} from '../../main'
+import Profile from '../common/Profile'
+import FarmSelector from './FarmSelector'
 
 export default {
   name: 'HeaderBar',
@@ -40,13 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../scss/_variables';
+  @import '../../scss/variables';
 
   header {
     height: $header-height;
     background-color: #FFFFFF;
     display: flex;
-    padding: 0 10px;
     justify-content: space-between;
     color: white;
     -webkit-box-shadow: 0 1px 3px -2px #77777761;
@@ -55,7 +54,7 @@ export default {
   }
 
   .header__farm-selector {
-    width: 200px;
+    width: 150px;
     margin-right: auto !important;
   }
 
@@ -72,7 +71,7 @@ export default {
 
   .right-section {
     line-height: 3;
-    padding-left: 10px;
+    padding: 0 10px;
     color: #2b2b2b;
     display: inline-grid;
     max-width: 350px;

@@ -20,16 +20,14 @@ export default {
     align-content: center;
     justify-content: center;
     margin: auto 0;
-    padding: 0 5px;
+    padding-left: 10px;
     color: #000;
+    border-left: 1px solid #EEEEEE;
     position: relative;
     text-align: left;
-    height: 40px;
+    height: 100%;
     cursor: pointer;
-
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 4px -1px #000000bd;
 
     &::after {
       content: '';

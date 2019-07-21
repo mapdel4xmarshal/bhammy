@@ -6,6 +6,8 @@ import {routes} from './router/index'
 import VueRouter from 'vue-router'
 import App from './App'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css'
 import { faPlusCircle,
   faChartPie,
   faSlidersH,
@@ -39,6 +41,7 @@ const router = new VueRouter({
 })
 
 Vue.use(VueResource)
+Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker)
 
 Vue.config.productionTip = false
 

@@ -104,7 +104,21 @@
       </app-page-header>
 
       <div class="invoice__detail">
-        <div>date area</div>
+        <div>
+          <label for="created">Invoice date</label>
+          <input type="date" id="created" />
+
+          <label for="dueDate">Invoice due</label>
+          <vue-ctk-date-time-picker color="#7f2775"
+                                    :auto-close="true"
+                                    :only-date="true"
+                                    :no-label="true"
+                                    :min-date="new Date().toISOString()"
+                                    v-model="invoice.paymentDate"
+          >
+            <input type="text" id="dueDate"/>
+          </vue-ctk-date-time-picker>
+        </div>
         <add-customer />
       </div>
 
@@ -120,7 +134,7 @@
           :is-primary="false"
           class="items__add-item"
           :click-handler="addItem">
-          + New item
+          + Add item
         </button-pill>
 
         <div class="invoice__footer">
@@ -152,6 +166,7 @@ import Item from './Item'
 import AppPageHeader from '../common/AppPageHeader'
 import ButtonPill from '../common/ButtonPill'
 import AddCustomer from '../common/AddCustomer'
+import DatePicker from 'vue-md-date-picker'
 
 export default {
   name: 'NewInvoice',
@@ -220,7 +235,8 @@ export default {
       ],
       showItemDialog: false,
       selectedItem: {},
-      itemEditMode: false
+      itemEditMode: false,
+      show: true
     }
   },
   components: {
@@ -228,7 +244,8 @@ export default {
     ButtonPill,
     AppPageHeader,
     Item,
-    CustomTable
+    CustomTable,
+    DatePicker
   },
   methods: {
     editItem (item) {

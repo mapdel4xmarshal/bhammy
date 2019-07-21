@@ -5,7 +5,7 @@
   "author": "Emmanuel <bamidele.mapayi@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 80 --host 192.168.0.16",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 80 --host 192.168.0.17",
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -23,6 +23,7 @@
     "datatables": "^1.10.18",
     "node-sass": "^4.9.2",
     "vue": "^2.6.10",
+    "vue-ctk-date-time-picker": "^2.1.1",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.6.10"

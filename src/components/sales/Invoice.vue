@@ -195,7 +195,8 @@ export default {
             quantity: 100,
             discount: '0.00',
             total: 85000,
-            size: 'Jumbo'
+            size: 'Jumbo',
+            type: 'Egg'
           },
           {
             id: 2,
@@ -204,7 +205,8 @@ export default {
             quantity: 100,
             discount: '0.00',
             total: 75000,
-            size: 'Medium'
+            size: 'Medium',
+            type: 'Egg'
           },
           {
             id: 3,
@@ -213,7 +215,8 @@ export default {
             quantity: 100,
             discount: '0.00',
             total: 60000,
-            size: 'Pullet'
+            size: 'Pullet',
+            type: 'Egg'
           }
         ]
       },

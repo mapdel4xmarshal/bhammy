@@ -183,7 +183,7 @@ export default {
     flex-basis: 100%;
     flex: 1;
     font-size: 12px;
-    height: 30px;
+    height: 40px;
     justify-content: center;
     overflow: hidden;
     padding: 5px;
@@ -193,7 +193,7 @@ export default {
 
   .table__column--expandable {
     @extend .table__column;
-    flex-basis: 40px;
+    flex-basis: 50px;
     flex-grow: 0;
     flex-shrink: 0;
   }

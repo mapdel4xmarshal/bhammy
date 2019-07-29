@@ -63,137 +63,131 @@
     max-width="500"
   >
     <v-card>
-      <v-card-title class="headline">Use Google's location service?</v-card-title>
-
+      <v-card-title class="headline">{{ title }}</v-card-title>
+      <v-divider/>
       <v-card-text>
-    <div class="item">
-      <div class="item__type item--input">
-        <label for="type">Type</label>
-        <select id="type">
-          <option value="Egg">Egg</option>
-          <option value="Fish">Fish</option>
-          <option value="Old layers">Old layers</option>
-        </select>
-      </div>
+        <v-form v-model="valid">
+          <v-select
+            v-model="data.type"
+            :items="['Egg', 'Fish', 'Old layers']"
+            label="Type"
+          />
 
-      <div class="item__size item--input">
-        <label for="size">Size</label>
-        <select id="size" v-model="data.size">
-          <option value="Jumbo">Jumbo</option>
-          <option value="Large">Large</option>
-          <option value="Medium">Medium</option>
-          <option value="Pullet">Pullet</option>
-        </select>
-      </div>
+          <v-select
+            v-model="data.size"
+            :items="['Jumbo', 'Large', 'Medium', 'Pullet']"
+            label="Size"
+          />
 
-      <div class="item__price item--input">
-        <label for="price">Price</label>
-        <span class="input-icon">₦</span>
-        <input id="price" type="number" :value="data.price" disabled/>
-      </div>
+          <v-text-field
+            v-model="data.price"
+            :rules="nameRules"
+            type="number"
+            label="Price"
+            prefix="₦"
+            required
+            disabled
+          />
 
-      <div class="item__quantity item--input">
-        <label for="quantity">Quantity</label>
-        <input id="quantity" type="number" v-model="data.quantity"/>
-      </div>
+          <v-text-field
+            v-model="data.quantity"
+            :rules="nameRules"
+            label="Quantity"
+            type="number"
+            required
+          />
 
-      <div class="item__discount item--input">
-        <label for="discount">Discount</label>
-        <span class="input-icon">₦</span>
-        <input id="discount" type="number"  v-model="data.discount"/>
-      </div>
-    </div>
+          <v-text-field
+            v-model="data.discount"
+            :rules="emailRules"
+            label="Discount"
+            type="number"
+            prefix="₦"
+            required
+          />
+
+        </v-form>
       </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
 
-          <button-pill
-            :is-primary="false"
-            :click-handler="close"
-            class="item__cancel-button">
-            Cancel
-          </button-pill>
+      <v-spacer></v-spacer>
+      <v-card-actions>
+        <v-btn
+          rounded
+          @click="close"
+          text
+          color="primary"
+          class="item__cancel-button">
+          Cancel
+        </v-btn>
 
-          <button-pill
-            v-if="editMode"
-            :is-primary="false"
-            :click-handler="close">
-            Delete
-          </button-pill>
+        <v-btn
+          v-if="editMode"
+          rounded
+          outlined
+          color="primary"
+          @click="close">
+          Delete
+        </v-btn>
 
-          <button-pill :title="action"/>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Disagree
-          </v-btn>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Agree
-          </v-btn>
-        </v-card-actions>
+        <v-btn rounded
+               color="primary">
+          {{ action }}
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 
 </template>
 
 <script>
-import ButtonPill from '../common/ButtonPill'
-import CustomDialog from '@/components/common/Dialog'
+  import ButtonPill from '../common/ButtonPill'
+  import CustomDialog from '@/components/common/Dialog'
 
-export default {
-  name: 'AddItem',
-  data () {
-    return {
-    }
-  },
-  props: {
-    data: {
-      type: Object
+  export default {
+    name: 'AddItem',
+    data() {
+      return {}
     },
-    editMode: {
-      type: Boolean
-    },
-    show: {
-      type: Boolean,
-      default: true
-    }
-  },
-  components: {
-    ButtonPill,
-    CustomDialog
-  },
-  computed: {
-    isVisible: {
-      // getter
-      get: function () {
-        return this.show
+    props: {
+      data: {
+        type: Object
       },
-      // setter
-      set: function (newValue) {
-        this.$emit('update:show', newValue)
+      editMode: {
+        type: Boolean
+      },
+      show: {
+        type: Boolean,
+        default: true
       }
     },
-    action () {
-      return this.editMode ? 'Update item' : 'Add item'
+    components: {
+      ButtonPill,
+      CustomDialog
     },
-    title () {
-      return this.editMode ? 'Edit item' : 'Add item'
-    }
-  },
-  methods: {
-    close () {
-      this.$emit('update:show', false)
+    computed: {
+      isVisible: {
+        // getter
+        get: function () {
+          return this.show
+        },
+        // setter
+        set: function (newValue) {
+          this.$emit('update:show', newValue)
+        }
+      },
+      action() {
+        return this.editMode ? 'Update item' : 'Add item'
+      },
+      title() {
+        return this.editMode ? 'Edit item' : 'Add item'
+      }
+    },
+    methods: {
+      close() {
+        this.$emit('update:show', false)
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -228,13 +222,9 @@ export default {
     position: absolute;
     bottom: 5px;
     left: 0;
-
-    & + input {
-      padding-left: 15px;
-    }
   }
 
   .item__cancel-button {
-     margin-right: auto !important;
+    margin-right: auto !important;
   }
 </style>

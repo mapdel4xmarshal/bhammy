@@ -152,7 +152,7 @@ export default {
 
   .status {
     font-size: 11px;
-    width: 40px;
+    width: 60px;
     display: inline-block;
     /*color:white;*/
     color: #000;

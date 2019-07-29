@@ -95,7 +95,15 @@
     <section class="invoice">
       <app-page-header :has-search="false">
         <template v-slot:controls>
-          <button-pill>+ Save invoice</button-pill>
+          <v-btn
+            rounded
+            :loading="savingInvoice"
+            :disabled="savingInvoice"
+            color="primary"
+            @click="savingInvoice = !savingInvoice"
+          >
+            Save invoice
+          </v-btn>
         </template>
 
         <template v-slot:title>
@@ -108,7 +116,8 @@
           <label for="created">Invoice date</label>
           <input type="date" id="created" />
 
-          <label for="dueDate">Invoice due</label>
+          <label for="dueDate">Invoice due
+          </label>
           <vue-ctk-date-time-picker color="#7f2775"
                                     :auto-close="true"
                                     :only-date="true"
@@ -130,12 +139,15 @@
                       :headers="itemsHeader">
         </custom-table>
 
-        <button-pill
-          :is-primary="false"
+        <v-btn
+          :disabled="savingInvoice"
+          rounded
+          outlined
+          color="primary"
           class="items__add-item"
-          :click-handler="addItem">
+          @click="addItem">
           + Add item
-        </button-pill>
+        </v-btn>
 
         <div class="invoice__footer">
           <textarea class="invoice__comment">Comment...</textarea>
@@ -166,12 +178,12 @@ import Item from './Item'
 import AppPageHeader from '../common/AppPageHeader'
 import ButtonPill from '../common/ButtonPill'
 import AddCustomer from '../common/AddCustomer'
-import DatePicker from 'vue-md-date-picker'
 
 export default {
   name: 'NewInvoice',
   data () {
     return {
+      savingInvoice: false,
       invoice: {
         paymentDate: '',
         invoiceDate: '',
@@ -244,8 +256,7 @@ export default {
     ButtonPill,
     AppPageHeader,
     Item,
-    CustomTable,
-    DatePicker
+    CustomTable
   },
   methods: {
     editItem (item) {

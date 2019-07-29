@@ -5,45 +5,23 @@ import VueResource from 'vue-resource'
 import {routes} from './router/index'
 import VueRouter from 'vue-router'
 import App from './App'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import FontAwesomeIcon from './vendors/fontawesome'
+import vuetify from './vendors/vuetify'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css'
-import { faPlusCircle,
-  faChartPie,
-  faSlidersH,
-  faSearch,
-  faDownload,
-  faPlus,
-  faPrint,
-  faSave,
-  faTimes,
-  faTimesCircle,
-  faEdit,
-  faAngleDown,
-  faAngleUp,
-  faAngleLeft,
-  faAngleRight,
-  faEnvelope,
-  faBell } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faPlusCircle, faChartPie, faSlidersH, faSearch, faDownload, faPlus, faPrint, faSave, faTimes, faTimesCircle,
-  faEdit, faAngleDown, faAngleUp, faEnvelope, faBell, faAngleLeft, faAngleRight
-)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
+
+Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const router = new VueRouter({
   routes,
   mode: 'history'
 })
-
-Vue.use(VueResource)
-Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker)
-
-Vue.config.productionTip = false
 
 // Share data between components
 export const sharedParams = new Vue({
@@ -58,6 +36,7 @@ export const sharedParams = new Vue({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  vuetify,
   router,
   render: h => h(App)
 })

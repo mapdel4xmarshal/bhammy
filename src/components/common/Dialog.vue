@@ -43,7 +43,27 @@ export default {
       default: null
     }
   },
-  computed: {}
+  methods: {
+    handlePopstate () {
+     // window.addEventListener('popstate', this.popstateListener, false)
+      document.addEventListener('backbutton', this.popstateListener, false)
+    },
+    popstateListener (event) { console.log("this.active")
+      event.preventDefault()
+      event.stopPropagation()
+      if (this.active === true)this.$emit('update:active', false)
+      console.log("Popped")
+    }
+  },
+  watch: {
+    active (newValue, oldValue) { console.log(newValue)
+      if(newValue === true) location.hash = '#dialog'
+      else location.hash = ''
+    }
+  },
+  mounted() {
+    this.handlePopstate()
+  }
 }
 </script>
 

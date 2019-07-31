@@ -54,7 +54,7 @@ export default {
   }
 
   .header__farm-selector {
-    width: 150px;
+    width: 180px;
     margin-right: auto !important;
   }
 

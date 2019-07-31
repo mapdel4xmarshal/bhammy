@@ -112,23 +112,48 @@
       </app-page-header>
 
       <div class="invoice__detail">
-        <div>
-          <label for="created">Invoice date</label>
-          <input type="date" id="created" />
+        <div class="invoice__detail--left">
+          <div>
+            <v-menu
+              v-model="showPaymentDatePicker"
+              :close-on-content-click="false"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="invoice.paymentDate"
+                  label="Invoice date"
+                  v-on="on"
+                  readonly
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="invoice.paymentDate" @input="showPaymentDatePicker = false"/>
+            </v-menu>
+          </div>
 
-          <label for="dueDate">Invoice due
-          </label>
-          <vue-ctk-date-time-picker color="#7f2775"
-                                    :auto-close="true"
-                                    :only-date="true"
-                                    :no-label="true"
-                                    :min-date="new Date().toISOString()"
-                                    v-model="invoice.paymentDate"
-          >
-            <input type="text" id="dueDate"/>
-          </vue-ctk-date-time-picker>
+          <div>
+            <v-menu
+              v-model="showPaymentDatePicker"
+              :close-on-content-click="false"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="invoice.paymentDate"
+                  label="Payment date"
+                  v-on="on"
+                  readonly
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="invoice.paymentDate" @input="showPaymentDatePicker = false"/>
+            </v-menu>
+          </div>
         </div>
-        <add-customer />
+        <add-customer/>
       </div>
 
       <div class="items__title"><strong>Items</strong></div>
@@ -173,113 +198,114 @@
 </template>
 
 <script>
-import CustomTable from '@/components/common/CustomTable'
-import Item from './Item'
-import AppPageHeader from '../common/AppPageHeader'
-import ButtonPill from '../common/ButtonPill'
-import AddCustomer from '../common/AddCustomer'
+  import CustomTable from '@/components/common/CustomTable'
+  import Item from './Item'
+  import AppPageHeader from '../common/AppPageHeader'
+  import ButtonPill from '../common/ButtonPill'
+  import AddCustomer from '../common/AddCustomer'
 
-export default {
-  name: 'NewInvoice',
-  data () {
-    return {
-      savingInvoice: false,
-      invoice: {
-        paymentDate: '',
-        invoiceDate: '',
-        items: [
+  export default {
+    name: 'NewInvoice',
+    data() {
+      return {
+        savingInvoice: false,
+        showPaymentDatePicker: false,
+        invoice: {
+          paymentDate: '',
+          invoiceDate: '',
+          items: [
+            {
+              id: 1,
+              name: 'Jumbo Sized Egg',
+              price: '850',
+              quantity: 100,
+              discount: '0.00',
+              total: 85000,
+              size: 'Jumbo',
+              type: 'Egg'
+            },
+            {
+              id: 2,
+              name: 'Medium Sized Egg',
+              price: '750',
+              quantity: 100,
+              discount: '0.00',
+              total: 75000,
+              size: 'Medium',
+              type: 'Egg'
+            },
+            {
+              id: 3,
+              name: 'Pullet Sized Egg',
+              price: '600',
+              quantity: 100,
+              discount: '0.00',
+              total: 60000,
+              size: 'Pullet',
+              type: 'Egg'
+            }
+          ]
+        },
+        showFullCustomerDetails: false,
+        itemsHeader: [
+          {label: 'SKU', id: 'id', width: '5%', breakPoint: 'medium'},
+          {label: 'Name', id: 'name', width: '50%'},
           {
-            id: 1,
-            name: 'Jumbo Sized Egg',
-            price: '850',
-            quantity: 100,
-            discount: '0.00',
-            total: 85000,
-            size: 'Jumbo',
-            type: 'Egg'
+            label: 'Price',
+            id: 'price',
+            representedAs: function (record) {
+              return `₦${record.price}`
+            }
+          },
+          {label: 'Qty', id: 'quantity'},
+          {
+            label: 'Disc.',
+            id: 'discount',
+            breakPoint: 'medium',
+            representedAs: function (record) {
+              return `₦${record.discount}`
+            }
           },
           {
-            id: 2,
-            name: 'Medium Sized Egg',
-            price: '750',
-            quantity: 100,
-            discount: '0.00',
-            total: 75000,
-            size: 'Medium',
-            type: 'Egg'
-          },
-          {
-            id: 3,
-            name: 'Pullet Sized Egg',
-            price: '600',
-            quantity: 100,
-            discount: '0.00',
-            total: 60000,
-            size: 'Pullet',
-            type: 'Egg'
+            label: 'Total',
+            id: 'amount',
+            representedAs: function (record) {
+              return `₦${record.total}`
+            }
           }
-        ]
-      },
-      showFullCustomerDetails: false,
-      itemsHeader: [
-        {label: 'SKU', id: 'id', width: '5%', breakPoint: 'medium'},
-        {label: 'Name', id: 'name', width: '50%'},
-        {
-          label: 'Price',
-          id: 'price',
-          representedAs: function (record) {
-            return `₦${record.price}`
-          }
-        },
-        {label: 'Qty', id: 'quantity'},
-        {
-          label: 'Disc.',
-          id: 'discount',
-          breakPoint: 'medium',
-          representedAs: function (record) {
-            return `₦${record.discount}`
-          }
-        },
-        {
-          label: 'Total',
-          id: 'amount',
-          representedAs: function (record) {
-            return `₦${record.total}`
-          }
-        }
-      ],
-      showItemDialog: false,
-      selectedItem: {},
-      itemEditMode: false,
-      show: true
-    }
-  },
-  components: {
-    AddCustomer,
-    ButtonPill,
-    AppPageHeader,
-    Item,
-    CustomTable
-  },
-  methods: {
-    editItem (item) {
-      this.showItemDialog = true
-      this.selectedItem = item
-      this.itemEditMode = true
+        ],
+        showItemDialog: false,
+        selectedItem: {},
+        itemEditMode: false,
+        show: true
+      }
     },
-    addItem () {
-      this.showItemDialog = true
-      this.selectedItem = {}
-      this.itemEditMode = false
+    components: {
+      AddCustomer,
+      ButtonPill,
+      AppPageHeader,
+      Item,
+      CustomTable
+    },
+    methods: {
+      editItem(item) {
+        this.showItemDialog = true
+        this.selectedItem = item
+        this.itemEditMode = true
+      },
+      addItem() {
+        this.showItemDialog = true
+        this.selectedItem = {}
+        this.itemEditMode = false
+      }
+    },
+    created() {
+      const currentDate = new Date().toISOString().split('T')[0]
+      this.invoice.invoiceDate = currentDate
+      this.invoice.paymentDate = currentDate
+      this.invoice.id = new Date().getTime()
     }
-  },
-  created () {
-    const currentDate = new Date().toISOString().split('T')[0]
-    this.invoice.invoiceDate = currentDate
-    this.invoice.paymentDate = currentDate
-    this.invoice.id = new Date().getTime()
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -305,11 +331,12 @@ export default {
     grid-gap: 10px;
     box-sizing: border-box;
     margin: 20px 0;
+  }
 
-    div {
-      background-color: #f3e5f58c;
-      padding: 5px;
-    }
+  .invoice__detail--left {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+    grid-gap: 10px;
   }
 
   .invoice__summary {

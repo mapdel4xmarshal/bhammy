@@ -182,7 +182,7 @@ export default {
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
-    font-size: 12px;
+    font-size: 14px;
     height: 40px;
     justify-content: center;
     overflow: hidden;

@@ -2,10 +2,13 @@
   <header class="page-header">
     <the-breadcrumb class="page-header__items"/>
     <div class="page-header__search page-header__items">
-        <slot name="search" v-if="hasSearch">
-          <input type="text" placeholder="search..."/>
-        </slot>
-        <font-awesome-icon icon="search" v-if="hasSearch"/>
+      <slot name="search">
+        <v-text-field v-if="hasSearch"
+                      label="Search"
+                      clearable
+                      append-icon="place"
+        />
+      </slot>
     </div>
     <div class="page-header__items">
       <slot name="title">
@@ -19,24 +22,24 @@
 </template>
 
 <script>
-import TheBreadcrumb from './TheBreadcrumb.vue'
+  import TheBreadcrumb from './TheBreadcrumb.vue'
 
-export default {
-  name: 'AppPageHeader',
-  props: {
-    title: {
-      type: String,
-      default: 'Page Title'
+  export default {
+    name: 'AppPageHeader',
+    props: {
+      title: {
+        type: String,
+        default: 'Page Title'
+      },
+      hasSearch: {
+        type: Boolean,
+        default: true
+      }
     },
-    hasSearch: {
-      type: Boolean,
-      default: true
+    components: {
+      TheBreadcrumb
     }
-  },
-  components: {
-    TheBreadcrumb
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -67,25 +70,8 @@ export default {
 
   .page-header__search {
     display: grid;
-    grid-template-columns: auto 30px;
     justify-items: end;
     align-items: center;
-
-    input {
-      border-bottom: 1px solid #ccc;
-      height: 25px;
-      width: 120px;
-    }
-
-    svg {
-      color: #CCCCCC;
-      cursor: pointer;
-      justify-self: center;
-
-      :hover {
-        color: #00000090;
-      }
-    }
   }
 
 </style>

@@ -113,6 +113,16 @@
 
       <div class="invoice__detail">
         <div class="invoice__detail--left">
+          <v-select
+            :items="['Ajegunle', 'Ote Town']"
+            label="Farm"
+          />
+
+          <v-select
+            :items="[]"
+            label="Solo field"
+          />
+
           <div>
             <v-menu
               v-model="showPaymentDatePicker"
@@ -153,7 +163,20 @@
             </v-menu>
           </div>
         </div>
-        <add-customer/>
+        <div>
+          <add-customer/>
+          <v-sheet
+            class="mx-auto"
+            height="100"
+            :elevation="1"
+          >
+            <h3>Emmanuel Mapayi</h3>
+            <span>
+              1234 Test street, Waterloo, ON
+            </span>
+          </v-sheet>
+        </div>
+
       </div>
 
       <div class="items__title"><strong>Items</strong></div>
@@ -328,15 +351,15 @@
   .invoice__detail {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-    grid-gap: 10px;
+    grid-gap: 20%;
     box-sizing: border-box;
     margin: 20px 0;
   }
 
   .invoice__detail--left {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
-    grid-gap: 10px;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
   }
 
   .invoice__summary {

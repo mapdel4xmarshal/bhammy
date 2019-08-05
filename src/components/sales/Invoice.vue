@@ -107,7 +107,7 @@
         </template>
 
         <template v-slot:title>
-          <h1>INVOICE# 23542</h1>
+          <h2>INVOICE# 23542</h2>
         </template>
       </app-page-header>
 
@@ -163,39 +163,30 @@
             </v-menu>
           </div>
         </div>
-        <div>
-          <add-customer/>
-          <v-sheet
-            class="mx-auto"
-            height="100"
-            :elevation="1"
-          >
-            <h3>Emmanuel Mapayi</h3>
-            <span>
-              1234 Test street, Waterloo, ON
-            </span>
-          </v-sheet>
+        <div class="invoice__detail--right">
+          <add-customer @update="updateCustomer"/>
+          <customer-detail :customer="customer"/>
         </div>
-
       </div>
 
       <div class="items__title"><strong>Items</strong></div>
-      <div class="items__container">
+      <div v-if="invoice.items.length > 0" class="items__container">
         <custom-table :records="invoice.items"
                       :title="'Items'"
                       :clickHandler="editItem"
                       :headers="itemsHeader">
         </custom-table>
 
-        <v-btn
-          :disabled="savingInvoice"
-          rounded
-          outlined
-          color="primary"
-          class="items__add-item"
-          @click="addItem">
-          + Add item
-        </v-btn>
+        <div class="items__add-item">
+          <v-btn
+            :disabled="savingInvoice"
+            rounded
+            outlined
+            color="primary"
+            @click="addItem">
+            + Add item
+          </v-btn>
+        </div>
 
         <div class="invoice__footer">
           <textarea class="invoice__comment">Comment...</textarea>
@@ -214,8 +205,21 @@
         <small>
           <strong>Last Modified </strong> by Emmanuel on 19-11-2019
         </small>
-
       </div>
+
+      <v-card v-else class="items__container--empty">
+        <br>
+        No items yet.
+        <p>Start adding items to your invoice now.</p>
+        <v-btn
+          :disabled="savingInvoice"
+          rounded
+          outlined
+          color="primary"
+          @click="addItem">
+          + Add item
+        </v-btn>
+      </v-card>
     </section>
   </div>
 </template>
@@ -226,11 +230,13 @@
   import AppPageHeader from '../common/AppPageHeader'
   import ButtonPill from '../common/ButtonPill'
   import AddCustomer from '../common/AddCustomer'
+  import CustomerDetail from "../common/CustomerDetail";
 
   export default {
     name: 'NewInvoice',
     data() {
       return {
+        customer: {},
         savingInvoice: false,
         showPaymentDatePicker: false,
         invoice: {
@@ -304,6 +310,7 @@
       }
     },
     components: {
+      CustomerDetail,
       AddCustomer,
       ButtonPill,
       AppPageHeader,
@@ -320,6 +327,9 @@
         this.showItemDialog = true
         this.selectedItem = {}
         this.itemEditMode = false
+      },
+      updateCustomer(customer) {
+        this.customer = customer;
       }
     },
     created() {
@@ -334,14 +344,11 @@
 <style lang="scss" scoped>
   @import "../../scss/global.scss";
 
-  .invoice {
-
-  }
-
   .invoice__footer {
     display: grid;
     grid-template-columns: 100%;
     grid-gap: 10px;
+    flex: 1;
 
     @include respond-to(tablet) {
       grid-template-columns: 3fr minmax(200px, 1.5fr);
@@ -349,17 +356,32 @@
   }
 
   .invoice__detail {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-    grid-gap: 20%;
-    box-sizing: border-box;
-    margin: 20px 0;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-  .invoice__detail--left {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
+    &--left {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+      grid-column-gap: 20px;
+      flex: 1 1 100%;
+    }
+
+    &--right {
+      flex: 1 1 100%;
+    }
+
+    @include respond-to(tablet) {
+      &--left {
+        flex: 1 1 45%;
+        margin-right: 20px;
+      }
+
+      &--right {
+        flex: 1 1 45%;
+        margin-left: 20px;
+      }
+    }
   }
 
   .invoice__summary {
@@ -385,7 +407,13 @@
   }
 
   .items__add-item {
-    margin: 10px auto;
-    display: inline-block !important;
+    display: flex;
+    margin: 10px;
+    flex-direction: row-reverse;
+  }
+
+  .items__container--empty {
+    text-align: center;
+    margin-bottom: 50px;
   }
 </style>

@@ -21,7 +21,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "bootstrap": "^4.1.2",
     "datatables": "^1.10.18",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.13.1",
     "npm": "^6.10.2",
     "vue": "^2.6.10",
     "vue-ctk-date-time-picker": "^2.1.1",
